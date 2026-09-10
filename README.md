@@ -1,1 +1,5090 @@
-# handobin
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Financing Rate Calculator | Hyundai Corporation</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/gh/moonspam/NanumBarunGothic@latest/nanumbarungothicsubset.css" rel="stylesheet" />
+  <style>
+    :root {
+      --hc-header: #2b2b2b;
+      --hc-nav-line: #414141;
+      --hc-accent: #00b3f0;
+      --hc-accent-2: #02a5ed;
+      --hc-accent-soft: #4eb8ef;
+      --hc-link: #215faa;
+      --hc-table-top: #3d83a0;
+      --hc-table-bottom: #a6a6a6;
+      --hc-table-head: #f6fcfe;
+      --hc-table-head-line: #b4c5cb;
+      --hc-border: #e1e1e1;
+      --hc-text: #222222;
+      --hc-muted: #777777;
+      --hc-bg: #f3f4f6;
+      --hc-card: #ffffff;
+      --hc-footer: #f9f9f9;
+      --hc-side: #434749;
+      --bg: var(--hc-bg);
+      --card: var(--hc-card);
+      --text: var(--hc-text);
+      --muted: var(--hc-muted);
+      --line: var(--hc-border);
+      --accent: var(--hc-accent-2);
+      --accent-soft: #e8f7fd;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "NanumBarunGothic", "Open Sans", "Malgun Gothic", sans-serif;
+      background: var(--hc-bg);
+      color: var(--hc-text);
+      min-height: 100vh;
+      line-height: 1.6;
+    }
+
+    a {
+      color: var(--hc-link);
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: var(--hc-accent-2);
+    }
+
+    .site-header {
+      background: var(--hc-header);
+      color: #fff;
+    }
+
+    .header-top {
+      border-bottom: 1px solid #3a3a3a;
+    }
+
+    .header-top-inner,
+    .tabs,
+    .page,
+    .page-hero-inner,
+    .site-footer-inner {
+      width: min(1200px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    .header-top-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 78px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      color: #fff;
+    }
+
+    .brand:hover {
+      color: #fff;
+    }
+
+    .brand img {
+      display: block;
+      height: 36px;
+      width: auto;
+    }
+
+    .brand-text {
+      display: none;
+      font-family: "Open Sans", sans-serif;
+      font-size: 17px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+
+    .header-util {
+      font-family: "Open Sans", sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      color: #ababab;
+    }
+
+    .tabs {
+      display: flex;
+      gap: 0;
+      overflow-x: auto;
+    }
+
+    .tab-btn {
+      appearance: none;
+      border: 0;
+      background: transparent;
+      color: #ababab;
+      font-family: inherit;
+      font-size: 15px;
+      font-weight: 700;
+      padding: 16px 22px 15px;
+      cursor: pointer;
+      white-space: nowrap;
+      border-top: 2px solid transparent;
+    }
+
+    .tab-btn:hover {
+      color: #fff;
+      border-top-color: var(--hc-accent-soft);
+    }
+
+    .tab-btn.active {
+      color: #fff;
+      border-top-color: var(--hc-accent);
+    }
+
+    .page-hero {
+      background:
+        linear-gradient(90deg, rgba(43, 43, 43, 0.88) 0%, rgba(43, 43, 43, 0.55) 58%, rgba(2, 165, 237, 0.28) 100%),
+        #2b2b2b;
+      color: #fff;
+      padding: 36px 0 32px;
+    }
+
+    .page-hero h1 {
+      font-size: 32px;
+      font-weight: 700;
+      letter-spacing: -0.4px;
+      line-height: 1.25;
+    }
+
+    .page-lead {
+      margin-top: 8px;
+      color: #d8d8d8;
+      font-size: 14px;
+    }
+
+    .page {
+      padding: 28px 0 56px;
+    }
+
+    .panel {
+      display: none;
+      background: var(--hc-card);
+      border: 1px solid var(--hc-border);
+      border-top: 3px solid #6b6b6b;
+      min-height: 320px;
+      padding: 28px 28px 32px;
+    }
+
+    .panel.active {
+      display: block;
+    }
+
+    #proposal.panel {
+      padding: 0;
+      overflow: hidden;
+    }
+
+    .placeholder,
+    .empty-state {
+      color: var(--hc-muted);
+      font-size: 15px;
+    }
+
+    .empty-state {
+      min-height: 240px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      gap: 8px;
+    }
+
+    .empty-kicker {
+      font-family: "Open Sans", sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      color: var(--hc-accent-2);
+    }
+
+    .action-btn {
+      appearance: none;
+      border: 0;
+      background: var(--hc-accent-2);
+      color: #fff;
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 700;
+      padding: 11px 20px;
+      cursor: pointer;
+    }
+
+    .action-btn:hover {
+      background: #018dcb;
+    }
+
+    .action-btn.ghost {
+      background: #fff;
+      color: var(--hc-text);
+      border: 1px solid var(--hc-border);
+    }
+
+    .action-btn.ghost:hover {
+      color: var(--hc-accent-2);
+      border-color: var(--hc-accent-soft);
+      background: #f6fcfe;
+    }
+
+    .proposal-workspace {
+      position: relative;
+      display: grid;
+      grid-template-columns: 340px minmax(0, 1fr);
+      align-items: start;
+    }
+
+    .proposal-form {
+      padding: 24px;
+      border-right: 1px solid var(--hc-border);
+      background: #fff;
+    }
+
+    .form-grid {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 14px;
+      margin-bottom: 20px;
+    }
+
+    .proposal-preview-pane {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 340px;
+      background: #f0f3f5;
+      padding: 20px;
+      overflow: auto;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .calc-ksure-only[hidden],
+    .calc-ksure-only.calc-ksure-off {
+      display: none !important;
+    }
+
+    .field label {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--hc-text);
+    }
+
+    .field input,
+    .field select,
+    .field textarea {
+      height: 42px;
+      padding: 0 12px;
+      border: 1px solid var(--hc-border);
+      border-radius: 0;
+      font-size: 14px;
+      color: var(--hc-text);
+      background: #fff;
+      font-family: inherit;
+    }
+
+    .field textarea {
+      height: auto;
+      min-height: 72px;
+      padding: 10px 12px;
+      resize: vertical;
+    }
+
+    .field input:focus,
+    .field select:focus,
+    .field textarea:focus {
+      outline: 0;
+      border-color: var(--hc-accent-2);
+      box-shadow: inset 0 0 0 1px var(--hc-accent-2);
+    }
+
+    .custom-input {
+      display: none;
+    }
+
+    .custom-input.show {
+      display: block;
+    }
+
+    .proposal-paper {
+      background: #fff;
+      max-width: 780px;
+      min-height: 100%;
+      margin: 0 auto;
+      padding: 48px 52px 40px;
+      color: #111;
+      font-family: Arial, "Malgun Gothic", sans-serif;
+      font-size: 13px;
+      line-height: 1.45;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    }
+
+    .proposal-title {
+      text-align: center;
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 36px;
+    }
+
+    .proposal-date {
+      text-align: right;
+      margin-bottom: 28px;
+    }
+
+    .proposal-company {
+      font-weight: 700;
+      text-decoration: underline;
+    }
+
+    .proposal-address {
+      margin: 4px 0 22px;
+    }
+
+    .proposal-intro,
+    .proposal-close {
+      text-align: justify;
+      margin-bottom: 22px;
+    }
+
+    .terms {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 28px;
+    }
+
+    .terms td {
+      vertical-align: top;
+      padding: 3px 0;
+    }
+
+    .terms .label {
+      width: 190px;
+      white-space: nowrap;
+    }
+
+    .terms .colon {
+      width: 18px;
+    }
+
+    .remarks {
+      margin: 0;
+      padding-left: 16px;
+    }
+
+    .remarks li {
+      margin-bottom: 8px;
+    }
+
+    .signs {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 36px;
+    }
+
+    .signs td {
+      width: 50%;
+      vertical-align: top;
+      padding-right: 24px;
+    }
+
+    .signs .sign-org {
+      height: 1.5em;
+    }
+
+    .signs .sign-line-cell {
+      padding-top: 72px;
+      padding-bottom: 8px;
+      vertical-align: bottom;
+    }
+
+    .sign-line {
+      border-top: 1px solid #111;
+      width: 78%;
+      margin: 0;
+    }
+
+    @media (max-width: 980px) {
+      .proposal-workspace {
+        grid-template-columns: 1fr;
+      }
+
+      .proposal-form {
+        border-right: 0;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .proposal-preview-pane {
+        position: relative;
+        left: auto;
+        top: auto;
+        right: auto;
+        bottom: auto;
+        height: 70vh;
+      }
+
+    .proposal-paper {
+      padding: 28px 20px;
+    }
+    }
+
+    .lookup-accordions {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .lookup-item {
+      border: 1px solid var(--hc-border);
+      background: #fff;
+      overflow: hidden;
+    }
+
+    .lookup-item-toggle {
+      appearance: none;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 16px 22px;
+      border: 0;
+      background: #f7f8f9;
+      color: var(--hc-text);
+      font: inherit;
+      font-size: 16px;
+      font-weight: 700;
+      text-align: left;
+      cursor: pointer;
+      border-left: 3px solid transparent;
+    }
+
+    .lookup-item-toggle:hover {
+      background: #f0f7fb;
+      color: var(--hc-link);
+    }
+
+    .lookup-item.open .lookup-item-toggle {
+      background: #f6fcfe;
+      color: var(--hc-link);
+      border-left-color: var(--hc-accent);
+    }
+
+    .lookup-chevron {
+      width: 10px;
+      height: 10px;
+      border-right: 2px solid currentColor;
+      border-bottom: 2px solid currentColor;
+      transform: rotate(45deg);
+      transition: transform 0.22s ease;
+      flex-shrink: 0;
+    }
+
+    .lookup-item.open .lookup-chevron {
+      transform: rotate(225deg);
+    }
+
+    .lookup-item-body {
+      display: grid;
+      grid-template-rows: 0fr;
+      transition: grid-template-rows 0.28s ease;
+    }
+
+    .lookup-item.open .lookup-item-body {
+      grid-template-rows: 1fr;
+    }
+
+    .lookup-item-body-inner {
+      overflow: hidden;
+      min-height: 0;
+    }
+
+    .lookup-item.open .lookup-item-body-inner {
+      padding: 4px 20px 20px;
+    }
+
+    .lookup-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .lookup-head h2 {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 6px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid #6b6b6b;
+    }
+
+    .lookup-source,
+    .lookup-note {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .lookup-source a {
+      color: var(--accent);
+    }
+
+    .sofr-table-wrap {
+      max-width: 720px;
+      overflow-x: auto;
+    }
+
+    .sofr-table,
+    .fxfee-table,
+    .ksure-table,
+    .ar-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #fff;
+      font-size: 13px;
+      color: #444;
+      border-top: 2px solid var(--hc-table-top);
+      border-bottom: 2px solid var(--hc-table-bottom);
+    }
+
+    .sofr-table th,
+    .sofr-table td,
+    .fxfee-table th,
+    .fxfee-table td,
+    .ksure-table th,
+    .ksure-table td,
+    .ar-table th,
+    .ar-table td {
+      border: 1px solid var(--hc-border);
+      text-align: center;
+      vertical-align: middle;
+      padding: 11px 10px;
+    }
+
+    .sofr-table thead th,
+    .fxfee-table thead th,
+    .ksure-table thead th,
+    .ksure-table .subhead th,
+    .ar-table thead th {
+      font-weight: 700;
+      color: #4f4f4f;
+      background: var(--hc-table-head);
+      border-bottom: 1px solid var(--hc-table-head-line);
+    }
+
+    .sofr-table .date-head {
+      width: 22%;
+    }
+
+    .sofr-swatch {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      margin-right: 6px;
+      vertical-align: -1px;
+    }
+
+    .sofr-swatch.m1 { background: #2f80c4; }
+    .sofr-swatch.m3 { background: #b08968; }
+    .sofr-swatch.m6 { background: #5d9b5a; }
+    .sofr-swatch.y1 { background: #8a6aad; }
+
+    .lookup-note {
+      margin-top: 14px;
+    }
+
+    .lookup-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .lookup-status {
+      margin: 0 0 14px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .lookup-status.error {
+      color: #b42318;
+    }
+
+    .sofr-table tbody td[colspan] {
+      color: var(--muted);
+      padding: 22px 12px;
+    }
+
+    .fxfee-notes {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.55;
+      margin: 0 0 16px;
+    }
+
+    .fxfee-notes p + p {
+      margin-top: 4px;
+    }
+
+    .fxfee-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .fxfee-card h3 {
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      color: #333;
+    }
+
+    @media (max-width: 800px) {
+      .fxfee-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .ksure-table-wrap {
+      overflow-x: auto;
+    }
+
+    .ksure-table {
+      min-width: 860px;
+    }
+
+    .ksure-table th,
+    .ksure-table td {
+      padding: 8px 6px;
+      white-space: nowrap;
+    }
+
+    .ksure-table .group-export {
+      background: #f4fbfe;
+    }
+
+    .ksure-table .group-transit {
+      background: #f4faf0;
+    }
+
+    .ar-table-wrap {
+      max-width: 920px;
+      overflow-x: auto;
+    }
+
+    .ar-table .ar-name,
+    .ar-table .ar-cover {
+      text-align: left;
+      white-space: pre-line;
+    }
+
+    .sofr-table tbody tr:hover td,
+    .fxfee-table tbody tr:hover td,
+    .ksure-table tbody tr:hover td,
+    .ar-table tbody tr:hover td {
+      background: #f9fcfe;
+    }
+
+    .calc-workspace {
+      display: grid;
+      grid-template-columns: 380px minmax(0, 1fr);
+      grid-template-rows: auto auto auto;
+      column-gap: 28px;
+      row-gap: 20px;
+      align-items: stretch;
+    }
+
+    .calc-left,
+    .calc-result {
+      min-width: 0;
+      display: grid;
+      grid-template-rows: subgrid;
+      grid-row: 1 / span 2;
+      align-items: stretch;
+    }
+
+    .calc-target-box {
+      border: 1px solid var(--hc-border);
+      border-top: 3px solid var(--hc-accent);
+      background: #fff;
+      padding: 16px 18px;
+      margin-bottom: 0;
+    }
+
+    .calc-form .form-grid > .calc-block-title:first-child {
+      margin-top: 0;
+    }
+
+    .calc-result-head {
+      min-width: 0;
+    }
+
+    .calc-result-body {
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+      height: 100%;
+    }
+
+    .calc-result-body > .calc-table-wrap {
+      flex: 1 1 auto;
+      display: grid;
+      grid-template-rows: minmax(0, 1fr);
+      min-height: 0;
+      padding-top: calc(13px * 1.6 + 6px);
+    }
+
+    .calc-result-body > .calc-table-wrap > .calc-table {
+      height: 100%;
+      align-self: stretch;
+    }
+
+    .calc-form {
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+      height: 100%;
+      padding-right: 8px;
+    }
+
+    .calc-report-actions {
+      margin-top: auto;
+      padding-top: 8px;
+    }
+
+    .calc-report-actions .action-btn {
+      width: 100%;
+    }
+
+    .calc-form .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px 12px;
+      margin-bottom: 0;
+    }
+
+    .calc-form input[type="hidden"] {
+      display: none;
+    }
+
+    .calc-form .field-span {
+      grid-column: 1 / -1;
+    }
+
+    .calc-block-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: #6b6b6b;
+      border-bottom: 2px solid #6b6b6b;
+      padding-bottom: 6px;
+      margin: 4px 0 4px;
+      grid-column: 1 / -1;
+    }
+
+    .calc-combo-wrap {
+      grid-column: 1 / -1;
+      margin-top: 4px;
+    }
+
+    .calc-combo-wrap h3 {
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      padding-bottom: 6px;
+      border-bottom: 2px solid #6b6b6b;
+    }
+
+    .calc-combo-table {
+      table-layout: fixed;
+      min-width: 920px;
+    }
+
+    .calc-combo-table thead th {
+      white-space: nowrap;
+    }
+
+    .calc-combo-table col.col-kind { width: 7%; }
+    .calc-combo-table col.col-admin { width: 11%; }
+    .calc-combo-table col.col-sofr { width: 12%; }
+    .calc-combo-table col.col-spread { width: 13%; }
+    .calc-combo-table col.col-interest { width: 12%; }
+    .calc-combo-table col.col-pa { width: 11%; }
+    .calc-combo-table col.col-period { width: 12%; }
+    .calc-combo-table col.col-note { width: 14%; }
+    .calc-combo-table col.col-apply { width: 8%; }
+
+    .calc-combo-table td.name,
+    .calc-combo-table td.num,
+    .calc-combo-table th.num {
+      text-align: center;
+    }
+
+    .calc-combo-table td.note {
+      white-space: nowrap;
+    }
+
+    .calc-result-body .calc-table {
+      table-layout: fixed;
+    }
+
+    .calc-result-body .calc-table col.col-item { width: 22%; }
+    .calc-result-body .calc-table col.col-amount { width: 132px; }
+    .calc-result-body .calc-table col.col-share { width: 118px; }
+    .calc-result-body .calc-table col.col-memo { width: auto; }
+
+    .calc-combo-table tbody tr {
+      cursor: pointer;
+    }
+
+    .calc-combo-table tbody tr:hover td {
+      background: #f0f8fc;
+    }
+
+    .calc-combo-table tbody tr.is-recommended td {
+      background: #e8f6fd;
+      font-weight: 700;
+    }
+
+    .calc-combo-table .combo-apply-col,
+    .calc-combo-table .combo-apply-cell {
+      width: 76px;
+      padding: 6px 8px;
+    }
+
+    .combo-apply-btn {
+      appearance: none;
+      border: 0;
+      background: var(--hc-accent-2);
+      color: #fff;
+      font-family: inherit;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 6px 12px;
+      cursor: pointer;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.15s ease;
+    }
+
+    .calc-combo-table tbody tr:hover .combo-apply-btn,
+    .calc-combo-table tbody tr:focus-within .combo-apply-btn {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .combo-apply-btn:hover {
+      background: #018dcb;
+    }
+
+    @media (hover: none) {
+      .combo-apply-btn {
+        opacity: 1;
+        pointer-events: auto;
+      }
+    }
+
+    .field.is-autofilled input,
+    .field.is-autofilled textarea {
+      border-color: var(--hc-accent-2);
+      box-shadow: inset 0 0 0 1px var(--hc-accent-2);
+      background: #f6fcfe;
+    }
+
+    .calc-card-tag {
+      display: inline-block;
+      margin-bottom: 6px;
+      padding: 2px 7px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      color: #fff;
+      background: var(--hc-accent-2);
+    }
+
+    .calc-hint {
+      font-size: 12px;
+      color: var(--hc-muted);
+      line-height: 1.5;
+      margin: 0 0 4px;
+    }
+
+    .calc-cards {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin: 0 0 14px;
+      align-items: stretch;
+    }
+
+    .calc-card {
+      background: #f6fcfe;
+      border: 1px solid var(--hc-border);
+      border-top: 3px solid var(--hc-accent);
+      padding: 14px 16px;
+      min-height: 96px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .calc-card .calc-card-label {
+      font-size: 12px;
+      font-weight: 700;
+      color: #777;
+      margin-bottom: 0;
+    }
+
+    .calc-card .calc-card-value {
+      font-size: 22px;
+      font-weight: 700;
+      line-height: 1.2;
+      color: var(--hc-text);
+    }
+
+    .calc-card .calc-card-sub {
+      margin-top: 0;
+      min-height: 18px;
+      font-size: 12px;
+      color: #777;
+    }
+
+    .calc-card .calc-card-sub:empty {
+      visibility: hidden;
+    }
+
+    .calc-card-edit {
+      cursor: pointer;
+    }
+
+    .calc-card-edit .calc-card-value {
+      user-select: none;
+    }
+
+    .calc-card-edit.is-manual,
+    .calc-card-edit.is-editing {
+      background: #fff;
+      box-shadow: inset 0 0 0 1px var(--hc-accent-2);
+    }
+
+    .calc-card-value-wrap {
+      display: flex;
+      align-items: baseline;
+      min-height: 26px;
+    }
+
+    .calc-card-input {
+      width: 100%;
+      min-width: 0;
+      font-size: 22px;
+      font-weight: 700;
+      font-family: inherit;
+      line-height: 1.2;
+      color: var(--hc-text);
+      border: 0;
+      border-bottom: 1px solid var(--hc-accent-2);
+      border-radius: 0;
+      background: transparent;
+      padding: 0 0 2px;
+      outline: 0;
+    }
+
+    .calc-card-value[hidden],
+    .calc-card-input[hidden] {
+      display: none !important;
+    }
+
+    .calc-manual-reset {
+      appearance: none;
+      border: 0;
+      background: none;
+      padding: 0;
+      margin: -8px 0 14px;
+      font-family: inherit;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--hc-accent-2);
+      cursor: pointer;
+    }
+
+    .calc-manual-reset:hover {
+      text-decoration: underline;
+    }
+
+    .calc-manual-reset[hidden] {
+      display: none !important;
+    }
+
+    .calc-sofr-note {
+      margin: 0 0 14px;
+      font-size: 12px;
+      color: var(--hc-muted);
+    }
+
+    .calc-table-wrap {
+      overflow-x: auto;
+    }
+
+    .calc-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #fff;
+      font-size: 13px;
+      color: #444;
+      border-top: 2px solid var(--hc-table-top);
+      border-bottom: 2px solid var(--hc-table-bottom);
+    }
+
+    .calc-table th,
+    .calc-table td {
+      border: 1px solid var(--hc-border);
+      vertical-align: middle;
+      padding: 8px 10px;
+    }
+
+    .calc-table thead th {
+      font-weight: 700;
+      color: #4f4f4f;
+      background: var(--hc-table-head);
+      border-bottom: 1px solid var(--hc-table-head-line);
+      text-align: center;
+    }
+
+    .calc-table td.num,
+    .calc-table th.num {
+      text-align: right;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .calc-table td.name {
+      text-align: left;
+    }
+
+    .calc-table .cell-paren {
+      display: inline-block;
+      white-space: nowrap;
+    }
+
+    .calc-table td.note {
+      text-align: left;
+      color: #777;
+      font-size: 12px;
+    }
+
+    .calc-table .row-sum td {
+      font-weight: 700;
+      background: #f4fbfe;
+    }
+
+    .calc-table .row-total td {
+      font-weight: 700;
+      background: #eef6fa;
+    }
+
+    .calc-table .row-sales td {
+      font-weight: 700;
+      background: #f4faf0;
+    }
+
+    .calc-table .row-profit td {
+      font-weight: 700;
+      background: #f4faf0;
+    }
+
+    @media (max-width: 980px) {
+      .calc-workspace {
+        grid-template-columns: 1fr;
+        grid-template-rows: none;
+        gap: 16px;
+      }
+
+      .calc-left,
+      .calc-result {
+        display: block;
+        grid-row: auto;
+      }
+
+      .calc-target-box {
+        margin-bottom: 16px;
+      }
+
+      .calc-form,
+      .calc-result-body {
+        height: auto;
+      }
+
+      .calc-result-body > .calc-table-wrap > .calc-table {
+        height: auto;
+      }
+
+      .calc-form {
+        padding-right: 0;
+        border-bottom: 1px solid var(--hc-border);
+        padding-bottom: 16px;
+      }
+
+      .calc-cards {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .site-footer {
+      background: var(--hc-footer);
+      border-top: 1px solid #dcdcdc;
+      color: #919191;
+      padding: 28px 0 32px;
+    }
+
+    .site-footer-inner {
+      font-size: 12px;
+      line-height: 1.7;
+    }
+
+    .site-footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 16px;
+      margin-bottom: 10px;
+      color: #777;
+      font-weight: 700;
+    }
+
+    .site-footer-links a {
+      color: #777;
+    }
+
+    .site-footer-links a:hover {
+      color: var(--hc-accent-2);
+    }
+
+    .copyright {
+      font-family: "Open Sans", sans-serif;
+      font-size: 11px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: #969696;
+      border-top: 1px solid #dcdcdc;
+      padding-top: 8px;
+    }
+
+    @media (max-width: 720px) {
+      .header-top-inner,
+      .tabs,
+      .page,
+      .page-hero-inner,
+      .site-footer-inner {
+        width: calc(100% - 28px);
+      }
+
+      .page-hero h1 {
+        font-size: 24px;
+      }
+
+      .tab-btn {
+        padding: 14px 14px 13px;
+        font-size: 13px;
+      }
+
+      .panel {
+        padding: 18px 16px 22px;
+      }
+    }
+
+    .export-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 80;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .export-modal.open {
+      display: flex;
+    }
+
+    .export-modal-backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(43, 43, 43, 0.52);
+    }
+
+    .export-modal-card {
+      position: relative;
+      width: min(460px, 100%);
+      background: #fff;
+      border-top: 3px solid var(--hc-accent);
+      box-shadow: 0 18px 48px rgba(0, 0, 0, 0.22);
+      padding: 28px 26px 22px;
+    }
+
+    .export-modal-card h2 {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .export-modal-card p {
+      color: var(--hc-muted);
+      font-size: 13px;
+      margin-bottom: 18px;
+    }
+
+    .export-choices {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .export-choice {
+      appearance: none;
+      border: 1px solid var(--hc-border);
+      background: #fff;
+      padding: 18px 12px;
+      cursor: pointer;
+      font-family: inherit;
+      text-align: center;
+    }
+
+    .export-choice:hover,
+    .export-choice:focus {
+      border-color: var(--hc-accent-2);
+      background: #f6fcfe;
+      outline: 0;
+    }
+
+    .export-choice strong {
+      display: block;
+      font-size: 16px;
+      color: var(--hc-text);
+      margin-bottom: 4px;
+    }
+
+    .export-choice span {
+      font-size: 12px;
+      color: var(--hc-muted);
+    }
+
+    .export-modal-foot {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .export-modal-status {
+      font-size: 12px;
+      color: var(--hc-muted);
+      min-height: 18px;
+    }
+
+    .export-modal-status.error {
+      color: #c0392b;
+    }
+
+    .export-choice:disabled {
+      opacity: 0.55;
+      cursor: wait;
+    }
+
+    .report-modal-card {
+      width: min(1100px, calc(100% - 32px));
+      max-height: calc(100vh - 48px);
+      display: flex;
+      flex-direction: column;
+      padding: 22px 22px 18px;
+    }
+
+    .report-modal-card h2 {
+      margin-bottom: 4px;
+    }
+
+    .report-modal-card > p {
+      margin-bottom: 14px;
+    }
+
+    .report-preview-frame {
+      border: 1px solid var(--hc-border);
+      background: #e8eef2;
+      overflow: auto;
+      max-height: min(64vh, 760px);
+      padding: 14px;
+    }
+
+    .report-preview-paper {
+      background: #fff;
+      padding: 22px 24px 20px;
+      min-width: 980px;
+    }
+
+    .report-doc-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 16px;
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid #2b2b2b;
+    }
+
+    .report-doc-brand {
+      font-family: "Open Sans", sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: var(--hc-accent-2);
+      margin-bottom: 4px;
+    }
+
+    .report-doc-head h3 {
+      font-size: 20px;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    .report-doc-date {
+      font-size: 12px;
+      color: #777;
+      white-space: nowrap;
+    }
+
+    .report-preview-paper .calc-workspace {
+      grid-template-columns: 300px minmax(0, 1fr);
+      gap: 20px;
+      align-items: stretch;
+    }
+
+    .report-preview-paper .calc-left,
+    .report-preview-paper .calc-result {
+      height: 100%;
+      grid-row: auto;
+    }
+
+    .report-preview-paper .calc-result {
+      display: block;
+    }
+
+    .report-preview-paper .calc-left {
+      background: #f7fafc;
+      border: 1px solid #e1e1e1;
+      border-top: 3px solid var(--hc-accent);
+      padding: 12px 12px 10px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .report-preview-paper .calc-target-box {
+      border: 0;
+      border-top: 0;
+      background: transparent;
+      padding: 0 0 8px;
+      margin: 0 0 8px;
+    }
+
+    .report-preview-paper .calc-form {
+      padding-right: 0;
+      height: auto;
+    }
+
+    .report-preview-paper .calc-result-body {
+      display: block;
+      height: auto;
+    }
+
+    .report-preview-paper .calc-result-body > .calc-table-wrap {
+      display: block;
+    }
+
+    .report-preview-paper .calc-result-body > .calc-table-wrap > .calc-table {
+      height: auto;
+    }
+
+    .report-preview-paper .calc-form .form-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 8px 12px;
+      margin-bottom: 0;
+    }
+
+    .report-preview-paper .calc-block-title {
+      font-size: 11px;
+      margin: 8px 0 2px;
+      padding-bottom: 4px;
+    }
+
+    .report-preview-paper .calc-target-box .calc-block-title {
+      margin-top: 0;
+    }
+
+    .report-preview-paper .field {
+      gap: 4px;
+      min-height: 100%;
+      justify-content: space-between;
+    }
+
+    .report-preview-paper .field label {
+      min-height: 2.6em;
+      font-size: 11px;
+      font-weight: 600;
+      color: #888;
+      line-height: 1.3;
+    }
+
+    .report-preview-paper .report-value {
+      font-size: 13px;
+      font-weight: 700;
+      color: #222;
+      line-height: 1.35;
+      padding: 2px 0 3px;
+      border-bottom: 1px solid #e6e6e6;
+    }
+
+    .report-preview-paper .calc-hint,
+    .report-preview-paper .calc-combo-wrap,
+    .report-preview-paper .calc-report-actions,
+    .report-preview-paper .calc-card-input,
+    .report-preview-paper .calc-manual-reset,
+    .report-preview-paper input[type="hidden"] {
+      display: none;
+    }
+
+    .report-preview-paper .calc-cards {
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .report-preview-paper .calc-card {
+      min-height: 108px;
+      padding: 12px 10px 10px;
+      text-align: center;
+      justify-content: space-between;
+      align-items: center;
+      background: #fff;
+    }
+
+    .report-preview-paper .calc-card .calc-card-label {
+      margin: 0;
+      width: 100%;
+      font-size: 11px;
+      letter-spacing: 0.02em;
+    }
+
+    .report-preview-paper .calc-card .calc-card-value {
+      font-size: 24px;
+      line-height: 1.15;
+      width: 100%;
+    }
+
+    .report-preview-paper .calc-card .calc-card-sub {
+      margin: 0;
+      min-height: 28px;
+      width: 100%;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      font-size: 11px;
+      line-height: 1.3;
+    }
+
+    .report-preview-paper .calc-card .calc-card-sub:empty {
+      display: flex;
+      visibility: hidden;
+    }
+
+    .report-preview-paper .calc-sofr-note {
+      margin: 0 0 10px;
+      padding: 7px 10px;
+      background: #f6fcfe;
+      border: 1px solid #e1e1e1;
+      font-size: 11px;
+    }
+
+    .report-preview-paper .calc-table {
+      font-size: 12px;
+    }
+
+    .report-preview-paper .calc-table th,
+    .report-preview-paper .calc-table td {
+      padding: 6px 8px;
+    }
+
+    .report-preview-paper .calc-table td.note {
+      font-size: 11px;
+    }
+
+    .report-modal-actions {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .report-modal-actions .export-modal-status {
+      margin-right: auto;
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-top">
+      <div class="header-top-inner">
+        <a class="brand" href="https://www.hyundaicorp.com/" target="_blank" rel="noopener noreferrer">
+          <img src="https://www.hyundaicorp.com/wp-content/themes/hyundaicorp/images/logo_re.png" alt="Hyundai Corporation" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'" />
+          <span class="brand-text">HYUNDAI CORPORATION</span>
+        </a>
+        <p class="header-util">FINANCE TOOLS</p>
+      </div>
+    </div>
+    <div class="tabs" role="tablist">
+      <button class="tab-btn active" type="button" data-tab="lookup">요율 조회</button>
+      <button class="tab-btn" type="button" data-tab="calc">요율 산출</button>
+      <button class="tab-btn" type="button" data-tab="proposal">요율제안서 작성</button>
+    </div>
+  </header>
+
+  <div class="page-hero">
+    <div class="page-hero-inner">
+      <h1>Financing Rate Calculator</h1>
+      <p class="page-lead">현대코퍼레이션 금융 요율 조회 · 산출 · 제안서 작성</p>
+    </div>
+  </div>
+
+  <div class="page">
+    <section class="panel active" id="lookup">
+      <div class="lookup-accordions">
+        <article class="lookup-item open" data-lookup="sofr">
+          <button class="lookup-item-toggle" type="button" aria-expanded="true">
+            <span>Term SOFR 조회</span>
+            <span class="lookup-chevron" aria-hidden="true"></span>
+          </button>
+          <div class="lookup-item-body">
+            <div class="lookup-item-body-inner">
+              <div class="lookup-head">
+                <div>
+                  <h2>Term SOFR Rates</h2>
+                  <p class="lookup-source">
+                    출처:
+                    <a href="https://www.global-rates.com/en/interest-rates/cme-term-sofr/" target="_blank" rel="noopener noreferrer">global-rates.com</a>
+                    (CME Term SOFR 재공시)
+                  </p>
+                </div>
+                <div class="lookup-actions">
+                  <button class="action-btn" id="sofr-refresh-btn" type="button">새로고침</button>
+                  <a class="action-btn ghost" href="https://www.global-rates.com/en/interest-rates/cme-term-sofr/" target="_blank" rel="noopener noreferrer">출처 보기</a>
+                </div>
+              </div>
+              <p class="lookup-status" id="sofr-status">최신 Term SOFR를 불러오는 중입니다.</p>
+              <div class="sofr-table-wrap">
+                <table class="sofr-table">
+                  <thead>
+                    <tr>
+                      <th class="date-head" rowspan="2">DATE</th>
+                      <th colspan="4">TERM SOFR (%)</th>
+                    </tr>
+                    <tr>
+                      <th><span class="sofr-swatch m1"></span>1M</th>
+                      <th><span class="sofr-swatch m3"></span>3M</th>
+                      <th><span class="sofr-swatch m6"></span>6M</th>
+                      <th><span class="sofr-swatch y1"></span>1Y</th>
+                    </tr>
+                  </thead>
+                  <tbody id="sofr-table-body">
+                    <tr><td colspan="5">불러오는 중...</td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <p class="lookup-note">
+                CME 공식 API는 유료라, 같은 1M/3M/6M/12M 고시를 재공시하는
+                <a href="https://www.global-rates.com/en/interest-rates/cme-term-sofr/" target="_blank" rel="noopener noreferrer">global-rates.com</a>
+                값을 사용합니다. 첨부하신 CME 표의 2026-9-03 수치와 소수점까지 일치하는 것을 확인했습니다.
+                열 때마다 최신 5영업일을 다시 조회합니다. 공식 라이선스 피드가 필요하면
+                <a href="https://www.cmegroup.com/market-data/cme-group-benchmark-administration/term-sofr.html" target="_blank" rel="noopener noreferrer">CME 원문</a>을 참고하세요.
+              </p>
+            </div>
+          </div>
+        </article>
+
+        <article class="lookup-item" data-lookup="euribor">
+          <button class="lookup-item-toggle" type="button" aria-expanded="false">
+            <span>EURIBOR 조회</span>
+            <span class="lookup-chevron" aria-hidden="true"></span>
+          </button>
+          <div class="lookup-item-body">
+            <div class="lookup-item-body-inner">
+              <div class="lookup-head">
+                <div>
+                  <h2>EURIBOR Rates</h2>
+                  <p class="lookup-source">
+                    출처:
+                    <a href="https://www.euribor-rates.eu/en/current-euribor-rates/" target="_blank" rel="noopener noreferrer">euribor-rates.eu</a>
+                    (EMMI Euribor 재공시)
+                  </p>
+                </div>
+                <div class="lookup-actions">
+                  <button class="action-btn" id="euribor-refresh-btn" type="button">새로고침</button>
+                  <a class="action-btn ghost" href="https://www.euribor-rates.eu/en/current-euribor-rates/" target="_blank" rel="noopener noreferrer">출처 보기</a>
+                </div>
+              </div>
+              <p class="lookup-status" id="euribor-status">최신 EURIBOR를 불러오는 중입니다.</p>
+              <div class="sofr-table-wrap">
+                <table class="sofr-table">
+                  <thead>
+                    <tr>
+                      <th class="date-head" rowspan="2">DATE</th>
+                      <th colspan="4">EURIBOR (%)</th>
+                    </tr>
+                    <tr>
+                      <th><span class="sofr-swatch m1"></span>1M</th>
+                      <th><span class="sofr-swatch m3"></span>3M</th>
+                      <th><span class="sofr-swatch m6"></span>6M</th>
+                      <th><span class="sofr-swatch y1"></span>1Y</th>
+                    </tr>
+                  </thead>
+                  <tbody id="euribor-table-body">
+                    <tr><td colspan="5">불러오는 중...</td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <p class="lookup-note">
+                EMMI는 실시간 재공시를 허용하지 않아,
+                <a href="https://www.euribor-rates.eu/en/current-euribor-rates/" target="_blank" rel="noopener noreferrer">euribor-rates.eu</a>
+                값은 공식 고시보다 약 24시간 지연됩니다. 1주 만기는 제외하고 1M / 3M / 6M / 12M만 표시합니다.
+                열 때마다 최근 5영업일을 다시 조회합니다.
+              </p>
+            </div>
+          </div>
+        </article>
+
+        <article class="lookup-item" data-lookup="shibor">
+          <button class="lookup-item-toggle" type="button" aria-expanded="false">
+            <span>SHIBOR 조회</span>
+            <span class="lookup-chevron" aria-hidden="true"></span>
+          </button>
+          <div class="lookup-item-body">
+            <div class="lookup-item-body-inner">
+              <div class="lookup-head">
+                <div>
+                  <h2>SHIBOR Rates</h2>
+                  <p class="lookup-source">
+                    출처:
+                    <a href="https://www.chinamoney.com.cn/english/bmkshb/" target="_blank" rel="noopener noreferrer">chinamoney.com.cn</a>
+                    (CFETS Shibor)
+                  </p>
+                </div>
+                <div class="lookup-actions">
+                  <button class="action-btn" id="shibor-refresh-btn" type="button">새로고침</button>
+                  <a class="action-btn ghost" href="https://www.chinamoney.com.cn/english/bmkshb/" target="_blank" rel="noopener noreferrer">출처 보기</a>
+                </div>
+              </div>
+              <p class="lookup-status" id="shibor-status">최신 SHIBOR를 불러오는 중입니다.</p>
+              <div class="sofr-table-wrap">
+                <table class="sofr-table">
+                  <thead>
+                    <tr>
+                      <th class="date-head" rowspan="2">DATE</th>
+                      <th colspan="4">SHIBOR (%)</th>
+                    </tr>
+                    <tr>
+                      <th><span class="sofr-swatch m1"></span>1M</th>
+                      <th><span class="sofr-swatch m3"></span>3M</th>
+                      <th><span class="sofr-swatch m6"></span>6M</th>
+                      <th><span class="sofr-swatch y1"></span>1Y</th>
+                    </tr>
+                  </thead>
+                  <tbody id="shibor-table-body">
+                    <tr><td colspan="5">불러오는 중...</td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <p class="lookup-note">
+                중국 전국은행간 자금중개센터(CFETS)가 매 영업일 11:00(북경시간)에 공시하는 Shibor입니다.
+                출처는
+                <a href="https://www.chinamoney.com.cn/english/bmkshb/" target="_blank" rel="noopener noreferrer">ChinaMoney / CFETS</a>
+                입니다. O/N · 1W · 2W · 9M은 제외하고 1M / 3M / 6M / 1Y만 표시합니다.
+                열 때마다 최근 5영업일을 다시 조회합니다.
+              </p>
+            </div>
+          </div>
+        </article>
+
+        <article class="lookup-item" data-lookup="hibor">
+          <button class="lookup-item-toggle" type="button" aria-expanded="false">
+            <span>HIBOR 조회</span>
+            <span class="lookup-chevron" aria-hidden="true"></span>
+          </button>
+          <div class="lookup-item-body">
+            <div class="lookup-item-body-inner">
+              <div class="lookup-head">
+                <div>
+                  <h2>HIBOR Rates</h2>
+                  <p class="lookup-source">
+                    출처:
+                    <a href="https://www.hkab.org.hk/en/rates/hibor" target="_blank" rel="noopener noreferrer">hkab.org.hk</a>
+                    (HKAB HKD Interest Settlement Rates)
+                  </p>
+                </div>
+                <div class="lookup-actions">
+                  <button class="action-btn" id="hibor-refresh-btn" type="button">새로고침</button>
+                  <a class="action-btn ghost" href="https://www.hkab.org.hk/en/rates/hibor" target="_blank" rel="noopener noreferrer">출처 보기</a>
+                </div>
+              </div>
+              <p class="lookup-status" id="hibor-status">최신 HIBOR를 불러오는 중입니다.</p>
+              <div class="sofr-table-wrap">
+                <table class="sofr-table">
+                  <thead>
+                    <tr>
+                      <th class="date-head" rowspan="2">DATE</th>
+                      <th colspan="4">HIBOR (%)</th>
+                    </tr>
+                    <tr>
+                      <th><span class="sofr-swatch m1"></span>1M</th>
+                      <th><span class="sofr-swatch m3"></span>3M</th>
+                      <th><span class="sofr-swatch m6"></span>6M</th>
+                      <th><span class="sofr-swatch y1"></span>1Y</th>
+                    </tr>
+                  </thead>
+                  <tbody id="hibor-table-body">
+                    <tr><td colspan="5">불러오는 중...</td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <p class="lookup-note">
+                홍콩은행협회(HKAB)가 매 영업일 11:15(홍콩시간)에 공시하는 HKD Interest Settlement Rates입니다.
+                출처는
+                <a href="https://www.hkab.org.hk/en/rates/hibor" target="_blank" rel="noopener noreferrer">hkab.org.hk</a>
+                입니다. Overnight · 1W · 2W · 2M은 제외하고 1M / 3M / 6M / 12M만 표시합니다.
+                열 때마다 최근 5영업일을 다시 조회합니다.
+              </p>
+            </div>
+          </div>
+        </article>
+
+        <article class="lookup-item" data-lookup="fxfee">
+          <button class="lookup-item-toggle" type="button" aria-expanded="false">
+            <span>환가료율 조회</span>
+            <span class="lookup-chevron" aria-hidden="true"></span>
+          </button>
+          <div class="lookup-item-body">
+            <div class="lookup-item-body-inner">
+              <div class="lookup-head">
+                <div>
+                  <h2>환가료율표</h2>
+                  <p class="lookup-source">출처: 시연용 더미 환가료율표 (원본 사내표 제외)</p>
+                </div>
+              </div>
+              <div class="fxfee-notes">
+                <p>- LC 거래 및 법인경유 DA, OA 거래는 아래 표 참조</p>
+                <p>※ 네고 이용 은행 중 금리가 가장 높은 곳 기준으로 작성한 것으로, 실제 환가료는 이보다 적게 발생할 수 있음</p>
+              </div>
+              <div class="fxfee-grid">
+                <div class="fxfee-card">
+                  <h3>USD 및 기타 통화</h3>
+                  <table class="fxfee-table">
+                    <thead>
+                      <tr>
+                        <th rowspan="2">기간</th>
+                        <th rowspan="2">Term SOFR</th>
+                        <th colspan="2">SPREAD</th>
+                      </tr>
+                      <tr>
+                        <th>L/C</th>
+                        <th>D/A</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>1M</td>
+                        <td>1M</td>
+                        <td>0.50%</td>
+                        <td>0.55%</td>
+                      </tr>
+                      <tr>
+                        <td>2M</td>
+                        <td rowspan="2">3M</td>
+                        <td>0.50%</td>
+                        <td>0.60%</td>
+                      </tr>
+                      <tr>
+                        <td>3M</td>
+                        <td>0.55%</td>
+                        <td>0.65%</td>
+                      </tr>
+                      <tr>
+                        <td>4M</td>
+                        <td rowspan="3">6M</td>
+                        <td>0.60%</td>
+                        <td>0.70%</td>
+                      </tr>
+                      <tr>
+                        <td>5M</td>
+                        <td>0.70%</td>
+                        <td>0.70%</td>
+                      </tr>
+                      <tr>
+                        <td>6M</td>
+                        <td>0.70%</td>
+                        <td>0.70%</td>
+                      </tr>
+                      <tr>
+                        <td>12M</td>
+                        <td>12M</td>
+                        <td>1.00%</td>
+                        <td>1.20%</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="fxfee-card">
+                  <h3>EUR</h3>
+                  <table class="fxfee-table">
+                    <thead>
+                      <tr>
+                        <th rowspan="2">기간</th>
+                        <th rowspan="2">EURIBOR</th>
+                        <th colspan="2">SPREAD</th>
+                      </tr>
+                      <tr>
+                        <th>L/C</th>
+                        <th>D/A</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>1M</td>
+                        <td>1M</td>
+                        <td>0.50%</td>
+                        <td>0.65%</td>
+                      </tr>
+                      <tr>
+                        <td>2M</td>
+                        <td rowspan="2">3M</td>
+                        <td>0.50%</td>
+                        <td>0.65%</td>
+                      </tr>
+                      <tr>
+                        <td>3M</td>
+                        <td>0.55%</td>
+                        <td>0.65%</td>
+                      </tr>
+                      <tr>
+                        <td>4M</td>
+                        <td rowspan="3">6M</td>
+                        <td>0.60%</td>
+                        <td>0.65%</td>
+                      </tr>
+                      <tr>
+                        <td>5M</td>
+                        <td>0.70%</td>
+                        <td>0.65%</td>
+                      </tr>
+                      <tr>
+                        <td>6M</td>
+                        <td>0.70%</td>
+                        <td>0.65%</td>
+                      </tr>
+                      <tr>
+                        <td>12M</td>
+                        <td>12M</td>
+                        <td>1.00%</td>
+                        <td>1.20%</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="lookup-item" data-lookup="ksure">
+          <button class="lookup-item-toggle" type="button" aria-expanded="false">
+            <span>Ksure 보험요율 조회</span>
+            <span class="lookup-chevron" aria-hidden="true"></span>
+          </button>
+          <div class="lookup-item-body">
+            <div class="lookup-item-body-inner">
+              <div class="lookup-head">
+                <div>
+                  <h2>2026년 적용요율</h2>
+                  <p class="lookup-source">출처: 시연용 더미 보험요율 (원본 사내표 제외)</p>
+                </div>
+              </div>
+              <div class="fxfee-notes">
+                <p>1) 위험평준화 할인율 : 40% 할인</p>
+                <p>2) 포괄보험 할증율 : -</p>
+                <p>3) 중견기업 할인 : 10% 할인</p>
+                <p>4) Underwriter 할증 : 15% 할증</p>
+              </div>
+              <div class="ksure-table-wrap">
+                <table class="ksure-table">
+                  <thead>
+                    <tr>
+                      <th rowspan="2">결제조건</th>
+                      <th rowspan="2">기간</th>
+                      <th class="group-export" colspan="7">일반수출 (기준보험요율 × 0.6 × 0.9 × 1.15)</th>
+                      <th class="group-transit" colspan="7">중계무역 (기준보험요율 × 0.6 × 0.9 × 1.15 × 1.4)</th>
+                    </tr>
+                    <tr>
+                      <th class="group-export">A</th><th class="group-export">B</th><th class="group-export">C</th><th class="group-export">D</th><th class="group-export">E</th><th class="group-export">F</th><th class="group-export">G</th>
+                      <th class="group-transit">A</th><th class="group-transit">B</th><th class="group-transit">C</th><th class="group-transit">D</th><th class="group-transit">E</th><th class="group-transit">F</th><th class="group-transit">G</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td rowspan="6">무신용장</td>
+                      <td>30</td>
+                      <td>0.1000</td><td>0.2000</td><td>0.2500</td><td>0.3000</td><td>0.3500</td><td>0.4000</td><td>0.5500</td><td>0.1400</td><td>0.2800</td><td>0.3500</td><td>0.4200</td><td>0.4900</td><td>0.5600</td><td>0.7700</td>
+                    </tr>
+                    <tr>
+                      <td>60</td>
+                      <td>0.1200</td><td>0.2400</td><td>0.3000</td><td>0.3600</td><td>0.4200</td><td>0.4800</td><td>0.6600</td><td>0.1680</td><td>0.3360</td><td>0.4200</td><td>0.5040</td><td>0.5880</td><td>0.6720</td><td>0.9240</td>
+                    </tr>
+                    <tr>
+                      <td>90</td>
+                      <td>0.1400</td><td>0.2800</td><td>0.3500</td><td>0.4200</td><td>0.4900</td><td>0.5600</td><td>0.7700</td><td>0.1960</td><td>0.3920</td><td>0.4900</td><td>0.5880</td><td>0.6860</td><td>0.7840</td><td>1.0780</td>
+                    </tr>
+                    <tr>
+                      <td>120</td>
+                      <td>0.1700</td><td>0.3400</td><td>0.4300</td><td>0.5200</td><td>0.6100</td><td>0.7000</td><td>0.9600</td><td>0.2380</td><td>0.4760</td><td>0.6020</td><td>0.7280</td><td>0.8540</td><td>0.9800</td><td>1.3440</td>
+                    </tr>
+                    <tr>
+                      <td>150</td>
+                      <td>0.2000</td><td>0.4000</td><td>0.5000</td><td>0.6100</td><td>0.7200</td><td>0.8300</td><td>1.1400</td><td>0.2800</td><td>0.5600</td><td>0.7000</td><td>0.8540</td><td>1.0080</td><td>1.1620</td><td>1.5960</td>
+                    </tr>
+                    <tr>
+                      <td>180</td>
+                      <td>0.2300</td><td>0.4600</td><td>0.5800</td><td>0.7000</td><td>0.8300</td><td>0.9600</td><td>1.3200</td><td>0.3220</td><td>0.6440</td><td>0.8120</td><td>0.9800</td><td>1.1620</td><td>1.3440</td><td>1.8480</td>
+                    </tr>
+                    <tr class="subhead">
+                      <th>결제조건</th>
+                      <th>기간</th>
+                      <th class="group-export">1</th><th class="group-export">2</th><th class="group-export">3</th><th class="group-export">4</th><th class="group-export">5</th><th class="group-export">6</th><th class="group-export">7</th>
+                      <th class="group-transit">1</th><th class="group-transit">2</th><th class="group-transit">3</th><th class="group-transit">4</th><th class="group-transit">5</th><th class="group-transit">6</th><th class="group-transit">7</th>
+                    </tr>
+                    <tr>
+                      <td rowspan="6">신용장</td>
+                      <td>30</td>
+                      <td>0.0200</td><td>0.0400</td><td>0.0500</td><td>0.0600</td><td>0.0700</td><td>0.0800</td><td>0.1100</td><td>0.0280</td><td>0.0560</td><td>0.0700</td><td>0.0840</td><td>0.0980</td><td>0.1120</td><td>0.1540</td>
+                    </tr>
+                    <tr>
+                      <td>60</td>
+                      <td>0.0400</td><td>0.0800</td><td>0.1000</td><td>0.1200</td><td>0.1400</td><td>0.1600</td><td>0.2200</td><td>0.0560</td><td>0.1120</td><td>0.1400</td><td>0.1680</td><td>0.1960</td><td>0.2240</td><td>0.3080</td>
+                    </tr>
+                    <tr>
+                      <td>90</td>
+                      <td>0.0500</td><td>0.0900</td><td>0.1100</td><td>0.1400</td><td>0.1700</td><td>0.1900</td><td>0.2600</td><td>0.0700</td><td>0.1260</td><td>0.1540</td><td>0.1960</td><td>0.2380</td><td>0.2660</td><td>0.3640</td>
+                    </tr>
+                    <tr>
+                      <td>120</td>
+                      <td>0.0600</td><td>0.1100</td><td>0.1400</td><td>0.1700</td><td>0.2000</td><td>0.2300</td><td>0.3200</td><td>0.0840</td><td>0.1540</td><td>0.1960</td><td>0.2380</td><td>0.2800</td><td>0.3220</td><td>0.4480</td>
+                    </tr>
+                    <tr>
+                      <td>150</td>
+                      <td>0.0600</td><td>0.1200</td><td>0.1600</td><td>0.1900</td><td>0.2200</td><td>0.2600</td><td>0.3500</td><td>0.0840</td><td>0.1680</td><td>0.2240</td><td>0.2660</td><td>0.3080</td><td>0.3640</td><td>0.4900</td>
+                    </tr>
+                    <tr>
+                      <td>180</td>
+                      <td>0.0700</td><td>0.1400</td><td>0.1800</td><td>0.2200</td><td>0.2600</td><td>0.3000</td><td>0.4100</td><td>0.0980</td><td>0.1960</td><td>0.2520</td><td>0.3080</td><td>0.3640</td><td>0.4200</td><td>0.5740</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <p class="lookup-note">* 일반수출 부보율 : 97.5%, 중계무역 부보율 : 85% &nbsp;&nbsp; * 중계무역 40% 할증</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="lookup-item" data-lookup="ar">
+          <button class="lookup-item-toggle" type="button" aria-expanded="false">
+            <span>AR 보험요율 조회</span>
+            <span class="lookup-chevron" aria-hidden="true"></span>
+          </button>
+          <div class="lookup-item-body">
+            <div class="lookup-item-body-inner">
+              <div class="lookup-head">
+                <div>
+                  <h2>AR보험 비교</h2>
+                  <p class="lookup-source">출처: 시연용 더미 AR 비교 (원본 사내표 제외)</p>
+                </div>
+              </div>
+              <div class="ar-table-wrap">
+                <table class="ar-table">
+                  <thead>
+                    <tr>
+                      <th>순번</th>
+                      <th>보험사</th>
+                      <th>관련 법인</th>
+                      <th>부보율</th>
+                      <th>보험료</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>1</td>
+                      <td class="ar-name">ATRADIUS</td>
+                      <td>SAMPLE-A</td>
+                      <td class="ar-cover">Coverage : 90%</td>
+                      <td>0.20%</td>
+                    </tr>
+                    <tr>
+                      <td>2</td>
+                      <td class="ar-name">CREDENDO</td>
+                      <td>SAMPLE-B</td>
+                      <td class="ar-cover">Coverage : 90%</td>
+                      <td>0.35%</td>
+                    </tr>
+                    <tr>
+                      <td>3</td>
+                      <td class="ar-name">SINOSURE</td>
+                      <td>SAMPLE-C</td>
+                      <td class="ar-cover">Coverage : 90%
+(국가별 상이)</td>
+                      <td>0.30%</td>
+                    </tr>
+                    <tr>
+                      <td>4</td>
+                      <td class="ar-name">Coface</td>
+                      <td>SAMPLE-D</td>
+                      <td class="ar-cover">Coverage : 100%</td>
+                      <td>0.22%</td>
+                    </tr>
+                    <tr>
+                      <td>5</td>
+                      <td class="ar-name">Allianz</td>
+                      <td>SAMPLE-E</td>
+                      <td class="ar-cover">Coverage : 95%</td>
+                      <td>0.15%</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+    <section class="panel" id="calc">
+      <div class="calc-workspace" id="calc-report-source">
+        <div class="calc-left">
+          <div class="calc-target-box">
+            <div class="field">
+              <label for="calc-target">목표 거래이익 (%)</label>
+              <input id="calc-target" type="text" inputmode="decimal" value="2.0" />
+            </div>
+            <input id="calc-admin" type="hidden" value="2.4" />
+            <input id="calc-spread" type="hidden" value="4.0" />
+          </div>
+        <div class="calc-form">
+          <div class="form-grid">
+            <p class="calc-block-title">Buyer 거래 조건</p>
+            <div class="field">
+              <label for="calc-days">기간</label>
+              <select id="calc-days">
+                <option value="30">30일</option>
+                <option value="60">60일</option>
+                <option value="90">90일</option>
+                <option value="120">120일</option>
+                <option value="150">150일</option>
+                <option value="180" selected>180일</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="calc-buyer-pay">결제 조건</label>
+              <select id="calc-buyer-pay">
+                <option value="O/A" selected>O/A</option>
+                <option value="D/A">D/A</option>
+                <option value="L/C">L/C</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="calc-currency">거래 통화</label>
+              <select id="calc-currency">
+                <option value="USD" selected>USD</option>
+                <option value="EUR">EUR</option>
+                <option value="CNY">CNY</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="calc-incoterm">인도 조건</label>
+              <select id="calc-incoterm">
+                <option value="EXW">EXW</option>
+                <option value="FCA">FCA</option>
+                <option value="CPT">CPT</option>
+                <option value="CIP">CIP</option>
+                <option value="DAP">DAP</option>
+                <option value="DPU">DPU</option>
+                <option value="DDP">DDP</option>
+                <option value="FAS">FAS</option>
+                <option value="FOB" selected>FOB</option>
+                <option value="CFR">CFR</option>
+                <option value="CIF">CIF</option>
+              </select>
+            </div>
+
+            <p class="calc-block-title">Maker 거래 조건</p>
+            <div class="field">
+              <label for="calc-maker-days">기간</label>
+              <select id="calc-maker-days">
+                <option value="0">0일</option>
+                <option value="30">30일</option>
+                <option value="60">60일</option>
+                <option value="90" selected>90일</option>
+                <option value="120">120일</option>
+                <option value="150">150일</option>
+                <option value="180">180일</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="calc-maker-pay">결제 조건</label>
+              <select id="calc-maker-pay">
+                <option value="L/C" selected>L/C</option>
+                <option value="T/T">T/T</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="calc-maker-currency">거래 통화</label>
+              <select id="calc-maker-currency">
+                <option value="USD" selected>USD</option>
+                <option value="EUR">EUR</option>
+                <option value="CNY">CNY</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="calc-maker-incoterm">인도 조건</label>
+              <select id="calc-maker-incoterm">
+                <option value="EXW">EXW</option>
+                <option value="FCA">FCA</option>
+                <option value="CPT">CPT</option>
+                <option value="CIP">CIP</option>
+                <option value="DAP">DAP</option>
+                <option value="DPU">DPU</option>
+                <option value="DDP">DDP</option>
+                <option value="FAS">FAS</option>
+                <option value="FOB" selected>FOB</option>
+                <option value="CFR">CFR</option>
+                <option value="CIF">CIF</option>
+              </select>
+            </div>
+            <div class="field field-span">
+              <label for="calc-purchase" id="calc-purchase-label">Purchase Price (구매가, USD)</label>
+              <input id="calc-purchase" type="text" inputmode="decimal" value="1000000" />
+            </div>
+
+            <p class="calc-block-title">보험</p>
+            <div class="field field-span">
+              <label for="calc-insurer">보험사</label>
+              <select id="calc-insurer">
+                <option value="ksure">K-SURE</option>
+                <option value="atradius">ATRADIUS</option>
+                <option value="credendo">CREDENDO</option>
+                <option value="sinosure">SINOSURE</option>
+                <option value="coface">Coface</option>
+                <option value="allianz">Allianz</option>
+              </select>
+            </div>
+            <div class="field calc-ksure-only">
+              <label for="calc-ksure-trade">Ksure 수출유형</label>
+              <select id="calc-ksure-trade">
+                <option value="일반">일반수출</option>
+                <option value="중계" selected>중계무역</option>
+              </select>
+            </div>
+            <div class="field calc-ksure-only">
+              <label for="calc-ksure-grade" id="calc-ksure-grade-label">신용등급</label>
+              <select id="calc-ksure-grade"></select>
+            </div>
+            <p class="calc-hint field-span" id="calc-ins-hint">선택한 보험요율이 수출보험료에 반영됩니다.</p>
+
+            <p class="calc-block-title">선택 원가</p>
+            <div class="field">
+              <label for="calc-freight">Ocean Freight (운임)</label>
+              <input id="calc-freight" type="text" inputmode="decimal" value="0" />
+            </div>
+            <div class="field">
+              <label for="calc-trucking">Inland Trucking (내륙운송비)</label>
+              <input id="calc-trucking" type="text" inputmode="decimal" value="0" />
+            </div>
+            <div class="field">
+              <label for="calc-freight-ins">Freight Insurance (해상보험료)</label>
+              <input id="calc-freight-ins" type="text" inputmode="decimal" value="0" />
+            </div>
+            <div class="field">
+              <label for="calc-usance">Banker's Usance</label>
+              <input id="calc-usance" type="text" inputmode="decimal" value="0" />
+            </div>
+            <div class="field field-span">
+              <label for="calc-others">Others (기타)</label>
+              <input id="calc-others" type="text" inputmode="decimal" value="0" />
+            </div>
+          </div>
+          <div class="calc-report-actions">
+            <button class="action-btn" id="calc-report-btn" type="button">보고서 생성</button>
+          </div>
+        </div>
+        </div>
+
+        <div class="calc-result">
+          <div class="calc-result-head">
+          <div class="calc-cards">
+            <div class="calc-card calc-card-edit" id="calc-card-admin" data-edit="admin" title="더블클릭하여 수동 입력">
+              <p class="calc-card-label">Admin Fee</p>
+              <div class="calc-card-value-wrap">
+                <p class="calc-card-value" id="calc-out-admin">-</p>
+                <input id="calc-admin-input" class="calc-card-input" type="text" inputmode="decimal" aria-label="Admin Fee 수동 입력" hidden />
+              </div>
+              <p class="calc-card-sub" id="calc-out-admin-amt"></p>
+            </div>
+            <div class="calc-card calc-card-edit" id="calc-card-interest" data-edit="interest" title="더블클릭하여 수동 입력">
+              <p class="calc-card-label">Interest Rate</p>
+              <div class="calc-card-value-wrap">
+                <p class="calc-card-value" id="calc-out-interest">-</p>
+                <input id="calc-interest-input" class="calc-card-input" type="text" inputmode="decimal" aria-label="Interest Rate 수동 입력" hidden />
+              </div>
+              <p class="calc-card-sub" id="calc-out-interest-amt"></p>
+            </div>
+            <div class="calc-card">
+              <p class="calc-card-label">거래이익</p>
+              <p class="calc-card-value" id="calc-out-profit">-</p>
+              <p class="calc-card-sub" id="calc-out-profit-amt"></p>
+            </div>
+          </div>
+          <p class="calc-sofr-note" id="calc-sofr-note">기준금리를 불러오는 중입니다.</p>
+          <button class="calc-manual-reset" id="calc-manual-reset" type="button" hidden>추천 요율로 되돌리기</button>
+          </div>
+          <div class="calc-result-body">
+          <div class="calc-table-wrap">
+            <table class="calc-table">
+              <colgroup>
+                <col class="col-item" />
+                <col class="col-amount" />
+                <col class="col-share" />
+                <col class="col-memo" />
+              </colgroup>
+              <thead>
+                <tr>
+                  <th>항목</th>
+                  <th class="num">금액 <span class="cell-paren">(USD)</span></th>
+                  <th class="num">비중 <span class="cell-paren">(판매가比)</span></th>
+                  <th>비고</th>
+                </tr>
+              </thead>
+              <tbody id="calc-table-body">
+                <tr><td colspan="4">입력값을 계산하는 중입니다.</td></tr>
+              </tbody>
+            </table>
+          </div>
+          </div>
+        </div>
+
+        <div class="calc-combo-wrap">
+          <h3>목표 거래이익을 맞추는 다른 조합</h3>
+          <p class="calc-hint">같은 거래이익을 Admin과 Interest로 나눈 다른 조합입니다. 행을 클릭하면 위 표에 반영되고, 적용을 누르면 요율제안서에 입력됩니다. Admin Fee·Interest Rate 카드를 더블클릭하면 요율을 직접 넣고 거래이익 변화를 볼 수 있습니다.</p>
+          <div class="calc-table-wrap">
+            <table class="calc-table calc-combo-table">
+              <colgroup>
+                <col class="col-kind" />
+                <col class="col-admin" />
+                <col class="col-sofr" />
+                <col class="col-spread" />
+                <col class="col-interest" />
+                <col class="col-pa" />
+                <col class="col-period" />
+                <col class="col-note" />
+                <col class="col-apply" />
+              </colgroup>
+              <thead>
+                <tr>
+                  <th>구분</th>
+                  <th class="num">Admin Fee</th>
+                  <th class="num" id="calc-combo-sofr-head">SOFR</th>
+                  <th class="num">Interest Spread</th>
+                  <th class="num">Interest Rate</th>
+                  <th class="num">p.a. Rate</th>
+                  <th class="num" id="calc-combo-period-head">180일 Rate</th>
+                  <th>비고</th>
+                  <th class="combo-apply-col"></th>
+                </tr>
+              </thead>
+              <tbody id="calc-combo-body"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="panel" id="proposal">
+      <div class="proposal-workspace">
+        <div class="proposal-form">
+          <div class="form-grid">
+            <div class="field">
+              <label for="company-name">Company Name</label>
+              <input id="company-name" type="text" />
+            </div>
+            <div class="field">
+              <label for="company-address">Registered Address</label>
+              <input id="company-address" type="text" />
+            </div>
+            <div class="field">
+              <label for="product">Commodity</label>
+              <input id="product" type="text" />
+            </div>
+            <div class="field">
+              <label for="country">Country</label>
+              <select id="country"></select>
+              <input id="country-custom" class="custom-input" type="text" placeholder="Enter country" />
+            </div>
+            <div class="field">
+              <label for="currency">Currency</label>
+              <select id="currency">
+                <option value="" selected disabled>Select</option>
+                <option value="USD">USD</option>
+                <option value="EUR">EUR</option>
+                <option value="CNY">CNY</option>
+                <option value="__custom__">Other</option>
+              </select>
+              <input id="currency-custom" class="custom-input" type="text" placeholder="Enter currency" />
+            </div>
+            <div class="field">
+              <label for="payment-method">Payment Method</label>
+              <input id="payment-method" type="text" />
+            </div>
+            <div class="field">
+              <label for="payment-period">Payment Period</label>
+              <input id="payment-period" type="text" />
+            </div>
+            <div class="field">
+              <label for="credit-line">Initial Credit Line</label>
+              <input id="credit-line" type="text" />
+            </div>
+            <div class="field">
+              <label for="admin-fee">Administration Fee</label>
+              <input id="admin-fee" type="text" />
+            </div>
+            <div class="field">
+              <label for="interest-rate">Interest Rate</label>
+              <textarea id="interest-rate" rows="3"></textarea>
+            </div>
+            <div class="field">
+              <label for="signing-person">Authorized Signatory</label>
+              <input id="signing-person" type="text" />
+            </div>
+            <div class="field">
+              <label for="position">Title</label>
+              <input id="position" type="text" />
+            </div>
+          </div>
+          <button class="action-btn" id="generate-btn" type="button">문서생성</button>
+        </div>
+        <div class="proposal-preview-pane">
+          <div class="proposal-paper" id="proposal-preview"></div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <footer class="site-footer">
+    <div class="site-footer-inner">
+      <div class="site-footer-links">
+        <a href="https://www.hyundaicorp.com/" target="_blank" rel="noopener noreferrer">현대코퍼레이션</a>
+        <a href="https://www.hyundaicorp.com/company/" target="_blank" rel="noopener noreferrer">회사소개</a>
+        <a href="https://www.hyundaicorp.com/en/legal-info/" target="_blank" rel="noopener noreferrer">Legal Info</a>
+      </div>
+      <p>25, Yulgok-ro 2-gil, Jongno-gu, Seoul, 03143, Korea &nbsp; TEL. +82-2-390-1114</p>
+      <p class="copyright">Copyright &copy; Hyundai Corporation. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <div class="export-modal" id="report-modal">
+    <div class="export-modal-backdrop" data-report-close></div>
+    <div class="export-modal-card report-modal-card" role="dialog" aria-modal="true" aria-labelledby="report-modal-title">
+      <h2 id="report-modal-title">요율 산출 보고서</h2>
+      <p>입력 조건과 산출 결과(카드·원가표)를 미리본 뒤 PDF로 받을 수 있습니다.</p>
+      <div class="report-preview-frame">
+        <div class="report-preview-paper" id="calc-report-preview"></div>
+      </div>
+      <div class="report-modal-actions">
+        <p class="export-modal-status" id="report-modal-status"></p>
+        <button class="action-btn ghost" type="button" data-report-close>닫기</button>
+        <button class="action-btn" id="calc-report-pdf-btn" type="button">PDF 다운로드</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="export-modal" id="export-modal">
+    <div class="export-modal-backdrop" data-export-close></div>
+    <div class="export-modal-card" role="dialog" aria-modal="true" aria-labelledby="export-modal-title">
+      <h2 id="export-modal-title">문서 형식 선택</h2>
+      <p>내려받을 파일 형식을 선택하세요.</p>
+      <div class="export-choices">
+        <button class="export-choice" type="button" data-export-format="docx">
+          <strong>Word</strong>
+          <span>DOCX 파일</span>
+        </button>
+        <button class="export-choice" type="button" data-export-format="pdf">
+          <strong>PDF</strong>
+          <span>PDF 파일</span>
+        </button>
+      </div>
+      <div class="export-modal-foot">
+        <p class="export-modal-status" id="export-modal-status"></p>
+        <button class="action-btn ghost" type="button" data-export-close>닫기</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const MONTHS = [
+      "JANUARY", "FEBRUARY", "MARCH", "APRIL", "MAY", "JUNE",
+      "JULY", "AUGUST", "SEPTEMBER", "OCTOBER", "NOVEMBER", "DECEMBER"
+    ];
+
+    const LENDER = "HYUNDAI CORPORATION";
+    const LENDER_SIGNER = "SAMPLE SIGNER";
+    const LENDER_TITLE = "GENERAL MANAGER";
+
+    const buttons = document.querySelectorAll(".tab-btn");
+    const panels = document.querySelectorAll(".panel");
+    const generateBtn = document.getElementById("generate-btn");
+    const preview = document.getElementById("proposal-preview");
+    const proposalPanel = document.getElementById("proposal");
+    let currentDraft = null;
+
+    buttons.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const target = btn.dataset.tab;
+        buttons.forEach((b) => b.classList.toggle("active", b === btn));
+        panels.forEach((panel) => {
+          panel.classList.toggle("active", panel.id === target);
+        });
+        if (target === "calc") refreshCalc();
+      });
+    });
+
+    const lookupItems = document.querySelectorAll(".lookup-item");
+
+    function toggleLookupItem(item) {
+      const willOpen = !item.classList.contains("open");
+      item.classList.toggle("open", willOpen);
+      const toggle = item.querySelector(".lookup-item-toggle");
+      if (toggle) toggle.setAttribute("aria-expanded", willOpen ? "true" : "false");
+        if (willOpen && item.dataset.lookup === "sofr") loadTermSofrRates();
+        if (willOpen && item.dataset.lookup === "euribor") loadEuriborRates();
+        if (willOpen && item.dataset.lookup === "shibor") loadShiborRates();
+        if (willOpen && item.dataset.lookup === "hibor") loadHiborRates();
+    }
+
+    lookupItems.forEach((item) => {
+      const toggle = item.querySelector(".lookup-item-toggle");
+      if (!toggle) return;
+      toggle.addEventListener("click", () => {
+        toggleLookupItem(item);
+      });
+    });
+
+    const TERM_SOFR_PAGE = "https://www.global-rates.com/en/interest-rates/cme-term-sofr/";
+    const TERM_SOFR_CACHE_KEY = "termSofrCache.v1";
+    const sofrStatus = document.getElementById("sofr-status");
+    const sofrRefreshBtn = document.getElementById("sofr-refresh-btn");
+    let sofrLoading = false;
+
+    function formatTermSofr(value) {
+      return Number(value).toFixed(5);
+    }
+
+    function formatSofrDate(month, day, year) {
+      return year + "-" + Number(month) + "-" + String(day).padStart(2, "0");
+    }
+
+    function setSofrStatus(message, isError) {
+      if (!sofrStatus) return;
+      sofrStatus.textContent = message;
+      sofrStatus.classList.toggle("error", !!isError);
+    }
+
+    let latestSofrRows = null;
+
+    function renderTermSofrTable(rows) {
+      if (rows && rows.length) latestSofrRows = rows;
+      const body = document.getElementById("sofr-table-body");
+      if (!body) return;
+      if (!rows || !rows.length) {
+        body.innerHTML = "<tr><td colspan=\"5\">표시할 데이터가 없습니다.</td></tr>";
+        return;
+      }
+      body.innerHTML = rows.map((row) => `
+        <tr>
+          <td>${escapeHtml(row.date)}</td>
+          <td>${formatTermSofr(row.m1)}</td>
+          <td>${formatTermSofr(row.m3)}</td>
+          <td>${formatTermSofr(row.m6)}</td>
+          <td>${formatTermSofr(row.y1)}</td>
+        </tr>
+      `).join("");
+    }
+
+    function extractRatesAfter(text, label, stopLabels) {
+      const lower = text.toLowerCase();
+      const start = lower.indexOf(label.toLowerCase());
+      if (start < 0) return [];
+
+      let end = text.length;
+      stopLabels.forEach((stop) => {
+        if (stop === label) return;
+        const stopIdx = lower.indexOf(stop.toLowerCase(), start + label.length);
+        if (stopIdx > start && stopIdx < end) end = stopIdx;
+      });
+
+      return Array.from(text.slice(start, end).matchAll(/(\d+\.\d+)\s*%/g))
+        .map((match) => Number(match[1]))
+        .slice(0, 5);
+    }
+
+    function parseTermSofrText(text) {
+      const lower = text.toLowerCase();
+      const labels = [
+        "term sofr 1 month",
+        "term sofr 3 month",
+        "term sofr 6 month",
+        "term sofr 12 month"
+      ];
+      const dateStart = Math.max(0, lower.indexOf("latest cme term sofr"));
+      const firstTenor = lower.indexOf(labels[0]);
+      const dateChunk = text.slice(
+        dateStart,
+        firstTenor > dateStart ? firstTenor : dateStart + 4000
+      );
+      const dateMatches = Array.from(dateChunk.matchAll(/(\d{2})-(\d{2})-(\d{4})/g)).slice(0, 5);
+      const m1 = extractRatesAfter(text, labels[0], labels);
+      const m3 = extractRatesAfter(text, labels[1], labels);
+      const m6 = extractRatesAfter(text, labels[2], labels);
+      const y1 = extractRatesAfter(text, labels[3], labels);
+
+      if (dateMatches.length < 5 || [m1, m3, m6, y1].some((rates) => rates.length < 5)) {
+        throw new Error("Term SOFR 표를 해석하지 못했습니다.");
+      }
+
+      return dateMatches.map((match, index) => ({
+        date: formatSofrDate(match[1], match[2], match[3]),
+        m1: m1[index],
+        m3: m3[index],
+        m6: m6[index],
+        y1: y1[index]
+      }));
+    }
+
+    function readSofrCache() {
+      try {
+        const raw = localStorage.getItem(TERM_SOFR_CACHE_KEY);
+        if (!raw) return null;
+        const parsed = JSON.parse(raw);
+        return parsed && Array.isArray(parsed.rows) && parsed.rows.length ? parsed : null;
+      } catch (err) {
+        return null;
+      }
+    }
+
+    function writeSofrCache(rows) {
+      try {
+        localStorage.setItem(TERM_SOFR_CACHE_KEY, JSON.stringify({
+          rows: rows,
+          fetchedAt: new Date().toISOString()
+        }));
+      } catch (err) {
+        /* ignore quota / private mode */
+      }
+    }
+
+    async function fetchTermSofrText() {
+      const endpoints = [
+        "https://r.jina.ai/https://www.global-rates.com/en/interest-rates/cme-term-sofr/",
+        "https://api.allorigins.win/raw?url=" + encodeURIComponent(TERM_SOFR_PAGE),
+        TERM_SOFR_PAGE
+      ];
+      let lastError = null;
+
+      for (let i = 0; i < endpoints.length; i++) {
+        try {
+          const response = await fetch(endpoints[i], { cache: "no-store" });
+          if (!response.ok) throw new Error("HTTP " + response.status);
+          const text = await response.text();
+          if (!/term sofr/i.test(text)) throw new Error("응답에 Term SOFR 표가 없습니다.");
+          return text;
+        } catch (err) {
+          lastError = err;
+        }
+      }
+
+      throw lastError || new Error("Term SOFR를 가져오지 못했습니다.");
+    }
+
+    async function loadTermSofrRates() {
+      if (sofrLoading) return;
+      sofrLoading = true;
+      if (sofrRefreshBtn) sofrRefreshBtn.disabled = true;
+      setSofrStatus("최신 Term SOFR를 불러오는 중입니다.", false);
+
+      try {
+        const rows = parseTermSofrText(await fetchTermSofrText());
+        renderTermSofrTable(rows);
+        writeSofrCache(rows);
+        setSofrStatus("최신 고시 " + rows[0].date + " 기준 · 방금 조회함", false);
+      } catch (err) {
+        const cached = readSofrCache();
+        if (cached) {
+          renderTermSofrTable(cached.rows);
+          setSofrStatus("실시간 조회에 실패해 마지막 저장값(" + cached.rows[0].date + ")을 표시합니다.", true);
+        } else {
+          renderTermSofrTable([]);
+          setSofrStatus("Term SOFR를 불러오지 못했습니다. 새로고침을 다시 눌러 주세요.", true);
+        }
+      } finally {
+        sofrLoading = false;
+        if (sofrRefreshBtn) sofrRefreshBtn.disabled = false;
+        refreshCalc();
+      }
+    }
+
+    if (sofrRefreshBtn) {
+      sofrRefreshBtn.addEventListener("click", loadTermSofrRates);
+    }
+
+    const EURIBOR_PAGE = "https://www.euribor-rates.eu/en/current-euribor-rates/";
+    const EURIBOR_CACHE_KEY = "euriborCache.v1";
+    const euriborStatus = document.getElementById("euribor-status");
+    const euriborRefreshBtn = document.getElementById("euribor-refresh-btn");
+    let euriborLoading = false;
+    let latestEuriborRows = null;
+
+    function formatEuribor(value) {
+      return Number(value).toFixed(3);
+    }
+
+    function setEuriborStatus(message, isError) {
+      if (!euriborStatus) return;
+      euriborStatus.textContent = message;
+      euriborStatus.classList.toggle("error", !!isError);
+    }
+
+    function renderEuriborTable(rows) {
+      if (rows && rows.length) latestEuriborRows = rows;
+      const body = document.getElementById("euribor-table-body");
+      if (!body) return;
+      if (!rows || !rows.length) {
+        body.innerHTML = "<tr><td colspan=\"5\">표시할 데이터가 없습니다.</td></tr>";
+        return;
+      }
+      body.innerHTML = rows.map((row) => `
+        <tr>
+          <td>${escapeHtml(row.date)}</td>
+          <td>${formatEuribor(row.m1)}</td>
+          <td>${formatEuribor(row.m3)}</td>
+          <td>${formatEuribor(row.m6)}</td>
+          <td>${formatEuribor(row.y1)}</td>
+        </tr>
+      `).join("");
+    }
+
+    function extractRatesAfterLast(text, label, stopLabels) {
+      const lower = text.toLowerCase();
+      const start = lower.lastIndexOf(label.toLowerCase());
+      if (start < 0) return [];
+
+      let end = text.length;
+      stopLabels.forEach((stop) => {
+        if (stop === label) return;
+        const stopIdx = lower.indexOf(stop.toLowerCase(), start + label.length);
+        if (stopIdx > start && stopIdx < end) end = stopIdx;
+      });
+
+      return Array.from(text.slice(start, end).matchAll(/(\d+\.\d+)\s*%/g))
+        .map((match) => Number(match[1]))
+        .slice(0, 5);
+    }
+
+    function parseEuriborText(text) {
+      const labels = [
+        "Euribor 1 month",
+        "Euribor 3 months",
+        "Euribor 6 months",
+        "Euribor 12 months"
+      ];
+      const lower = text.toLowerCase();
+      const monthIdx = lower.lastIndexOf(labels[0].toLowerCase());
+      const weekIdx = lower.lastIndexOf("euribor 1 week");
+      const dateStart = Math.max(0, (weekIdx > 0 ? weekIdx : monthIdx) - 900);
+      const dateEnd = monthIdx > dateStart ? monthIdx : dateStart + 1200;
+      const dateMatches = Array.from(text.slice(dateStart, dateEnd).matchAll(/(\d{1,2})\/(\d{1,2})\/(\d{4})/g)).slice(0, 5);
+      const m1 = extractRatesAfterLast(text, labels[0], labels);
+      const m3 = extractRatesAfterLast(text, labels[1], labels);
+      const m6 = extractRatesAfterLast(text, labels[2], labels);
+      const y1 = extractRatesAfterLast(text, labels[3], labels);
+
+      if (dateMatches.length < 5 || [m1, m3, m6, y1].some((rates) => rates.length < 5)) {
+        throw new Error("EURIBOR 표를 해석하지 못했습니다.");
+      }
+
+      return dateMatches.map((match, index) => ({
+        date: formatSofrDate(match[1], match[2], match[3]),
+        m1: m1[index],
+        m3: m3[index],
+        m6: m6[index],
+        y1: y1[index]
+      }));
+    }
+
+    function readEuriborCache() {
+      try {
+        const raw = localStorage.getItem(EURIBOR_CACHE_KEY);
+        if (!raw) return null;
+        const parsed = JSON.parse(raw);
+        return parsed && Array.isArray(parsed.rows) && parsed.rows.length ? parsed : null;
+      } catch (err) {
+        return null;
+      }
+    }
+
+    function writeEuriborCache(rows) {
+      try {
+        localStorage.setItem(EURIBOR_CACHE_KEY, JSON.stringify({
+          rows: rows,
+          fetchedAt: new Date().toISOString()
+        }));
+      } catch (err) {
+        /* ignore quota / private mode */
+      }
+    }
+
+    async function fetchEuriborText() {
+      const endpoints = [
+        "https://r.jina.ai/https://www.euribor-rates.eu/en/current-euribor-rates/",
+        "https://api.allorigins.win/raw?url=" + encodeURIComponent(EURIBOR_PAGE),
+        EURIBOR_PAGE
+      ];
+      let lastError = null;
+
+      for (let i = 0; i < endpoints.length; i++) {
+        try {
+          const response = await fetch(endpoints[i], { cache: "no-store" });
+          if (!response.ok) throw new Error("HTTP " + response.status);
+          const text = await response.text();
+          if (!/euribor 1 month/i.test(text)) throw new Error("응답에 EURIBOR 표가 없습니다.");
+          return text;
+        } catch (err) {
+          lastError = err;
+        }
+      }
+
+      throw lastError || new Error("EURIBOR를 가져오지 못했습니다.");
+    }
+
+    async function loadEuriborRates() {
+      if (euriborLoading) return;
+      euriborLoading = true;
+      if (euriborRefreshBtn) euriborRefreshBtn.disabled = true;
+      setEuriborStatus("최신 EURIBOR를 불러오는 중입니다.", false);
+
+      try {
+        const rows = parseEuriborText(await fetchEuriborText());
+        renderEuriborTable(rows);
+        writeEuriborCache(rows);
+        setEuriborStatus("최신 고시 " + rows[0].date + " 기준 · 방금 조회함", false);
+      } catch (err) {
+        const cached = readEuriborCache();
+        if (cached) {
+          renderEuriborTable(cached.rows);
+          setEuriborStatus("실시간 조회에 실패해 마지막 저장값(" + cached.rows[0].date + ")을 표시합니다.", true);
+        } else {
+          renderEuriborTable([]);
+          setEuriborStatus("EURIBOR를 불러오지 못했습니다. 새로고침을 다시 눌러 주세요.", true);
+        }
+      } finally {
+        euriborLoading = false;
+        if (euriborRefreshBtn) euriborRefreshBtn.disabled = false;
+        refreshCalc();
+      }
+    }
+
+    if (euriborRefreshBtn) {
+      euriborRefreshBtn.addEventListener("click", loadEuriborRates);
+    }
+
+    async function fetchTextViaProxies(url, okTest) {
+      const endpoints = [
+        "https://r.jina.ai/" + url,
+        "https://api.allorigins.win/raw?url=" + encodeURIComponent(url),
+        url
+      ];
+      let lastError = null;
+      for (let i = 0; i < endpoints.length; i++) {
+        try {
+          const response = await fetch(endpoints[i], { cache: "no-store" });
+          if (!response.ok) throw new Error("HTTP " + response.status);
+          const text = await response.text();
+          if (okTest && !okTest(text)) throw new Error("응답 형식이 올바르지 않습니다.");
+          return text;
+        } catch (err) {
+          lastError = err;
+        }
+      }
+      throw lastError || new Error("데이터를 가져오지 못했습니다.");
+    }
+
+    function parseJsonLoose(text) {
+      const start = text.indexOf("{");
+      const end = text.lastIndexOf("}");
+      if (start < 0 || end <= start) throw new Error("JSON을 찾지 못했습니다.");
+      return JSON.parse(text.slice(start, end + 1));
+    }
+
+    function formatRateDate(year, month, day) {
+      return formatSofrDate(month, day, year);
+    }
+
+    function formatIsoDate(value) {
+      const match = String(value || "").match(/(\d{4})-(\d{1,2})-(\d{1,2})/);
+      if (!match) return String(value || "");
+      return formatRateDate(match[1], match[2], match[3]);
+    }
+
+    function renderRateRows(bodyId, rows, formatFn) {
+      const body = document.getElementById(bodyId);
+      if (!body) return;
+      if (!rows || !rows.length) {
+        body.innerHTML = "<tr><td colspan=\"5\">표시할 데이터가 없습니다.</td></tr>";
+        return;
+      }
+      body.innerHTML = rows.map((row) => `
+        <tr>
+          <td>${escapeHtml(row.date)}</td>
+          <td>${formatFn(row.m1)}</td>
+          <td>${formatFn(row.m3)}</td>
+          <td>${formatFn(row.m6)}</td>
+          <td>${formatFn(row.y1)}</td>
+        </tr>
+      `).join("");
+    }
+
+    function readRateCache(key) {
+      try {
+        const raw = localStorage.getItem(key);
+        if (!raw) return null;
+        const parsed = JSON.parse(raw);
+        return parsed && Array.isArray(parsed.rows) && parsed.rows.length ? parsed : null;
+      } catch (err) {
+        return null;
+      }
+    }
+
+    function writeRateCache(key, rows) {
+      try {
+        localStorage.setItem(key, JSON.stringify({
+          rows: rows,
+          fetchedAt: new Date().toISOString()
+        }));
+      } catch (err) {
+        /* ignore */
+      }
+    }
+
+    const SHIBOR_PAGE = "https://www.chinamoney.com.cn/english/bmkshb/";
+    const SHIBOR_CACHE_KEY = "shiborCache.v1";
+    const shiborStatus = document.getElementById("shibor-status");
+    const shiborRefreshBtn = document.getElementById("shibor-refresh-btn");
+    let shiborLoading = false;
+    let latestShiborRows = null;
+
+    function formatShibor(value) {
+      return Number(value).toFixed(4);
+    }
+
+    function setShiborStatus(message, isError) {
+      if (!shiborStatus) return;
+      shiborStatus.textContent = message;
+      shiborStatus.classList.toggle("error", !!isError);
+    }
+
+    function parseShiborPayload(data) {
+      const records = (data && data.records) || [];
+      const rows = records.slice(0, 5).map((row) => ({
+        date: formatIsoDate(row.showDateCN || row.showDateEN),
+        m1: Number(row["1M"]),
+        m3: Number(row["3M"]),
+        m6: Number(row["6M"]),
+        y1: Number(row["1Y"])
+      })).filter((row) => [row.m1, row.m3, row.m6, row.y1].every(Number.isFinite));
+      if (!rows.length) throw new Error("SHIBOR 표를 해석하지 못했습니다.");
+      return rows;
+    }
+
+    async function fetchShiborRows() {
+      const end = new Date();
+      const start = new Date();
+      start.setDate(end.getDate() - 21);
+      const startDate = start.getFullYear() + "-" + String(start.getMonth() + 1).padStart(2, "0") + "-" + String(start.getDate()).padStart(2, "0");
+      const endDate = end.getFullYear() + "-" + String(end.getMonth() + 1).padStart(2, "0") + "-" + String(end.getDate()).padStart(2, "0");
+      const url = "https://www.chinamoney.com.cn/ags/ms/cm-u-bk-shibor/ShiborHis?lang=EN&startDate=" + startDate + "&endDate=" + endDate;
+      const text = await fetchTextViaProxies(url, (body) => /"1M"/.test(body) && /"3M"/.test(body));
+      return parseShiborPayload(parseJsonLoose(text));
+    }
+
+    async function loadShiborRates() {
+      if (shiborLoading) return;
+      shiborLoading = true;
+      if (shiborRefreshBtn) shiborRefreshBtn.disabled = true;
+      setShiborStatus("최신 SHIBOR를 불러오는 중입니다.", false);
+      try {
+        const rows = await fetchShiborRows();
+        latestShiborRows = rows;
+        renderRateRows("shibor-table-body", rows, formatShibor);
+        writeRateCache(SHIBOR_CACHE_KEY, rows);
+        setShiborStatus("최신 고시 " + rows[0].date + " 기준 · 방금 조회함", false);
+      } catch (err) {
+        const cached = readRateCache(SHIBOR_CACHE_KEY);
+        if (cached) {
+          latestShiborRows = cached.rows;
+          renderRateRows("shibor-table-body", cached.rows, formatShibor);
+          setShiborStatus("실시간 조회에 실패해 마지막 저장값(" + cached.rows[0].date + ")을 표시합니다.", true);
+        } else {
+          renderRateRows("shibor-table-body", [], formatShibor);
+          setShiborStatus("SHIBOR를 불러오지 못했습니다. 새로고침을 다시 눌러 주세요.", true);
+        }
+      } finally {
+        shiborLoading = false;
+        if (shiborRefreshBtn) shiborRefreshBtn.disabled = false;
+        refreshCalc();
+      }
+    }
+
+    if (shiborRefreshBtn) {
+      shiborRefreshBtn.addEventListener("click", loadShiborRates);
+    }
+
+    const HIBOR_PAGE = "https://www.hkab.org.hk/en/rates/hibor";
+    const HIBOR_CACHE_KEY = "hiborCache.v1";
+    const hiborStatus = document.getElementById("hibor-status");
+    const hiborRefreshBtn = document.getElementById("hibor-refresh-btn");
+    let hiborLoading = false;
+
+    function formatHibor(value) {
+      return Number(value).toFixed(5);
+    }
+
+    function setHiborStatus(message, isError) {
+      if (!hiborStatus) return;
+      hiborStatus.textContent = message;
+      hiborStatus.classList.toggle("error", !!isError);
+    }
+
+    function hiborRowFromData(data) {
+      if (!data || data.isHoliday || data["1 Month"] == null) return null;
+      const date = formatIsoDate(data.date || (data.year + "-" + data.month + "-" + data.day));
+      const m1 = Number(data["1 Month"]);
+      const m3 = Number(data["3 Months"]);
+      const m6 = Number(data["6 Months"]);
+      const y1 = Number(data["12 Months"]);
+      if (![m1, m3, m6, y1].every(Number.isFinite)) return null;
+      return { date: date, m1: m1, m3: m3, m6: m6, y1: y1 };
+    }
+
+    async function fetchHiborJson(year, month, day) {
+      const url = year
+        ? "https://www.hkab.org.hk/api/hibor?year=" + year + "&month=" + month + "&day=" + day
+        : "https://www.hkab.org.hk/api/hibor";
+      const text = await fetchTextViaProxies(url, (body) => /"1 Month"/.test(body));
+      return parseJsonLoose(text);
+    }
+
+    async function fetchHiborRows() {
+      const latest = await fetchHiborJson();
+      const rows = [];
+      const seen = {};
+      function add(data) {
+        const row = hiborRowFromData(data);
+        if (!row || seen[row.date]) return;
+        seen[row.date] = true;
+        rows.push(row);
+      }
+      add(latest);
+      const cursor = latest.year
+        ? new Date(latest.year, latest.month - 1, latest.day)
+        : new Date();
+      const reqs = [];
+      for (let i = 1; i <= 12 && rows.length + reqs.length < 16; i++) {
+        const day = new Date(cursor.getTime());
+        day.setDate(cursor.getDate() - i);
+        reqs.push(fetchHiborJson(day.getFullYear(), day.getMonth() + 1, day.getDate()));
+      }
+      const extras = await Promise.all(reqs);
+      extras.forEach(add);
+      if (!rows.length) throw new Error("HIBOR 표를 해석하지 못했습니다.");
+      rows.sort((a, b) => {
+        const key = (value) => {
+          const match = String(value.date).match(/(\d{4})-(\d{1,2})-(\d{1,2})/);
+          return match ? Number(match[1]) * 10000 + Number(match[2]) * 100 + Number(match[3]) : 0;
+        };
+        return key(b) - key(a);
+      });
+      return rows.slice(0, 5);
+    }
+
+    async function loadHiborRates() {
+      if (hiborLoading) return;
+      hiborLoading = true;
+      if (hiborRefreshBtn) hiborRefreshBtn.disabled = true;
+      setHiborStatus("최신 HIBOR를 불러오는 중입니다.", false);
+      try {
+        const rows = await fetchHiborRows();
+        renderRateRows("hibor-table-body", rows, formatHibor);
+        writeRateCache(HIBOR_CACHE_KEY, rows);
+        setHiborStatus("최신 고시 " + rows[0].date + " 기준 · 방금 조회함", false);
+      } catch (err) {
+        const cached = readRateCache(HIBOR_CACHE_KEY);
+        if (cached) {
+          renderRateRows("hibor-table-body", cached.rows, formatHibor);
+          setHiborStatus("실시간 조회에 실패해 마지막 저장값(" + cached.rows[0].date + ")을 표시합니다.", true);
+        } else {
+          renderRateRows("hibor-table-body", [], formatHibor);
+          setHiborStatus("HIBOR를 불러오지 못했습니다. 새로고침을 다시 눌러 주세요.", true);
+        }
+      } finally {
+        hiborLoading = false;
+        if (hiborRefreshBtn) hiborRefreshBtn.disabled = false;
+      }
+    }
+
+    if (hiborRefreshBtn) {
+      hiborRefreshBtn.addEventListener("click", loadHiborRates);
+    }
+
+    buttons.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        if (btn.dataset.tab === "lookup") {
+          loadTermSofrRates();
+          loadEuriborRates();
+          loadShiborRates();
+          loadHiborRates();
+        }
+      });
+    });
+
+    const FALLBACK_SOFR_6M = 0.0366791;
+    const FALLBACK_EURIBOR_6M = 0.022;
+    const FALLBACK_SHIBOR_6M = 0.015;
+    const CNY_FX_SPREAD = 0.008;
+    const FX_FEE_USD = {
+      30:  { label: "1M",  sofrKey: "m1", lc: 0.0050, da: 0.0055 },
+      60:  { label: "2M",  sofrKey: "m3", lc: 0.0050, da: 0.0060 },
+      90:  { label: "3M",  sofrKey: "m3", lc: 0.0055, da: 0.0065 },
+      120: { label: "4M",  sofrKey: "m6", lc: 0.0060, da: 0.0070 },
+      150: { label: "5M",  sofrKey: "m6", lc: 0.0070, da: 0.0070 },
+      180: { label: "6M",  sofrKey: "m6", lc: 0.0070, da: 0.0070 },
+      360: { label: "12M", sofrKey: "y1", lc: 0.0100, da: 0.0120 }
+    };
+    const FX_FEE_EUR = {
+      30:  { label: "1M",  sofrKey: "m1", lc: 0.0050, da: 0.0065 },
+      60:  { label: "2M",  sofrKey: "m3", lc: 0.0050, da: 0.0065 },
+      90:  { label: "3M",  sofrKey: "m3", lc: 0.0055, da: 0.0065 },
+      120: { label: "4M",  sofrKey: "m6", lc: 0.0060, da: 0.0065 },
+      150: { label: "5M",  sofrKey: "m6", lc: 0.0070, da: 0.0065 },
+      180: { label: "6M",  sofrKey: "m6", lc: 0.0070, da: 0.0065 },
+      360: { label: "12M", sofrKey: "y1", lc: 0.0100, da: 0.0120 }
+    };
+    const AR_INSURERS = {
+      atradius: { name: "ATRADIUS", rate: 0.0020, cover: "Coverage 90%" },
+      credendo: { name: "CREDENDO", rate: 0.0035, cover: "Coverage 90%" },
+      sinosure: { name: "SINOSURE", rate: 0.0030, cover: "Coverage 90% (국가별 상이)" },
+      coface: { name: "Coface", rate: 0.0022, cover: "Coverage 100%" },
+      allianz: { name: "Allianz", rate: 0.0015, cover: "Coverage 95%" }
+    };
+    const KSURE_OA_GRADES = ["A", "B", "C", "D", "E", "F", "G"];
+    const KSURE_LC_GRADES = ["1", "2", "3", "4", "5", "6", "7"];
+    const KSURE_RATES = {
+      "무신용장": {
+        "일반": {
+           30:  [0.1000, 0.2000, 0.2500, 0.3000, 0.3500, 0.4000, 0.5500],
+           60:  [0.1200, 0.2400, 0.3000, 0.3600, 0.4200, 0.4800, 0.6600],
+           90:  [0.1400, 0.2800, 0.3500, 0.4200, 0.4900, 0.5600, 0.7700],
+          120:  [0.1700, 0.3400, 0.4300, 0.5200, 0.6100, 0.7000, 0.9600],
+          150:  [0.2000, 0.4000, 0.5000, 0.6100, 0.7200, 0.8300, 1.1400],
+          180:  [0.2300, 0.4600, 0.5800, 0.7000, 0.8300, 0.9600, 1.3200]
+        },
+        "중계": {
+           30:  [0.1400, 0.2800, 0.3500, 0.4200, 0.4900, 0.5600, 0.7700],
+           60:  [0.1680, 0.3360, 0.4200, 0.5040, 0.5880, 0.6720, 0.9240],
+           90:  [0.1960, 0.3920, 0.4900, 0.5880, 0.6860, 0.7840, 1.0780],
+          120:  [0.2380, 0.4760, 0.6020, 0.7280, 0.8540, 0.9800, 1.3440],
+          150:  [0.2800, 0.5600, 0.7000, 0.8540, 1.0080, 1.1620, 1.5960],
+          180:  [0.3220, 0.6440, 0.8120, 0.9800, 1.1620, 1.3440, 1.8480]
+        }
+      },
+      "신용장": {
+        "일반": {
+           30:  [0.0200, 0.0400, 0.0500, 0.0600, 0.0700, 0.0800, 0.1100],
+           60:  [0.0400, 0.0800, 0.1000, 0.1200, 0.1400, 0.1600, 0.2200],
+           90:  [0.0500, 0.0900, 0.1100, 0.1400, 0.1700, 0.1900, 0.2600],
+          120:  [0.0600, 0.1100, 0.1400, 0.1700, 0.2000, 0.2300, 0.3200],
+          150:  [0.0600, 0.1200, 0.1600, 0.1900, 0.2200, 0.2600, 0.3500],
+          180:  [0.0700, 0.1400, 0.1800, 0.2200, 0.2600, 0.3000, 0.4100]
+        },
+        "중계": {
+           30:  [0.0280, 0.0560, 0.0700, 0.0840, 0.0980, 0.1120, 0.1540],
+           60:  [0.0560, 0.1120, 0.1400, 0.1680, 0.1960, 0.2240, 0.3080],
+           90:  [0.0700, 0.1260, 0.1540, 0.1960, 0.2380, 0.2660, 0.3640],
+          120:  [0.0840, 0.1540, 0.1960, 0.2380, 0.2800, 0.3220, 0.4480],
+          150:  [0.0840, 0.1680, 0.2240, 0.2660, 0.3080, 0.3640, 0.4900],
+          180:  [0.0980, 0.1960, 0.2520, 0.3080, 0.3640, 0.4200, 0.5740]
+        }
+      }
+    };
+
+    function parseCalcNumber(value) {
+      const n = Number(String(value == null ? "" : value).replace(/,/g, "").trim());
+      return Number.isFinite(n) ? n : 0;
+    }
+
+    function getCalcValue(id) {
+      const el = document.getElementById(id);
+      return el ? parseCalcNumber(el.value) : 0;
+    }
+
+    function formatUsd(value) {
+      return value.toLocaleString("en-US", {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      });
+    }
+
+    function formatPct(value, digits) {
+      return (value * 100).toFixed(digits == null ? 2 : digits) + "%";
+    }
+
+    function formatShare(value) {
+      if (!Number.isFinite(value)) return "-";
+      return formatPct(value, 4);
+    }
+
+    function formatCellLabel(text) {
+      return escapeHtml(String(text == null ? "" : text))
+        .replace(/(\([^)]*\))/g, '<span class="cell-paren">$1</span>');
+    }
+
+    function fxFeeRowFor(days, currency) {
+      const table = currency === "EUR" ? FX_FEE_EUR : FX_FEE_USD;
+      return table[days] || table[180];
+    }
+
+    function ksurePayType(buyerPay) {
+      return buyerPay === "L/C" ? "신용장" : "무신용장";
+    }
+
+    function lookupInsurance(days, buyerPay, insurerId, tradeType, grade) {
+      if (insurerId !== "ksure") {
+        const ar = AR_INSURERS[insurerId];
+        if (!ar) return { rate: 0, note: "보험을 선택해 주세요." };
+        return {
+          rate: ar.rate,
+          note: ar.name + " " + formatPct(ar.rate, 3) + " · " + ar.cover
+        };
+      }
+
+      const payType = ksurePayType(buyerPay);
+      const grades = payType === "신용장" ? KSURE_LC_GRADES : KSURE_OA_GRADES;
+      const gradeIndex = Math.max(0, grades.indexOf(String(grade)));
+      const trade = tradeType === "일반" ? "일반" : "중계";
+      const row = KSURE_RATES[payType] && KSURE_RATES[payType][trade]
+        ? KSURE_RATES[payType][trade][days]
+        : null;
+      const tablePct = row ? row[gradeIndex] : 0;
+      return {
+        rate: tablePct / 100,
+        note: "K-SURE " + (trade === "일반" ? "일반수출" : "중계무역") + " " + payType
+          + " " + days + "일 등급 " + grades[gradeIndex] + " · 요율표 " + tablePct.toFixed(4) + "%"
+      };
+    }
+
+    function syncKsureFields() {
+      const insurerEl = document.getElementById("calc-insurer");
+      const buyerEl = document.getElementById("calc-buyer-pay");
+      const gradeEl = document.getElementById("calc-ksure-grade");
+      const gradeLabel = document.getElementById("calc-ksure-grade-label");
+      const hint = document.getElementById("calc-ins-hint");
+      if (!insurerEl || !gradeEl) return;
+
+      const isKsure = insurerEl.value === "ksure";
+      document.querySelectorAll(".calc-ksure-only").forEach((el) => {
+        el.hidden = !isKsure;
+        el.classList.toggle("calc-ksure-off", !isKsure);
+        el.style.display = isKsure ? "" : "none";
+      });
+
+      if (!isKsure) {
+        const ar = AR_INSURERS[insurerEl.value];
+        if (hint && ar) hint.textContent = ar.name + " 보험료 " + formatPct(ar.rate, 3) + "를 수출보험료에 적용합니다.";
+        return;
+      }
+
+      const payType = ksurePayType(buyerEl.value);
+      const grades = payType === "신용장" ? KSURE_LC_GRADES : KSURE_OA_GRADES;
+      const prev = gradeEl.value;
+      gradeEl.innerHTML = grades.map((g) => "<option value=\"" + g + "\">" + g + "</option>").join("");
+      gradeEl.value = grades.indexOf(prev) >= 0 ? prev : grades[0];
+      if (gradeLabel) {
+        gradeLabel.textContent = payType === "신용장" ? "나라 등급 (1–7)" : "신용등급 (A–G)";
+      }
+      if (hint) {
+        hint.textContent = payType === "신용장"
+          ? "L/C는 신용장 요율(나라 등급 1–7)을 사용합니다."
+          : "O/A·D/A는 무신용장 요율(신용등급 A–G)을 사용합니다.";
+      }
+    }
+
+    function getSofrRows() {
+      return latestSofrRows || (readSofrCache() && readSofrCache().rows) || null;
+    }
+
+    function getSofrByKey(sofrKey) {
+      const rows = getSofrRows();
+      const raw = rows && rows[0] ? Number(rows[0][sofrKey]) : NaN;
+      if (Number.isFinite(raw)) {
+        return { rate: raw / 100, date: rows[0].date, live: true, key: sofrKey };
+      }
+      return { rate: FALLBACK_SOFR_6M, date: "2026-3-18", live: false, key: sofrKey };
+    }
+
+    function getEuriborRows() {
+      return latestEuriborRows || (readEuriborCache() && readEuriborCache().rows) || null;
+    }
+
+    function getEuriborByKey(rateKey) {
+      const rows = getEuriborRows();
+      const raw = rows && rows[0] ? Number(rows[0][rateKey]) : NaN;
+      if (Number.isFinite(raw)) {
+        return { rate: raw / 100, date: rows[0].date, live: true, key: rateKey };
+      }
+      return { rate: FALLBACK_EURIBOR_6M, date: "2026-3-18", live: false, key: rateKey };
+    }
+
+    function getShiborRows() {
+      return latestShiborRows || (readRateCache(SHIBOR_CACHE_KEY) && readRateCache(SHIBOR_CACHE_KEY).rows) || null;
+    }
+
+    function getShiborByKey(rateKey) {
+      const rows = getShiborRows();
+      const raw = rows && rows[0] ? Number(rows[0][rateKey]) : NaN;
+      if (Number.isFinite(raw)) {
+        return { rate: raw / 100, date: rows[0].date, live: true, key: rateKey };
+      }
+      return { rate: FALLBACK_SHIBOR_6M, date: "2026-3-18", live: false, key: rateKey };
+    }
+
+    const SOFR_TENOR_LABEL = { m1: "1M", m3: "3M", m6: "6M", y1: "1Y" };
+
+    function sofrKeyForDays(days) {
+      const n = Number(days);
+      if (n <= 30) return "m1";
+      if (n <= 90) return "m3";
+      if (n <= 180) return "m6";
+      return "y1";
+    }
+
+    function sofrLabelForKey(sofrKey) {
+      return SOFR_TENOR_LABEL[sofrKey] || sofrKey;
+    }
+
+    function getBaseRateForDays(days, currency) {
+      const key = sofrKeyForDays(days);
+      const label = sofrLabelForKey(key);
+      if (currency === "EUR") {
+        const info = getEuriborByKey(key);
+        return {
+          rate: info.rate,
+          date: info.date,
+          live: info.live,
+          key: key,
+          label: label,
+          name: "EURIBOR",
+          shortName: "EURIBOR",
+          source: "요율 조회 EURIBOR",
+          digits: 3
+        };
+      }
+      if (currency === "CNY") {
+        const info = getShiborByKey(key);
+        return {
+          rate: info.rate,
+          date: info.date,
+          live: info.live,
+          key: key,
+          label: label,
+          name: "SHIBOR",
+          shortName: "SHIBOR",
+          source: "요율 조회 SHIBOR",
+          digits: 4
+        };
+      }
+      const info = getSofrByKey(key);
+      return {
+        rate: info.rate,
+        date: info.date,
+        live: info.live,
+        key: key,
+        label: label,
+        name: "Term SOFR",
+        shortName: "SOFR",
+        source: "요율 조회 Term SOFR",
+        digits: 5
+      };
+    }
+
+    function getTermSofrForDays(days) {
+      return getBaseRateForDays(days, "USD");
+    }
+
+    function getLatestSofr6M() {
+      return getSofrByKey("m6");
+    }
+
+    function lookupFxFee(days, buyerPay, currency) {
+      const ccy = currency || "USD";
+      if (ccy === "CNY") {
+        const key = sofrKeyForDays(days);
+        const base = getShiborByKey(key);
+        return {
+          spread: CNY_FX_SPREAD,
+          sofr: base.rate,
+          sofrDate: base.date,
+          sofrLive: base.live,
+          tenorLabel: sofrLabelForKey(key),
+          sofrKey: key,
+          rate: base.rate + CNY_FX_SPREAD,
+          note: "CNY 환가료 · SHIBOR " + sofrLabelForKey(key) + " "
+            + formatPct(base.rate, 4) + " + 0.80%"
+        };
+      }
+      const row = fxFeeRowFor(days, ccy);
+      const spread = buyerPay === "L/C" ? row.lc : row.da;
+      const base = ccy === "EUR" ? getEuriborByKey(row.sofrKey) : getSofrByKey(row.sofrKey);
+      const indexName = ccy === "EUR" ? "EURIBOR" : "SOFR";
+      const indexDigits = ccy === "EUR" ? 3 : 5;
+      const payLabel = buyerPay === "L/C" ? "L/C" : (buyerPay === "O/A" ? "O/A(=D/A)" : "D/A");
+      const tableName = ccy === "EUR" ? "EUR" : "USD 및 기타";
+      return {
+        spread: spread,
+        sofr: base.rate,
+        sofrDate: base.date,
+        sofrLive: base.live,
+        tenorLabel: row.label,
+        sofrKey: row.sofrKey,
+        rate: base.rate + spread,
+        note: "환가료율표 " + tableName + " " + row.label + " " + payLabel
+          + " · " + indexName + " "
+          + (SOFR_TENOR_LABEL[row.sofrKey] || row.sofrKey)
+          + " " + formatPct(base.rate, indexDigits) + " + spread " + formatPct(spread, 2)
+      };
+    }
+
+    let selectedComboKey = null;
+    let calcManualMode = false;
+    let calcManualAdmin = null;
+    let calcManualInterest = null;
+    let calcEditing = null;
+    let calcEditBackup = null;
+
+    function parsePctInput(value) {
+      const n = Number(String(value == null ? "" : value).replace(/[%\s,]/g, "").trim());
+      return Number.isFinite(n) ? n / 100 : null;
+    }
+
+    function cardEls(kind) {
+      return {
+        card: document.getElementById(kind === "admin" ? "calc-card-admin" : "calc-card-interest"),
+        value: document.getElementById(kind === "admin" ? "calc-out-admin" : "calc-out-interest"),
+        input: document.getElementById(kind === "admin" ? "calc-admin-input" : "calc-interest-input")
+      };
+    }
+
+    function stopCardEdit(kind) {
+      const els = cardEls(kind);
+      if (els.input) els.input.hidden = true;
+      if (els.value) els.value.hidden = false;
+      if (els.card) els.card.classList.remove("is-editing");
+      if (calcEditing === kind) calcEditing = null;
+    }
+
+    function snapshotManualRates() {
+      const input = readCalcInputs();
+      calcManualAdmin = getCalcValue("calc-admin") / 100;
+      calcManualInterest = input.sofr + getCalcValue("calc-spread") / 100;
+    }
+
+    function beginCardEdit(kind) {
+      if (!calcManualMode) snapshotManualRates();
+      calcManualMode = true;
+      calcEditing = kind;
+      calcEditBackup = { admin: calcManualAdmin, interest: calcManualInterest };
+      const els = cardEls(kind);
+      const current = kind === "admin" ? calcManualAdmin : calcManualInterest;
+      if (els.value) els.value.hidden = true;
+      if (els.input) {
+        els.input.hidden = false;
+        els.input.value = ((current || 0) * 100).toFixed(2);
+        els.input.focus();
+        els.input.select();
+      }
+      if (els.card) els.card.classList.add("is-editing", "is-manual");
+    }
+
+    function applyTypedManual(kind, raw) {
+      const parsed = parsePctInput(raw);
+      if (parsed == null) return false;
+      if (kind === "admin") calcManualAdmin = parsed;
+      else calcManualInterest = parsed;
+      calcManualMode = true;
+      return true;
+    }
+
+    function commitCardEdit(kind) {
+      const els = cardEls(kind);
+      if (els.input && !applyTypedManual(kind, els.input.value)) {
+        const current = kind === "admin" ? calcManualAdmin : calcManualInterest;
+        els.input.value = ((current || 0) * 100).toFixed(2);
+      }
+      stopCardEdit(kind);
+      refreshCalc();
+    }
+
+    function exitManualMode() {
+      calcManualMode = false;
+      calcManualAdmin = null;
+      calcManualInterest = null;
+      stopCardEdit("admin");
+      stopCardEdit("interest");
+    }
+
+    function requiredProfit(input) {
+      const varRate = input.insRate + 0.0002 + input.fxRate * input.days / 360;
+      const costsFixed = input.freight + input.trucking + input.freightIns
+        + input.lcCharge + input.usance + input.others;
+      const denom = 1 - varRate - input.target;
+      if (input.purchase <= 0 || denom <= 0) return null;
+      return (input.target * input.purchase + costsFixed + input.purchase * varRate) / denom;
+    }
+
+    function adminForSpread(input, profit, spread) {
+      const intFactor = (input.sofr + spread) * input.days / 360;
+      return (profit / input.purchase - intFactor) / (1 + intFactor);
+    }
+
+    function spreadForAdmin(input, profit, adminRate) {
+      const adminAmt = input.purchase * adminRate;
+      return (profit - adminAmt) / (input.purchase + adminAmt) * 360 / input.days - input.sofr;
+    }
+
+    function comboKey(adminRate, spread) {
+      return adminRate.toFixed(3) + "|" + spread.toFixed(3);
+    }
+
+    function ceilToStep(value, step) {
+      if (!Number.isFinite(value)) return NaN;
+      if (value <= 0) return 0;
+      return Math.ceil((value - 1e-12) / step) * step;
+    }
+
+    function snapToStep(value, step) {
+      return Math.round(value / step) * step;
+    }
+
+    function buildRateCombos(input) {
+      const profit = requiredProfit(input);
+      if (profit == null) {
+        return { error: "목표 거래이익이 너무 크거나 구매가가 없습니다.", recommended: null, others: [] };
+      }
+
+      const step = 0.001;
+      const seen = {};
+      const all = [];
+
+      function addCombo(adminRate, spread, label) {
+        const admin = snapToStep(adminRate, step);
+        const spr = snapToStep(spread, step);
+        if (!Number.isFinite(admin) || !Number.isFinite(spr)) return;
+        if (admin < step - 1e-12 || admin > 0.08 || spr < 0 || spr > 0.12) return;
+        const key = comboKey(admin, spr);
+        if (seen[key]) return;
+        seen[key] = true;
+        all.push({
+          key: key,
+          adminRate: admin,
+          spread: spr,
+          interestRate: input.sofr + spr,
+          sofr: input.sofr,
+          sofrLabel: input.sofrLabel,
+          baseName: input.baseName,
+          baseShort: input.baseShort,
+          label: label
+        });
+      }
+
+      for (let admin = step; admin <= 0.05 + 1e-12; admin = snapToStep(admin + step, step)) {
+        const spread = ceilToStep(spreadForAdmin(input, profit, admin), step);
+        addCombo(admin, spread, "Admin " + (admin * 100).toFixed(2) + "%");
+      }
+
+      if (!all.length) {
+        return { error: "목표 이익을 맞출 수 있는 요율 조합이 없습니다.", recommended: null, others: [] };
+      }
+
+      all.sort((a, b) => a.adminRate - b.adminRate);
+      let recIdx = 0;
+      let best = Infinity;
+      all.forEach((combo, index) => {
+        const gap = Math.abs(combo.adminRate - 0.018);
+        if (gap < best) {
+          best = gap;
+          recIdx = index;
+        }
+      });
+      const recommended = all[recIdx];
+      const others = [];
+      for (let i = recIdx - 3; i <= recIdx + 3; i++) {
+        if (i >= 0 && i < all.length && i !== recIdx) others.push(all[i]);
+      }
+      return { error: "", recommended: recommended, others: others };
+    }
+
+    const LC_OPEN_FEE_PA = 0.003;
+
+    function readCalcInputs() {
+      const days = Number(document.getElementById("calc-days").value) || 180;
+      const buyerPay = document.getElementById("calc-buyer-pay").value;
+      const currency = document.getElementById("calc-currency").value || "USD";
+      const incoterm = document.getElementById("calc-incoterm").value || "FOB";
+      const makerDays = Number(document.getElementById("calc-maker-days").value) || 0;
+      const makerPay = document.getElementById("calc-maker-pay").value;
+      const insurer = document.getElementById("calc-insurer").value;
+      const ksureTrade = document.getElementById("calc-ksure-trade").value;
+      const ksureGrade = document.getElementById("calc-ksure-grade").value;
+      const purchase = getCalcValue("calc-purchase");
+      const freight = getCalcValue("calc-freight");
+      const trucking = getCalcValue("calc-trucking");
+      const freightIns = getCalcValue("calc-freight-ins");
+      const usance = getCalcValue("calc-usance");
+      const others = getCalcValue("calc-others");
+      const adminRate = getCalcValue("calc-admin") / 100;
+      const spread = getCalcValue("calc-spread") / 100;
+      const target = getCalcValue("calc-target") / 100;
+      const sofrInfo = getBaseRateForDays(days, currency);
+      const insurance = lookupInsurance(days, buyerPay, insurer, ksureTrade, ksureGrade);
+      const fxFee = lookupFxFee(days, buyerPay, currency);
+      const lcCharge = makerPay === "L/C"
+        ? purchase * LC_OPEN_FEE_PA * makerDays / 360
+        : 0;
+      const lcNote = "구매가 × 개설수수료(0.3% p.a.) × Maker 기간/360 · Maker 결제조건이 수입 L/C인 경우에만 해당"
+        + (makerPay === "L/C" ? "" : " · T/T이므로 0");
+      return {
+        days, buyerPay, currency, incoterm, makerDays, makerPay,
+        insurer, ksureTrade, ksureGrade, purchase,
+        freight, trucking, freightIns, usance, others,
+        adminRate, spread, target,
+        sofr: sofrInfo.rate, sofrDate: sofrInfo.date, sofrLive: sofrInfo.live,
+        sofrKey: sofrInfo.key, sofrLabel: sofrInfo.label,
+        baseName: sofrInfo.name, baseShort: sofrInfo.shortName,
+        baseSource: sofrInfo.source, baseDigits: sofrInfo.digits,
+        insRate: insurance.rate, insNote: insurance.note,
+        fxSpread: fxFee.spread, fxRate: fxFee.rate, fxNote: fxFee.note,
+        lcCharge, lcNote
+      };
+    }
+
+    function computeCalc(input) {
+      const adminAmt = input.purchase * input.adminRate;
+      const intFactor = (input.sofr + input.spread) * input.days / 360;
+      const interestAmt = (input.purchase + adminAmt) * intFactor;
+      const profit = adminAmt + interestAmt;
+      const sales = input.purchase + profit;
+      const exportIns = sales * input.insRate;
+      const customs = sales * 0.0002;
+      const costSum = input.freight + input.trucking + input.freightIns
+        + exportIns + input.lcCharge + input.usance + customs + input.others;
+      const discount = sales * input.fxRate * input.days / 360;
+      const financeSum = discount;
+      const totalCost = costSum + financeSum;
+      const grossProfit = profit - costSum;
+      const dealProfit = profit - totalCost;
+      const share = (amount) => sales ? amount / sales : 0;
+      return {
+        adminAmt, interestAmt, profit, sales,
+        exportIns, customs, costSum, discount, financeSum, totalCost,
+        grossProfit, dealProfit, intFactor, share
+      };
+    }
+
+    function calcTableRows(input, result) {
+      const s = result.share;
+      return [
+        ["Purchase Price (구매가)", result.sales ? input.purchase : 0, s(input.purchase), "입력", ""],
+        ["Ocean Freight (운임)", input.freight, s(input.freight), input.freight ? "입력" : "-", ""],
+        ["Inland Trucking (내륙운송비)", input.trucking, s(input.trucking), input.trucking ? "입력" : "-", ""],
+        ["Freight Insurance (해상보험료)", input.freightIns, s(input.freightIns), input.freightIns ? "입력" : "-", ""],
+        ["Export Insurance (수출보험료)", result.exportIns, s(result.exportIns), "판매가 × " + input.insNote, ""],
+        ["L/C Open Charge (L/C 개설비용)", input.lcCharge, s(input.lcCharge), input.lcNote, ""],
+        ["Banker's Usance", input.usance, s(input.usance), input.usance ? "입력" : "-", ""],
+        ["Export Customs Clearance (수출통관료)", result.customs, s(result.customs), "판매가 × 0.02%", ""],
+        ["Others (기타)", input.others, s(input.others), "하역료, 방청작업, 리워크 등", ""],
+        ["비용 합계", result.costSum, s(result.costSum), "구매가 제외", "row-sum"],
+        ["Discount Charge (환가료)", result.discount, s(result.discount), "판매가 × " + formatPct(input.fxRate, 4) + " × 기간/360 · " + input.fxNote, ""],
+        ["금융비용 합계", result.financeSum, s(result.financeSum), "-", "row-sum"],
+        ["총 원가", result.totalCost, s(result.totalCost), "비용 합계 + 환가료", "row-total"],
+        ["Sales Price (판매가)", result.sales, 1, "구매가 + Admin + Interest", "row-sales"],
+        ["Interest", result.interestAmt, s(result.interestAmt), "(구매가 + Admin) × (" + input.baseName + " " + input.sofrLabel + " + Spread) × 기간/360", ""],
+        ["Admin", result.adminAmt, s(result.adminAmt), "구매가 × Admin%", ""],
+        ["매출이익", result.grossProfit, s(result.grossProfit), "이익 − 비용 합계", "row-profit"],
+        ["거래이익", result.dealProfit, s(result.dealProfit), "이익 − (비용 합계 + 환가료)", "row-profit"]
+      ];
+    }
+
+    function applyComboToInputs(combo) {
+      const adminEl = document.getElementById("calc-admin");
+      const spreadEl = document.getElementById("calc-spread");
+      if (adminEl) adminEl.value = (combo.adminRate * 100).toFixed(2);
+      if (spreadEl) spreadEl.value = (combo.spread * 100).toFixed(2);
+    }
+
+    function markAutofilled(el) {
+      const field = el && el.closest(".field");
+      if (!field) return;
+      field.classList.add("is-autofilled");
+      window.setTimeout(() => field.classList.remove("is-autofilled"), 2200);
+    }
+
+    function applyComboToProposal(combo) {
+      exitManualMode();
+      selectedComboKey = combo.key;
+      applyComboToInputs(combo);
+      refreshCalc();
+
+      const adminFeeEl = document.getElementById("admin-fee");
+      const interestEl = document.getElementById("interest-rate");
+      if (adminFeeEl) {
+        adminFeeEl.value = formatPct(combo.adminRate, 2);
+        markAutofilled(adminFeeEl);
+      }
+      if (interestEl) {
+        const tenor = combo.sofrLabel || "6M";
+        const indexName = combo.baseName || "Term SOFR";
+        interestEl.value = indexName + " " + tenor + " + " + formatPct(combo.spread, 2) + " p.a.";
+        markAutofilled(interestEl);
+      }
+
+      const tabBtn = document.querySelector('.tab-btn[data-tab="proposal"]');
+      if (tabBtn) tabBtn.click();
+      refreshPreview();
+    }
+
+    function renderComboTable(recommended, others, activeKey, days, sofr, sofrLabel, baseShort, baseDigits) {
+      const body = document.getElementById("calc-combo-body");
+      if (!body) return;
+      const tenor = days || 180;
+      const periodHead = document.getElementById("calc-combo-period-head");
+      if (periodHead) periodHead.textContent = tenor + "일 Rate";
+      const sofrHead = document.getElementById("calc-combo-sofr-head");
+      if (sofrHead) sofrHead.textContent = (baseShort || "SOFR") + " " + (sofrLabel || "6M");
+      const rows = (recommended ? [recommended] : []).concat(others || []);
+      if (!rows.length) {
+        body.innerHTML = "<tr><td colspan=\"9\">표시할 조합이 없습니다.</td></tr>";
+        return;
+      }
+      body.innerHTML = rows.map((combo) => {
+        const isRec = recommended && combo.key === recommended.key;
+        const isOn = combo.key === activeKey;
+        const paRate = combo.adminRate + combo.interestRate;
+        const periodRate = paRate * tenor / 360;
+        const sofrRate = Number.isFinite(combo.sofr) ? combo.sofr : sofr;
+        return `
+          <tr data-combo="${escapeHtml(combo.key)}" class="${isRec || isOn ? "is-recommended" : ""}">
+            <td class="name">조합</td>
+            <td class="num">${formatPct(combo.adminRate, 2)}</td>
+            <td class="num">${formatPct(sofrRate, baseDigits == null ? 5 : baseDigits)}</td>
+            <td class="num">${formatPct(combo.spread, 2)}</td>
+            <td class="num">${formatPct(combo.interestRate, 2)}</td>
+            <td class="num">${formatPct(paRate, 2)}</td>
+            <td class="num">${formatPct(periodRate, 2)}</td>
+            <td class="note">${escapeHtml(combo.label)}${isOn ? " · 적용 중" : ""}</td>
+            <td class="combo-apply-cell">
+              <button type="button" class="combo-apply-btn">적용</button>
+            </td>
+          </tr>
+        `;
+      }).join("");
+
+      const all = rows;
+      body.querySelectorAll("tr[data-combo]").forEach((row) => {
+        const combo = all.find((c) => c.key === row.getAttribute("data-combo"));
+        if (!combo) return;
+        row.addEventListener("click", () => {
+          exitManualMode();
+          selectedComboKey = combo.key;
+          applyComboToInputs(combo);
+          refreshCalc();
+        });
+        const applyBtn = row.querySelector(".combo-apply-btn");
+        if (applyBtn) {
+          applyBtn.addEventListener("click", (event) => {
+            event.stopPropagation();
+            applyComboToProposal(combo);
+          });
+        }
+      });
+    }
+
+    function syncCalcTableHeight() {
+      const form = document.querySelector("#calc .calc-form");
+      const table = document.querySelector("#calc .calc-result-body > .calc-table-wrap > .calc-table");
+      if (!form || !table) return;
+      table.style.height = "";
+      if (window.matchMedia("(max-width: 980px)").matches) return;
+      const target = Math.round(form.getBoundingClientRect().bottom - table.getBoundingClientRect().top);
+      const natural = table.getBoundingClientRect().height;
+      if (target > natural + 1) table.style.height = target + "px";
+    }
+
+    function refreshCalc() {
+      const tableBody = document.getElementById("calc-table-body");
+      if (!tableBody) return;
+
+      const input = readCalcInputs();
+      const pack = buildRateCombos(input);
+      const comboBody = document.getElementById("calc-combo-body");
+      const resetBtn = document.getElementById("calc-manual-reset");
+      const adminCard = document.getElementById("calc-card-admin");
+      const interestCard = document.getElementById("calc-card-interest");
+      const usingManual = calcManualMode && calcManualAdmin != null && calcManualInterest != null;
+
+      if (!usingManual && (pack.error || !pack.recommended)) {
+        if (calcEditing !== "admin") document.getElementById("calc-out-admin").textContent = "-";
+        document.getElementById("calc-out-admin-amt").textContent = pack.error || "";
+        if (calcEditing !== "interest") document.getElementById("calc-out-interest").textContent = "-";
+        document.getElementById("calc-out-interest-amt").textContent = "";
+        document.getElementById("calc-out-profit").textContent = "-";
+        document.getElementById("calc-out-profit-amt").textContent = "";
+        tableBody.innerHTML = "<tr><td colspan=\"4\">" + escapeHtml(pack.error || "조합을 계산할 수 없습니다.") + "</td></tr>";
+        if (comboBody) comboBody.innerHTML = "<tr><td colspan=\"9\">" + escapeHtml(pack.error || "") + "</td></tr>";
+        if (resetBtn) resetBtn.hidden = true;
+        requestAnimationFrame(syncCalcTableHeight);
+        return;
+      }
+
+      let chosen = null;
+      if (usingManual) {
+        input.adminRate = calcManualAdmin;
+        input.spread = calcManualInterest - input.sofr;
+        applyComboToInputs({ adminRate: input.adminRate, spread: input.spread });
+      } else {
+        chosen = [pack.recommended].concat(pack.others).find((c) => c.key === selectedComboKey)
+          || pack.recommended;
+        applyComboToInputs(chosen);
+        input.adminRate = chosen.adminRate;
+        input.spread = chosen.spread;
+      }
+
+      const result = computeCalc(input);
+      const interestRate = input.sofr + input.spread;
+      const profitPct = result.share(result.dealProfit);
+      const delta = profitPct - input.target;
+
+      if (calcEditing !== "admin") {
+        document.getElementById("calc-out-admin").textContent = formatPct(input.adminRate, 2);
+      }
+      document.getElementById("calc-out-admin-amt").textContent = usingManual ? "수동 입력" : "";
+      if (calcEditing !== "interest") {
+        document.getElementById("calc-out-interest").textContent = formatPct(interestRate, 2);
+      }
+      document.getElementById("calc-out-interest-amt").textContent =
+        input.baseShort + " " + input.sofrLabel + " " + formatPct(input.sofr, input.baseDigits) + " + " + formatPct(input.spread, 2)
+        + (usingManual ? " · 수동 입력" : "");
+      document.getElementById("calc-out-profit").textContent = formatPct(profitPct, 2);
+      document.getElementById("calc-out-profit-amt").textContent = usingManual
+        ? "목표 " + formatPct(input.target, 2) + " 대비 " + (delta >= 0 ? "+" : "") + (delta * 100).toFixed(2) + "%p"
+        : "";
+
+      if (adminCard) adminCard.classList.toggle("is-manual", usingManual);
+      if (interestCard) interestCard.classList.toggle("is-manual", usingManual);
+      if (resetBtn) resetBtn.hidden = !usingManual;
+
+      const sofrNote = document.getElementById("calc-sofr-note");
+      sofrNote.textContent = input.sofrLive
+        ? input.baseName + " " + input.sofrLabel + " " + formatPct(input.sofr, input.baseDigits) + " · 고시일 " + input.sofrDate + " (" + input.baseSource + ")"
+        : input.baseName + " " + input.sofrLabel + " " + formatPct(input.sofr, input.baseDigits) + " · 엑셀 스냅샷 " + input.sofrDate + " (실시간 값이 없으면 이 값을 사용)";
+
+      tableBody.innerHTML = calcTableRows(input, result).map((row) => `
+        <tr class="${row[4]}">
+          <td class="name">${formatCellLabel(row[0])}</td>
+          <td class="num">${formatUsd(row[1])}</td>
+          <td class="num">${formatShare(row[2])}</td>
+          <td class="note">${formatCellLabel(row[3])}</td>
+        </tr>
+      `).join("");
+
+      if (pack.error || !pack.recommended) {
+        if (comboBody) comboBody.innerHTML = "<tr><td colspan=\"9\">" + escapeHtml(pack.error || "") + "</td></tr>";
+      } else {
+        renderComboTable(pack.recommended, pack.others, usingManual ? null : chosen.key, input.days, input.sofr, input.sofrLabel, input.baseShort, input.baseDigits);
+      }
+      requestAnimationFrame(syncCalcTableHeight);
+    }
+
+    function syncPurchaseLabel() {
+      const label = document.getElementById("calc-purchase-label");
+      const currency = document.getElementById("calc-maker-currency")
+        || document.getElementById("calc-currency");
+      if (label && currency) {
+        label.textContent = "Purchase Price (구매가, " + currency.value + ")";
+      }
+    }
+
+    function syncMakerFromBuyer() {
+      const currency = document.getElementById("calc-currency");
+      const incoterm = document.getElementById("calc-incoterm");
+      const makerCurrency = document.getElementById("calc-maker-currency");
+      const makerIncoterm = document.getElementById("calc-maker-incoterm");
+      if (currency && makerCurrency) makerCurrency.value = currency.value;
+      if (incoterm && makerIncoterm) makerIncoterm.value = incoterm.value;
+    }
+
+    const calcLiveIds = [
+      "calc-target", "calc-days", "calc-buyer-pay", "calc-currency", "calc-incoterm",
+      "calc-maker-days", "calc-maker-pay", "calc-maker-currency", "calc-maker-incoterm",
+      "calc-insurer", "calc-ksure-trade", "calc-ksure-grade",
+      "calc-purchase", "calc-freight", "calc-trucking", "calc-freight-ins",
+      "calc-usance", "calc-others"
+    ];
+
+    calcLiveIds.forEach((id) => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      const onUpdate = () => {
+        if (id === "calc-target" || id === "calc-days" || id === "calc-purchase") selectedComboKey = null;
+        if (id === "calc-currency") {
+          selectedComboKey = null;
+          syncMakerFromBuyer();
+          syncPurchaseLabel();
+        }
+        if (id === "calc-maker-currency") syncPurchaseLabel();
+        if (id === "calc-incoterm") syncMakerFromBuyer();
+        if (id === "calc-insurer" || id === "calc-buyer-pay") syncKsureFields();
+        refreshCalc();
+      };
+      el.addEventListener("input", onUpdate);
+      el.addEventListener("change", onUpdate);
+    });
+
+    ["admin", "interest"].forEach((kind) => {
+      const els = cardEls(kind);
+      if (els.card) {
+        els.card.addEventListener("dblclick", (event) => {
+          if (event.target === els.input) return;
+          event.preventDefault();
+          beginCardEdit(kind);
+        });
+      }
+      if (els.input) {
+        els.input.addEventListener("dblclick", (event) => event.stopPropagation());
+        els.input.addEventListener("click", (event) => event.stopPropagation());
+        els.input.addEventListener("input", () => {
+          if (applyTypedManual(kind, els.input.value)) refreshCalc();
+        });
+        els.input.addEventListener("keydown", (event) => {
+          if (event.key === "Enter") {
+            event.preventDefault();
+            commitCardEdit(kind);
+          }
+          if (event.key === "Escape") {
+            event.preventDefault();
+            if (calcEditBackup) {
+              calcManualAdmin = calcEditBackup.admin;
+              calcManualInterest = calcEditBackup.interest;
+            }
+            stopCardEdit(kind);
+            refreshCalc();
+          }
+        });
+        els.input.addEventListener("blur", () => {
+          if (calcEditing === kind) commitCardEdit(kind);
+        });
+      }
+    });
+
+    const manualResetBtn = document.getElementById("calc-manual-reset");
+    if (manualResetBtn) {
+      manualResetBtn.addEventListener("click", () => {
+        exitManualMode();
+        selectedComboKey = null;
+        refreshCalc();
+      });
+    }
+
+    syncKsureFields();
+    syncMakerFromBuyer();
+    syncPurchaseLabel();
+
+    refreshCalc();
+    window.addEventListener("resize", syncCalcTableHeight);
+    loadTermSofrRates();
+    loadEuriborRates();
+    loadShiborRates();
+    loadHiborRates();
+
+    function formatProposalDate(date) {
+      return MONTHS[date.getMonth()] + " " + date.getDate() + ", " + date.getFullYear();
+    }
+
+    function escapeHtml(value) {
+      return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;");
+    }
+
+    function escapeXml(value) {
+      return escapeHtml(value);
+    }
+
+    const COUNTRIES = [
+      "Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Antigua and Barbuda",
+      "Argentina", "Armenia", "Australia", "Austria", "Azerbaijan", "Bahamas", "Bahrain",
+      "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bhutan",
+      "Bolivia", "Bosnia and Herzegovina", "Botswana", "Brazil", "Brunei", "Bulgaria",
+      "Burkina Faso", "Burundi", "Cabo Verde", "Cambodia", "Cameroon", "Canada",
+      "Central African Republic", "Chad", "Chile", "China", "Colombia", "Comoros",
+      "Congo", "Costa Rica", "Cote d'Ivoire", "Croatia", "Cuba", "Cyprus",
+      "Czech Republic", "Democratic Republic of the Congo", "Denmark", "Djibouti",
+      "Dominica", "Dominican Republic", "Ecuador", "Egypt", "El Salvador",
+      "Equatorial Guinea", "Eritrea", "Estonia", "Eswatini", "Ethiopia", "Fiji",
+      "Finland", "France", "Gabon", "Gambia", "Georgia", "Germany", "Ghana", "Greece",
+      "Grenada", "Guatemala", "Guinea", "Guinea-Bissau", "Guyana", "Haiti", "Honduras",
+      "Hungary", "Iceland", "India", "Indonesia", "Iran", "Iraq", "Ireland", "Israel",
+      "Italy", "Jamaica", "Japan", "Jordan", "Kazakhstan", "Kenya", "Kiribati",
+      "Kuwait", "Kyrgyzstan", "Laos", "Latvia", "Lebanon", "Lesotho", "Liberia",
+      "Libya", "Liechtenstein", "Lithuania", "Luxembourg", "Madagascar", "Malawi",
+      "Malaysia", "Maldives", "Mali", "Malta", "Marshall Islands", "Mauritania",
+      "Mauritius", "Mexico", "Micronesia", "Moldova", "Monaco", "Mongolia", "Montenegro",
+      "Morocco", "Mozambique", "Myanmar", "Namibia", "Nauru", "Nepal", "Netherlands",
+      "New Zealand", "Nicaragua", "Niger", "Nigeria", "North Korea", "North Macedonia",
+      "Norway", "Oman", "Pakistan", "Palau", "Palestine", "Panama", "Papua New Guinea",
+      "Paraguay", "Peru", "Philippines", "Poland", "Portugal", "Qatar", "Romania",
+      "Russia", "Rwanda", "Saint Kitts and Nevis", "Saint Lucia",
+      "Saint Vincent and the Grenadines", "Samoa", "San Marino", "Sao Tome and Principe",
+      "Saudi Arabia", "Senegal", "Serbia", "Seychelles", "Sierra Leone", "Singapore",
+      "Slovakia", "Slovenia", "Solomon Islands", "Somalia", "South Africa", "South Korea",
+      "South Sudan", "Spain", "Sri Lanka", "Sudan", "Suriname", "Sweden", "Switzerland",
+      "Syria", "Taiwan", "Tajikistan", "Tanzania", "Thailand", "Timor-Leste", "Togo",
+      "Tonga", "Trinidad and Tobago", "Tunisia", "Turkey", "Turkmenistan", "Tuvalu",
+      "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom", "United States",
+      "Uruguay", "Uzbekistan", "Vanuatu", "Vatican City", "Venezuela", "Vietnam",
+      "Yemen", "Zambia", "Zimbabwe"
+    ];
+
+    const COUNTRY_ADJECTIVES = {
+      "afghanistan": "Afghan",
+      "albania": "Albanian",
+      "algeria": "Algerian",
+      "andorra": "Andorran",
+      "angola": "Angolan",
+      "antigua and barbuda": "Antiguan",
+      "argentina": "Argentine",
+      "armenia": "Armenian",
+      "australia": "Australian",
+      "austrailia": "Australian",
+      "austria": "Austrian",
+      "azerbaijan": "Azerbaijani",
+      "bahamas": "Bahamian",
+      "bahrain": "Bahraini",
+      "bangladesh": "Bangladeshi",
+      "barbados": "Barbadian",
+      "belarus": "Belarusian",
+      "belgium": "Belgian",
+      "belize": "Belizean",
+      "benin": "Beninese",
+      "bhutan": "Bhutanese",
+      "bolivia": "Bolivian",
+      "bosnia and herzegovina": "Bosnian",
+      "botswana": "Botswanan",
+      "brazil": "Brazilian",
+      "brunei": "Bruneian",
+      "bulgaria": "Bulgarian",
+      "burkina faso": "Burkinabe",
+      "burundi": "Burundian",
+      "cabo verde": "Cabo Verdean",
+      "cambodia": "Cambodian",
+      "cameroon": "Cameroonian",
+      "canada": "Canadian",
+      "central african republic": "Central African",
+      "chad": "Chadian",
+      "chile": "Chilean",
+      "china": "Chinese",
+      "colombia": "Colombian",
+      "comoros": "Comorian",
+      "congo": "Congolese",
+      "costa rica": "Costa Rican",
+      "cote d'ivoire": "Ivorian",
+      "croatia": "Croatian",
+      "cuba": "Cuban",
+      "cyprus": "Cypriot",
+      "czech republic": "Czech",
+      "czechia": "Czech",
+      "democratic republic of the congo": "Congolese",
+      "denmark": "Danish",
+      "djibouti": "Djiboutian",
+      "dominica": "Dominican",
+      "dominican republic": "Dominican",
+      "ecuador": "Ecuadorian",
+      "egypt": "Egyptian",
+      "el salvador": "Salvadoran",
+      "equatorial guinea": "Equatoguinean",
+      "eritrea": "Eritrean",
+      "estonia": "Estonian",
+      "eswatini": "Swazi",
+      "ethiopia": "Ethiopian",
+      "fiji": "Fijian",
+      "finland": "Finnish",
+      "france": "French",
+      "gabon": "Gabonese",
+      "gambia": "Gambian",
+      "georgia": "Georgian",
+      "germany": "German",
+      "ghana": "Ghanaian",
+      "greece": "Greek",
+      "grenada": "Grenadian",
+      "guatemala": "Guatemalan",
+      "guinea": "Guinean",
+      "guinea-bissau": "Bissau-Guinean",
+      "guyana": "Guyanese",
+      "haiti": "Haitian",
+      "honduras": "Honduran",
+      "hungary": "Hungarian",
+      "iceland": "Icelandic",
+      "india": "Indian",
+      "indonesia": "Indonesian",
+      "iran": "Iranian",
+      "iraq": "Iraqi",
+      "ireland": "Irish",
+      "israel": "Israeli",
+      "italy": "Italian",
+      "jamaica": "Jamaican",
+      "japan": "Japanese",
+      "jordan": "Jordanian",
+      "kazakhstan": "Kazakh",
+      "kenya": "Kenyan",
+      "kiribati": "I-Kiribati",
+      "kuwait": "Kuwaiti",
+      "kyrgyzstan": "Kyrgyz",
+      "laos": "Lao",
+      "latvia": "Latvian",
+      "lebanon": "Lebanese",
+      "lesotho": "Basotho",
+      "liberia": "Liberian",
+      "libya": "Libyan",
+      "liechtenstein": "Liechtensteiner",
+      "lithuania": "Lithuanian",
+      "luxembourg": "Luxembourgish",
+      "madagascar": "Malagasy",
+      "malawi": "Malawian",
+      "malaysia": "Malaysian",
+      "maldives": "Maldivian",
+      "mali": "Malian",
+      "malta": "Maltese",
+      "marshall islands": "Marshallese",
+      "mauritania": "Mauritanian",
+      "mauritius": "Mauritian",
+      "mexico": "Mexican",
+      "micronesia": "Micronesian",
+      "moldova": "Moldovan",
+      "monaco": "Monacan",
+      "mongolia": "Mongolian",
+      "montenegro": "Montenegrin",
+      "morocco": "Moroccan",
+      "mozambique": "Mozambican",
+      "myanmar": "Myanmar",
+      "namibia": "Namibian",
+      "nauru": "Nauruan",
+      "nepal": "Nepalese",
+      "netherlands": "Dutch",
+      "new zealand": "New Zealand",
+      "nicaragua": "Nicaraguan",
+      "niger": "Nigerien",
+      "nigeria": "Nigerian",
+      "north korea": "North Korean",
+      "north macedonia": "Macedonian",
+      "norway": "Norwegian",
+      "oman": "Omani",
+      "pakistan": "Pakistani",
+      "palau": "Palauan",
+      "palestine": "Palestinian",
+      "panama": "Panamanian",
+      "papua new guinea": "Papua New Guinean",
+      "paraguay": "Paraguayan",
+      "peru": "Peruvian",
+      "philippines": "Philippine",
+      "poland": "Polish",
+      "portugal": "Portuguese",
+      "qatar": "Qatari",
+      "romania": "Romanian",
+      "russia": "Russian",
+      "rwanda": "Rwandan",
+      "saint kitts and nevis": "Kittitian",
+      "saint lucia": "Saint Lucian",
+      "saint vincent and the grenadines": "Vincentian",
+      "samoa": "Samoan",
+      "san marino": "Sammarinese",
+      "sao tome and principe": "Sao Tomean",
+      "saudi arabia": "Saudi",
+      "senegal": "Senegalese",
+      "serbia": "Serbian",
+      "seychelles": "Seychellois",
+      "sierra leone": "Sierra Leonean",
+      "singapore": "Singaporean",
+      "slovakia": "Slovak",
+      "slovenia": "Slovenian",
+      "solomon islands": "Solomon Island",
+      "somalia": "Somali",
+      "south africa": "South African",
+      "south korea": "Korean",
+      "korea": "Korean",
+      "south sudan": "South Sudanese",
+      "spain": "Spanish",
+      "sri lanka": "Sri Lankan",
+      "sudan": "Sudanese",
+      "suriname": "Surinamese",
+      "sweden": "Swedish",
+      "switzerland": "Swiss",
+      "syria": "Syrian",
+      "taiwan": "Taiwanese",
+      "tajikistan": "Tajik",
+      "tanzania": "Tanzanian",
+      "thailand": "Thai",
+      "timor-leste": "Timorese",
+      "togo": "Togolese",
+      "tonga": "Tongan",
+      "trinidad and tobago": "Trinidadian",
+      "tunisia": "Tunisian",
+      "turkey": "Turkish",
+      "turkmenistan": "Turkmen",
+      "tuvalu": "Tuvaluan",
+      "uganda": "Ugandan",
+      "ukraine": "Ukrainian",
+      "united arab emirates": "Emirati",
+      "uae": "Emirati",
+      "united kingdom": "British",
+      "uk": "British",
+      "britain": "British",
+      "united states": "American",
+      "united states of america": "American",
+      "usa": "American",
+      "us": "American",
+      "uruguay": "Uruguayan",
+      "uzbekistan": "Uzbek",
+      "vanuatu": "Ni-Vanuatu",
+      "vatican city": "Vatican",
+      "venezuela": "Venezuelan",
+      "vietnam": "Vietnamese",
+      "yemen": "Yemeni",
+      "zambia": "Zambian",
+      "zimbabwe": "Zimbabwean"
+    };
+
+    function toCountryAdjective(country) {
+      const key = String(country || "").trim().toLowerCase().replace(/\s+/g, " ");
+      if (COUNTRY_ADJECTIVES[key]) return COUNTRY_ADJECTIVES[key];
+
+      const alreadyAdjective = /(?:ian|ean|an|ese|ish|i|ic)$/i.test(key);
+      if (alreadyAdjective && key.length > 3) {
+        return country.trim();
+      }
+
+      if (/a$/i.test(key)) {
+        return country.trim().replace(/a$/i, "an");
+      }
+
+      return country.trim();
+    }
+
+    const currencySelect = document.getElementById("currency");
+    const currencyCustom = document.getElementById("currency-custom");
+    const countrySelect = document.getElementById("country");
+    const countryCustom = document.getElementById("country-custom");
+
+    function fillCountryOptions() {
+      countrySelect.innerHTML = "";
+      const placeholder = document.createElement("option");
+      placeholder.value = "";
+      placeholder.textContent = "Select";
+      placeholder.disabled = true;
+      placeholder.selected = true;
+      countrySelect.appendChild(placeholder);
+
+      COUNTRIES.forEach((name) => {
+        const option = document.createElement("option");
+        option.value = name;
+        option.textContent = name;
+        countrySelect.appendChild(option);
+      });
+
+      const customOption = document.createElement("option");
+      customOption.value = "__custom__";
+      customOption.textContent = "Other";
+      countrySelect.appendChild(customOption);
+    }
+
+    function bindCustomSelect(selectEl, inputEl) {
+      selectEl.addEventListener("change", () => {
+        const isCustom = selectEl.value === "__custom__";
+        inputEl.classList.toggle("show", isCustom);
+        if (isCustom) inputEl.focus();
+      });
+    }
+
+    function selectedOrCustom(selectEl, inputEl) {
+      return selectEl.value === "__custom__" ? inputEl.value.trim() : selectEl.value.trim();
+    }
+
+    fillCountryOptions();
+    bindCustomSelect(currencySelect, currencyCustom);
+    bindCustomSelect(countrySelect, countryCustom);
+    refreshPreview();
+
+    function getFormValues() {
+      return {
+        companyName: document.getElementById("company-name").value.trim(),
+        currency: selectedOrCustom(currencySelect, currencyCustom),
+        paymentMethod: document.getElementById("payment-method").value.trim(),
+        paymentPeriod: document.getElementById("payment-period").value.trim(),
+        country: selectedOrCustom(countrySelect, countryCustom),
+        companyAddress: document.getElementById("company-address").value.trim(),
+        product: document.getElementById("product").value.trim(),
+        creditLine: document.getElementById("credit-line").value.trim(),
+        adminFee: document.getElementById("admin-fee").value.trim(),
+        interestRate: document.getElementById("interest-rate").value.trim(),
+        signingPerson: document.getElementById("signing-person").value.trim(),
+        position: document.getElementById("position").value.trim()
+      };
+    }
+
+    function buildDraft(values) {
+      return {
+        ...values,
+        countryMarket: values.country ? toCountryAdjective(values.country) : "",
+        date: formatProposalDate(new Date())
+      };
+    }
+
+    function buildIntroText(draft) {
+      const product = (draft.product || "").trim();
+      const market = (draft.countryMarket || "").trim();
+
+      let importClause = "";
+      if (product && market) {
+        importClause = " for your import of " + product + " into " + market + " market";
+      } else if (product) {
+        importClause = " for your import of " + product;
+      } else if (market) {
+        importClause = " for your import into " + market + " market";
+      }
+
+      return "With reference to the subject, we, Hyundai Corporation is pleased to present financing terms and conditions" + importClause + " as below. We are keen to assist the financing arrangement and/or assistant for the subjected business and the terms and conditions set out below;";
+    }
+
+    function renderPreview(draft) {
+      const company = escapeHtml(draft.companyName);
+      preview.innerHTML = `
+        <div class="proposal-title">Financing Proposal</div>
+        <div class="proposal-date">${escapeHtml(draft.date)}</div>
+        ${draft.companyName ? `<div class="proposal-company">${company}</div>` : ""}
+        ${draft.companyAddress ? `<div class="proposal-address">${escapeHtml(draft.companyAddress)}</div>` : `<div class="proposal-address"></div>`}
+        <p class="proposal-intro">${escapeHtml(buildIntroText(draft))}</p>
+        <table class="terms">
+          <tr>
+            <td class="label">BORROWER</td>
+            <td class="colon">:</td>
+            <td>${company}</td>
+          </tr>
+          <tr>
+            <td class="label">LENDER</td>
+            <td class="colon">:</td>
+            <td>${escapeHtml(LENDER)}</td>
+          </tr>
+          <tr>
+            <td class="label">Financing Currency</td>
+            <td class="colon">:</td>
+            <td>${escapeHtml(draft.currency)}</td>
+          </tr>
+          <tr>
+            <td class="label">Payment Method</td>
+            <td class="colon">:</td>
+            <td>${escapeHtml(draft.paymentMethod)}</td>
+          </tr>
+          <tr>
+            <td class="label">Payment Period</td>
+            <td class="colon">:</td>
+            <td>${escapeHtml(draft.paymentPeriod)}</td>
+          </tr>
+          <tr>
+            <td class="label">Initial Credit Line</td>
+            <td class="colon">:</td>
+            <td>${escapeHtml(draft.creditLine)}</td>
+          </tr>
+          <tr>
+            <td class="label">Administration Fee</td>
+            <td class="colon">:</td>
+            <td>${escapeHtml(draft.adminFee)}</td>
+          </tr>
+          <tr>
+            <td class="label">Interest Rate</td>
+            <td class="colon">:</td>
+            <td>${escapeHtml(draft.interestRate)}</td>
+          </tr>
+          <tr>
+            <td class="label">Remarks</td>
+            <td class="colon">:</td>
+            <td>
+              <ul class="remarks">
+                <li>Lender reserves the right to change or modify specification(s) of the vehicles without any prior notice in accordance with such change(s) or modification by manufacturer.</li>
+                <li>All banking charges and commissions outside Korea, including charges incurring by confirming bank, are for borrower's account.</li>
+                <li>All terms and Conditions shall be fixed at the time of Sales and Purchase Agreement between Borrower and Lender.</li>
+              </ul>
+            </td>
+          </tr>
+        </table>
+        <p class="proposal-close">
+          We, Hyundai Corporation, are pleased to assist you to complete the financing
+          with our full scale of experiences. Should you have any query, please do not
+          hesitate to contact us at any time.
+        </p>
+        <table class="signs">
+          <tr>
+            <td class="sign-org">${escapeHtml(LENDER)}</td>
+            <td class="sign-org">${company || "&nbsp;"}</td>
+          </tr>
+          <tr>
+            <td class="sign-line-cell"><div class="sign-line"></div></td>
+            <td class="sign-line-cell"><div class="sign-line"></div></td>
+          </tr>
+          <tr>
+            <td>
+              <div>${escapeHtml(LENDER_SIGNER)}</div>
+              <div>${escapeHtml(LENDER_TITLE)}</div>
+            </td>
+            <td>
+              <div>${escapeHtml(draft.signingPerson)}</div>
+              <div>${escapeHtml(draft.position)}</div>
+            </td>
+          </tr>
+        </table>
+      `;
+    }
+
+    function refreshPreview() {
+      currentDraft = buildDraft(getFormValues());
+      renderPreview(currentDraft);
+    }
+
+    proposalPanel.addEventListener("input", refreshPreview);
+    proposalPanel.addEventListener("change", refreshPreview);
+
+    function crc32(bytes) {
+      let crc = -1;
+      const table = crc32.table || (crc32.table = (() => {
+        const t = new Uint32Array(256);
+        for (let i = 0; i < 256; i++) {
+          let c = i;
+          for (let k = 0; k < 8; k++) {
+            c = (c & 1) ? (0xEDB88320 ^ (c >>> 1)) : (c >>> 1);
+          }
+          t[i] = c >>> 0;
+        }
+        return t;
+      })());
+
+      for (let i = 0; i < bytes.length; i++) {
+        crc = table[(crc ^ bytes[i]) & 0xff] ^ (crc >>> 8);
+      }
+      return (crc ^ -1) >>> 0;
+    }
+
+    function concatBytes(chunks) {
+      const size = chunks.reduce((sum, chunk) => sum + chunk.length, 0);
+      const out = new Uint8Array(size);
+      let offset = 0;
+      chunks.forEach((chunk) => {
+        out.set(chunk, offset);
+        offset += chunk.length;
+      });
+      return out;
+    }
+
+    function u16(value) {
+      return new Uint8Array([value & 0xff, (value >>> 8) & 0xff]);
+    }
+
+    function u32(value) {
+      return new Uint8Array([
+        value & 0xff,
+        (value >>> 8) & 0xff,
+        (value >>> 16) & 0xff,
+        (value >>> 24) & 0xff
+      ]);
+    }
+
+    function createZip(files) {
+      const encoder = new TextEncoder();
+      const locals = [];
+      const centrals = [];
+      let offset = 0;
+
+      files.forEach((file) => {
+        const name = encoder.encode(file.name);
+        const data = typeof file.data === "string" ? encoder.encode(file.data) : file.data;
+        const crc = crc32(data);
+        const local = concatBytes([
+          u32(0x04034b50),
+          u16(20),
+          u16(0),
+          u16(0),
+          u16(0),
+          u16(0),
+          u32(crc),
+          u32(data.length),
+          u32(data.length),
+          u16(name.length),
+          u16(0),
+          name,
+          data
+        ]);
+        locals.push(local);
+
+        const central = concatBytes([
+          u32(0x02014b50),
+          u16(20),
+          u16(20),
+          u16(0),
+          u16(0),
+          u16(0),
+          u16(0),
+          u32(crc),
+          u32(data.length),
+          u32(data.length),
+          u16(name.length),
+          u16(0),
+          u16(0),
+          u16(0),
+          u16(0),
+          u32(0),
+          u32(offset),
+          name
+        ]);
+        centrals.push(central);
+        offset += local.length;
+      });
+
+      const centralDir = concatBytes(centrals);
+      const eocd = concatBytes([
+        u32(0x06054b50),
+        u16(0),
+        u16(0),
+        u16(files.length),
+        u16(files.length),
+        u32(centralDir.length),
+        u32(offset),
+        u16(0)
+      ]);
+
+      return new Blob([concatBytes(locals), centralDir, eocd], {
+        type: "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+      });
+    }
+
+    function wText(text) {
+      return `<w:t xml:space="preserve">${escapeXml(text)}</w:t>`;
+    }
+
+    function wParagraph(text, options) {
+      const opts = options || {};
+      const align = opts.align ? `<w:jc w:val="${opts.align}"/>` : "";
+      const before = opts.before != null ? `<w:spacing w:before="${opts.before}" w:after="${opts.after || 0}" w:line="${opts.line || 276}" w:lineRule="auto"/>` : `<w:spacing w:after="${opts.after || 120}"/>`;
+      const size = opts.size || 22;
+      const bold = opts.bold ? "<w:b/><w:bCs/>" : "";
+      const underline = opts.underline ? '<w:u w:val="single"/>' : "";
+      return `
+        <w:p>
+          <w:pPr>${align}${before}</w:pPr>
+          <w:r>
+            <w:rPr>
+              <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial"/>
+              ${bold}${underline}
+              <w:sz w:val="${size}"/>
+              <w:szCs w:val="${size}"/>
+            </w:rPr>
+            ${wText(text)}
+          </w:r>
+        </w:p>
+      `;
+    }
+
+    function wEmpty(height) {
+      return `<w:p><w:pPr><w:spacing w:before="${height}" w:after="0"/></w:pPr></w:p>`;
+    }
+
+    function wTermRow(label, value, options) {
+      const opts = options || {};
+      const valueXml = opts.bullets
+        ? opts.bullets.map((item) => `
+            <w:p>
+              <w:pPr>
+                <w:spacing w:after="80"/>
+                <w:ind w:left="220"/>
+              </w:pPr>
+              <w:r>
+                <w:rPr>
+                  <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial"/>
+                  <w:sz w:val="21"/>
+                  <w:szCs w:val="21"/>
+                </w:rPr>
+                ${wText("* " + item)}
+              </w:r>
+            </w:p>
+          `).join("")
+        : `
+            <w:p>
+              <w:pPr><w:spacing w:after="40"/></w:pPr>
+              <w:r>
+                <w:rPr>
+                  <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial"/>
+                  <w:sz w:val="21"/>
+                  <w:szCs w:val="21"/>
+                </w:rPr>
+                ${wText(value)}
+              </w:r>
+            </w:p>
+          `;
+
+      return `
+        <w:tr>
+          <w:tc>
+            <w:tcPr><w:tcW w:w="2800" w:type="dxa"/><w:vAlign w:val="top"/></w:tcPr>
+            <w:p>
+              <w:pPr><w:spacing w:after="40"/></w:pPr>
+              <w:r>
+                <w:rPr>
+                  <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial"/>
+                  <w:sz w:val="21"/>
+                  <w:szCs w:val="21"/>
+                </w:rPr>
+                ${wText(label)}
+              </w:r>
+            </w:p>
+          </w:tc>
+          <w:tc>
+            <w:tcPr><w:tcW w:w="300" w:type="dxa"/><w:vAlign w:val="top"/></w:tcPr>
+            <w:p>
+              <w:pPr><w:spacing w:after="40"/></w:pPr>
+              <w:r>
+                <w:rPr>
+                  <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial"/>
+                  <w:sz w:val="21"/>
+                  <w:szCs w:val="21"/>
+                </w:rPr>
+                ${wText(":")}
+              </w:r>
+            </w:p>
+          </w:tc>
+          <w:tc>
+            <w:tcPr><w:tcW w:w="6060" w:type="dxa"/><w:vAlign w:val="top"/></w:tcPr>
+            ${valueXml}
+          </w:tc>
+        </w:tr>
+      `;
+    }
+
+    function wSignCell(lines) {
+      const paragraphs = [
+        wParagraph(lines[0], { after: 0 }),
+        wEmpty(800),
+        `<w:p>
+          <w:pPr>
+            <w:pBdr>
+              <w:top w:val="single" w:sz="6" w:space="1" w:color="000000"/>
+            </w:pBdr>
+            <w:ind w:right="1200"/>
+            <w:spacing w:before="80" w:after="80"/>
+          </w:pPr>
+        </w:p>`,
+        wParagraph(lines[1], { after: 0 }),
+        wParagraph(lines[2], { after: 0 })
+      ].join("");
+
+      return `
+        <w:tc>
+          <w:tcPr><w:tcW w:w="4580" w:type="dxa"/></w:tcPr>
+          ${paragraphs}
+        </w:tc>
+      `;
+    }
+
+    function buildDocumentXml(draft) {
+      const remarks = [
+        "Lender reserves the right to change or modify specification(s) of the vehicles without any prior notice in accordance with such change(s) or modification by manufacturer.",
+        "All banking charges and commissions outside Korea, including charges incurring by confirming bank, are for borrower's account.",
+        "All terms and Conditions shall be fixed at the time of Sales and Purchase Agreement between Borrower and Lender."
+      ];
+
+      return `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+        <w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">
+          <w:body>
+            ${wParagraph("Financing Proposal", { align: "center", bold: true, size: 36, after: 360 })}
+            ${wParagraph(draft.date, { align: "right", after: 280 })}
+            ${draft.companyName ? wParagraph(draft.companyName, { bold: true, underline: true, after: 40 }) : ""}
+            ${draft.companyAddress ? wParagraph(draft.companyAddress, { after: 240 }) : wEmpty(200)}
+            ${wParagraph(buildIntroText(draft), { after: 240 })}
+            <w:tbl>
+              <w:tblPr>
+                <w:tblW w:w="9160" w:type="dxa"/>
+                <w:tblBorders>
+                  <w:top w:val="nil"/>
+                  <w:left w:val="nil"/>
+                  <w:bottom w:val="nil"/>
+                  <w:right w:val="nil"/>
+                  <w:insideH w:val="nil"/>
+                  <w:insideV w:val="nil"/>
+                </w:tblBorders>
+              </w:tblPr>
+              ${wTermRow("BORROWER", draft.companyName)}
+              ${wTermRow("LENDER", LENDER)}
+              ${wTermRow("Financing Currency", draft.currency)}
+              ${wTermRow("Payment Method", draft.paymentMethod)}
+              ${wTermRow("Payment Period", draft.paymentPeriod)}
+              ${wTermRow("Initial Credit Line", draft.creditLine)}
+              ${wTermRow("Administration Fee", draft.adminFee)}
+              ${wTermRow("Interest Rate", draft.interestRate)}
+              ${wTermRow("Remarks", "", { bullets: remarks })}
+            </w:tbl>
+            ${wEmpty(200)}
+            ${wParagraph("We, Hyundai Corporation, are pleased to assist you to complete the financing with our full scale of experiences. Should you have any query, please do not hesitate to contact us at any time.", { after: 360 })}
+            <w:tbl>
+              <w:tblPr>
+                <w:tblW w:w="9160" w:type="dxa"/>
+                <w:tblBorders>
+                  <w:top w:val="nil"/>
+                  <w:left w:val="nil"/>
+                  <w:bottom w:val="nil"/>
+                  <w:right w:val="nil"/>
+                  <w:insideH w:val="nil"/>
+                  <w:insideV w:val="nil"/>
+                </w:tblBorders>
+              </w:tblPr>
+              <w:tr>
+                ${wSignCell([LENDER, LENDER_SIGNER, LENDER_TITLE])}
+                ${wSignCell([draft.companyName, draft.signingPerson, draft.position])}
+              </w:tr>
+            </w:tbl>
+            <w:sectPr>
+              <w:pgSz w:w="11906" w:h="16838"/>
+              <w:pgMar w:top="1134" w:right="1134" w:bottom="1134" w:left="1134"/>
+            </w:sectPr>
+          </w:body>
+        </w:document>`;
+    }
+
+    const CONTENT_TYPES = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+      <Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types">
+        <Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/>
+        <Default Extension="xml" ContentType="application/xml"/>
+        <Override PartName="/word/document.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml"/>
+        <Override PartName="/word/styles.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.styles+xml"/>
+      </Types>`;
+
+    const ROOT_RELS = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+      <Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">
+        <Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="word/document.xml"/>
+      </Relationships>`;
+
+    const DOC_RELS = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+      <Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">
+        <Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/styles" Target="styles.xml"/>
+      </Relationships>`;
+
+    const STYLES = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+      <w:styles xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">
+        <w:style w:type="paragraph" w:default="1" w:styleId="Normal">
+          <w:name w:val="Normal"/>
+          <w:qFormat/>
+          <w:rPr>
+            <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial"/>
+            <w:sz w:val="22"/>
+            <w:szCs w:val="22"/>
+          </w:rPr>
+        </w:style>
+      </w:styles>`;
+
+    function safeFileName(name) {
+      return name.replace(/[\\/:*?"<>|]+/g, "_").replace(/\s+/g, "_");
+    }
+
+    function proposalFileName(ext) {
+      const base = currentDraft && currentDraft.companyName
+        ? "Financing_Proposal_" + safeFileName(currentDraft.companyName)
+        : "Financing_Proposal";
+      return base + "." + ext;
+    }
+
+    function downloadBlob(blob, fileName) {
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = fileName;
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      URL.revokeObjectURL(url);
+    }
+
+    function downloadDocx() {
+      const blob = createZip([
+        { name: "[Content_Types].xml", data: CONTENT_TYPES },
+        { name: "_rels/.rels", data: ROOT_RELS },
+        { name: "word/_rels/document.xml.rels", data: DOC_RELS },
+        { name: "word/styles.xml", data: STYLES },
+        { name: "word/document.xml", data: buildDocumentXml(currentDraft) }
+      ]);
+      downloadBlob(blob, proposalFileName("docx"));
+    }
+
+    function loadScriptOnce(src) {
+      return new Promise((resolve, reject) => {
+        const existing = document.querySelector('script[data-export-src="' + src + '"]');
+        if (existing) {
+          if (existing.dataset.loaded === "1") resolve();
+          else existing.addEventListener("load", () => resolve(), { once: true });
+          return;
+        }
+        const script = document.createElement("script");
+        script.src = src;
+        script.async = true;
+        script.dataset.exportSrc = src;
+        script.onload = () => {
+          script.dataset.loaded = "1";
+          resolve();
+        };
+        script.onerror = () => reject(new Error("스크립트를 불러오지 못했습니다."));
+        document.head.appendChild(script);
+      });
+    }
+
+    function canvasToJpegBytes(canvas) {
+      return new Promise((resolve, reject) => {
+        canvas.toBlob((blob) => {
+          if (!blob) {
+            reject(new Error("PDF 이미지를 만들지 못했습니다."));
+            return;
+          }
+          blob.arrayBuffer().then((buffer) => resolve(new Uint8Array(buffer)), reject);
+        }, "image/jpeg", 0.92);
+      });
+    }
+
+    function sliceCanvasToPages(canvas) {
+      const pageW = 595.28;
+      const pageH = 841.89;
+      const margin = 28;
+      const availW = pageW - margin * 2;
+      const availH = pageH - margin * 2;
+      const sliceH = Math.max(1, Math.round(canvas.width * availH / availW));
+      const pages = [];
+      for (let y = 0; y < canvas.height; y += sliceH) {
+        const h = Math.min(sliceH, canvas.height - y);
+        const page = document.createElement("canvas");
+        page.width = canvas.width;
+        page.height = h;
+        page.getContext("2d").drawImage(canvas, 0, y, canvas.width, h, 0, 0, canvas.width, h);
+        pages.push(page);
+      }
+      return pages.length ? pages : [canvas];
+    }
+
+    async function elementToPdfBlob(element, paged) {
+      await loadScriptOnce("https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js");
+      if (typeof html2canvas !== "function") throw new Error("PDF 변환 도구를 불러오지 못했습니다.");
+      const canvas = await html2canvas(element, {
+        scale: 2,
+        backgroundColor: "#ffffff",
+        useCORS: true
+      });
+      const slices = paged ? sliceCanvasToPages(canvas) : [canvas];
+      const pages = [];
+      for (let i = 0; i < slices.length; i++) {
+        pages.push({
+          bytes: await canvasToJpegBytes(slices[i]),
+          w: slices[i].width,
+          h: slices[i].height
+        });
+      }
+      return imagesToPdfBlob(pages);
+    }
+
+    async function downloadPdf() {
+      const paper = document.getElementById("proposal-preview");
+      if (!paper) throw new Error("미리보기를 찾을 수 없습니다.");
+      downloadBlob(await elementToPdfBlob(paper, false), proposalFileName("pdf"));
+    }
+
+    function imagesToPdfBlob(pages) {
+      const pageW = 595.28;
+      const pageH = 841.89;
+      const margin = 28;
+      const kids = pages.map((_, i) => (3 + i * 3) + " 0 R").join(" ");
+
+      function utf8(str) {
+        return new TextEncoder().encode(str);
+      }
+
+      const objects = [];
+      function addObj(body) {
+        objects.push(typeof body === "string" ? utf8(body) : body);
+        return objects.length;
+      }
+
+      addObj("<< /Type /Catalog /Pages 2 0 R >>");
+      addObj("<< /Type /Pages /Kids [" + kids + "] /Count " + pages.length + " >>");
+
+      pages.forEach((page) => {
+        const availW = pageW - margin * 2;
+        const availH = pageH - margin * 2;
+        const scale = Math.min(availW / page.w, availH / page.h);
+        const drawW = page.w * scale;
+        const drawH = page.h * scale;
+        const x = (pageW - drawW) / 2;
+        const y = pageH - margin - drawH;
+        const contentId = objects.length + 2;
+        const imgId = objects.length + 3;
+        const content = "q\n" + drawW.toFixed(2) + " 0 0 " + drawH.toFixed(2) + " " + x.toFixed(2) + " " + y.toFixed(2) + " cm\n/Im0 Do\nQ\n";
+        addObj("<< /Type /Page /Parent 2 0 R /MediaBox [0 0 " + pageW + " " + pageH + "] /Resources << /XObject << /Im0 " + imgId + " 0 R >> >> /Contents " + contentId + " 0 R >>");
+        addObj("<< /Length " + content.length + " >>\nstream\n" + content + "endstream");
+
+        const imgHeader = utf8(
+          "<< /Type /XObject /Subtype /Image /Width " + page.w + " /Height " + page.h +
+          " /ColorSpace /DeviceRGB /BitsPerComponent 8 /Filter /DCTDecode /Length " + page.bytes.length + " >>\nstream\n"
+        );
+        const imgTail = utf8("\nendstream");
+        const imgObj = new Uint8Array(imgHeader.length + page.bytes.length + imgTail.length);
+        imgObj.set(imgHeader, 0);
+        imgObj.set(page.bytes, imgHeader.length);
+        imgObj.set(imgTail, imgHeader.length + page.bytes.length);
+        addObj(imgObj);
+      });
+
+      let offset = 0;
+      const header = utf8("%PDF-1.4\n");
+      const parts = [header];
+      offset += header.length;
+      const xref = ["xref", "0 " + (objects.length + 1), "0000000000 65535 f "];
+      objects.forEach((obj, i) => {
+        xref.push(String(offset).padStart(10, "0") + " 00000 n ");
+        const start = utf8((i + 1) + " 0 obj\n");
+        const end = utf8("\nendobj\n");
+        parts.push(start, obj, end);
+        offset += start.length + obj.length + end.length;
+      });
+      const xrefStart = offset;
+      const xrefText = xref.join("\n") + "\n";
+      const trailer = "trailer\n<< /Size " + (objects.length + 1) + " /Root 1 0 R >>\nstartxref\n" + xrefStart + "\n%%EOF";
+      parts.push(utf8(xrefText), utf8(trailer));
+
+      let total = 0;
+      parts.forEach((p) => { total += p.length; });
+      const out = new Uint8Array(total);
+      let pos = 0;
+      parts.forEach((p) => {
+        out.set(p, pos);
+        pos += p.length;
+      });
+      return new Blob([out], { type: "application/pdf" });
+    }
+
+    const exportModal = document.getElementById("export-modal");
+    const exportStatus = document.getElementById("export-modal-status");
+    const exportChoices = exportModal ? exportModal.querySelectorAll(".export-choice") : [];
+
+    function setExportStatus(message, isError) {
+      if (!exportStatus) return;
+      exportStatus.textContent = message || "";
+      exportStatus.classList.toggle("error", !!isError);
+    }
+
+    function openExportModal() {
+      refreshPreview();
+      if (!currentDraft) return;
+      setExportStatus("", false);
+      if (exportModal) exportModal.classList.add("open");
+    }
+
+    function closeExportModal() {
+      if (exportModal) exportModal.classList.remove("open");
+      setExportStatus("", false);
+    }
+
+    generateBtn.addEventListener("click", openExportModal);
+
+    if (exportModal) {
+      exportModal.querySelectorAll("[data-export-close]").forEach((el) => {
+        el.addEventListener("click", closeExportModal);
+      });
+    }
+
+    const reportModal = document.getElementById("report-modal");
+    const reportStatus = document.getElementById("report-modal-status");
+    const reportPreview = document.getElementById("calc-report-preview");
+    const reportBtn = document.getElementById("calc-report-btn");
+    const reportPdfBtn = document.getElementById("calc-report-pdf-btn");
+
+    function setReportStatus(message, isError) {
+      if (!reportStatus) return;
+      reportStatus.textContent = message || "";
+      reportStatus.classList.toggle("error", !!isError);
+    }
+
+    function fillReportPreview() {
+      const source = document.getElementById("calc-report-source");
+      if (!reportPreview || !source) return;
+      reportPreview.innerHTML = "";
+
+      const head = document.createElement("div");
+      head.className = "report-doc-head";
+      const today = new Date();
+      head.innerHTML =
+        "<div><p class=\"report-doc-brand\">HYUNDAI CORPORATION</p>" +
+        " <h3>요율 산출 보고서</h3></div>" +
+        "<p class=\"report-doc-date\">" +
+        today.getFullYear() + "." + String(today.getMonth() + 1).padStart(2, "0") + "." +
+        String(today.getDate()).padStart(2, "0") + "</p>";
+      reportPreview.appendChild(head);
+
+      const clone = source.cloneNode(true);
+      clone.id = "calc-report-clone";
+      const srcFields = source.querySelectorAll("input, select, textarea");
+      const cloneFields = clone.querySelectorAll("input, select, textarea");
+      cloneFields.forEach((el, i) => {
+        const src = srcFields[i];
+        if (!src) return;
+        el.value = src.value;
+      });
+      clone.querySelectorAll(".field").forEach((field) => {
+        const control = field.querySelector("input, select, textarea");
+        if (!control || control.type === "hidden") return;
+        let text = control.value;
+        if (control.tagName === "SELECT") {
+          const opt = control.options[control.selectedIndex];
+          text = opt ? opt.textContent.trim() : control.value;
+        }
+        const value = document.createElement("p");
+        value.className = "report-value";
+        value.textContent = text;
+        control.replaceWith(value);
+      });
+      clone.querySelectorAll(".calc-combo-wrap, .calc-report-actions, .calc-hint, .calc-card-input, .calc-manual-reset, input[type='hidden']").forEach((el) => el.remove());
+      clone.querySelectorAll(".calc-card-value").forEach((el) => { el.hidden = false; });
+      clone.querySelectorAll("[id]").forEach((el) => el.removeAttribute("id"));
+      reportPreview.appendChild(clone);
+    }
+
+    function openReportModal() {
+      refreshCalc();
+      fillReportPreview();
+      setReportStatus("", false);
+      if (reportModal) reportModal.classList.add("open");
+    }
+
+    function closeReportModal() {
+      if (reportModal) reportModal.classList.remove("open");
+      setReportStatus("", false);
+    }
+
+    if (reportBtn) reportBtn.addEventListener("click", openReportModal);
+
+    if (reportModal) {
+      reportModal.querySelectorAll("[data-report-close]").forEach((el) => {
+        el.addEventListener("click", closeReportModal);
+      });
+    }
+
+    if (reportPdfBtn) {
+      reportPdfBtn.addEventListener("click", async () => {
+        const paper = document.getElementById("calc-report-preview");
+        if (!paper || !paper.childElementCount) {
+          setReportStatus("미리보기가 없습니다.", true);
+          return;
+        }
+        reportPdfBtn.disabled = true;
+        setReportStatus("PDF를 만드는 중입니다...", false);
+        try {
+          downloadBlob(await elementToPdfBlob(paper, true), "Financing_Rate_Report.pdf");
+          setReportStatus("", false);
+        } catch (err) {
+          setReportStatus(err && err.message ? err.message : "다운로드에 실패했습니다.", true);
+        } finally {
+          reportPdfBtn.disabled = false;
+        }
+      });
+    }
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key !== "Escape") return;
+      if (reportModal && reportModal.classList.contains("open")) {
+        closeReportModal();
+        return;
+      }
+      if (exportModal && exportModal.classList.contains("open")) closeExportModal();
+    });
+
+    exportChoices.forEach((btn) => {
+      btn.addEventListener("click", async () => {
+        const format = btn.dataset.exportFormat;
+        exportChoices.forEach((choice) => { choice.disabled = true; });
+        try {
+          if (format === "docx") {
+            downloadDocx();
+            closeExportModal();
+          } else {
+            setExportStatus("PDF를 만드는 중입니다...", false);
+            await downloadPdf();
+            closeExportModal();
+          }
+        } catch (err) {
+          setExportStatus(err && err.message ? err.message : "다운로드에 실패했습니다.", true);
+        } finally {
+          exportChoices.forEach((choice) => { choice.disabled = false; });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
