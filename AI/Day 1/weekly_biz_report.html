@@ -1,0 +1,1489 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>현대코퍼레이션 주간 경영 리포트</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/moonspam/NanumBarunGothic@latest/nanumbarungothic.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap">
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.6/dist/chart.umd.min.js"></script>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background: #fff;
+      color: #222;
+      font-family: "NanumBarunGothic", "나눔바른고딕", "Malgun Gothic", "돋움", Dotum, sans-serif;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    a {
+      color: #222;
+      text-decoration: none;
+    }
+
+    #header {
+      background: #2b2b2b;
+      min-height: 95px;
+    }
+
+    #header .inner,
+    #container,
+    #footer .inner {
+      width: min(1200px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    #header .inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 95px;
+      gap: 24px;
+    }
+
+    .brand {
+      color: #fff;
+      font-family: "Open Sans", Helvetica, Arial, sans-serif;
+      letter-spacing: 0.04em;
+    }
+
+    .brand-ko {
+      margin: 0 0 4px;
+      font-family: "NanumBarunGothic", sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      color: #4eb8ef;
+    }
+
+    .brand-en {
+      margin: 0;
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    .gnb {
+      display: flex;
+      gap: 28px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .gnb a,
+    .gnb span {
+      display: inline-block;
+      padding: 8px 0 12px;
+      border-top: 1px solid transparent;
+      color: #ababab;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .gnb .on {
+      border-top-color: #4eb8ef;
+      color: #fff;
+    }
+
+    #container {
+      flex: 1;
+      padding: 30px 0 60px;
+    }
+
+    .location {
+      margin: 0 0 10px;
+      font-size: 12px;
+      color: #999;
+    }
+
+    .page-title {
+      margin: 0 0 26px;
+      padding: 12px 0;
+      border-top: 3px solid #6b6b6b;
+      border-bottom: 1px solid #e1e1e1;
+    }
+
+    .page-title h1 {
+      margin: 0;
+      color: #222;
+      font-size: 21px;
+      font-weight: 700;
+    }
+
+    .page-title .en {
+      margin: 6px 0 0;
+      color: #02a5ed;
+      font-family: "Open Sans", Helvetica, Arial, sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+    }
+
+    .toolbar {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .upload-label,
+    #generateBtn {
+      display: inline-block;
+      min-width: 140px;
+      padding: 10px 18px;
+      font-family: inherit;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 1.2;
+      text-align: center;
+      user-select: none;
+    }
+
+    .upload-label {
+      border: 1px solid #adadad;
+      border-top-color: #e0e0e0;
+      border-left-color: #e0e0e0;
+      background: #fff;
+      color: #333;
+      cursor: pointer;
+      box-shadow: 0 2px 3px #ccc;
+    }
+
+    .upload-label:hover {
+      border-color: #007bb3;
+      border-top-color: #0092d8;
+      border-left-color: #0092d8;
+      background: #00b3f0;
+      color: #fff;
+    }
+
+    .upload-label input {
+      display: none;
+    }
+
+    #generateBtn {
+      border: 1px solid #c7c7c7;
+      background: #c7c7c7;
+      color: #fff;
+      cursor: not-allowed;
+    }
+
+    #generateBtn:enabled {
+      border-color: #4aad0b;
+      background: #4aad0b;
+      cursor: pointer;
+    }
+
+    .status {
+      margin: 16px 0 0;
+      font-size: 14px;
+    }
+
+    .status.error {
+      color: #eb422c;
+    }
+
+    .report {
+      display: none;
+      margin-top: 28px;
+    }
+
+    .report.is-open {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .report-main {
+      display: grid;
+      grid-template-columns: 240px minmax(0, 1fr) 240px;
+      align-items: start;
+      gap: 16px;
+      width: 100%;
+      min-width: 0;
+    }
+
+    .insight-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 12px;
+    }
+
+    .insight-card {
+      padding: 16px 18px;
+      border: 1px solid #e1e1e1;
+      border-top: 3px solid #00b3f0;
+      background: #fff;
+    }
+
+    .insight-card.positive {
+      border-top-color: #4aad0b;
+    }
+
+    .insight-card.warning {
+      border-top-color: #eb422c;
+    }
+
+    .insight-card.action {
+      border-top-color: #00b3f0;
+    }
+
+    .insight-title {
+      margin: 0 0 10px;
+      font-size: 14px;
+      font-weight: 700;
+      color: #222;
+    }
+
+    .insight-body {
+      margin: 0;
+      color: #333;
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    @media (max-width: 900px) {
+      .insight-row {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .kpi-column {
+      width: 240px;
+      max-width: 100%;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .chart-column {
+      min-width: 0;
+      max-width: 100%;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .chart-card {
+      padding: 16px 18px;
+      border: 1px solid #e1e1e1;
+      border-top: 3px solid #00b3f0;
+      background: #fff;
+    }
+
+    .chart-title {
+      margin: 0 0 8px;
+      font-size: 13px;
+      font-weight: 700;
+      color: #636363;
+    }
+
+    .chart-body {
+      position: relative;
+      height: 220px;
+      min-width: 0;
+      overflow: hidden;
+    }
+
+    .chart-body canvas {
+      display: block;
+      max-width: 100%;
+    }
+
+    .kpi-card {
+      padding: 16px 18px;
+      border: 1px solid #e1e1e1;
+      border-top: 3px solid #00b3f0;
+      background: #fff;
+    }
+
+    .kpi-card.negative {
+      border-top-color: #eb422c;
+    }
+
+    .kpi-label {
+      margin: 0 0 8px;
+      font-size: 13px;
+      font-weight: 700;
+      color: #636363;
+    }
+
+    .kpi-value {
+      margin: 0;
+      color: #222;
+      font-family: Helvetica, Arial, sans-serif;
+      font-size: 24px;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    .kpi-value.up {
+      color: #4aad0b;
+    }
+
+    .kpi-value.down {
+      color: #eb422c;
+    }
+
+    .kpi-unit {
+      margin-left: 4px;
+      font-family: "NanumBarunGothic", sans-serif;
+      font-size: 12px;
+      font-weight: 400;
+      color: #777;
+    }
+
+    .kpi-change {
+      margin: 8px 0 0;
+      font-family: Helvetica, Arial, sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .kpi-change.up {
+      color: #4aad0b;
+    }
+
+    .kpi-change.down {
+      color: #eb422c;
+    }
+
+    .kpi-change.flat {
+      color: #919191;
+    }
+
+    #footer {
+      margin-top: auto;
+      padding: 28px 0 32px;
+      background: #f9f9f9;
+      color: #919191;
+      font-size: 11px;
+    }
+
+    .copyright {
+      margin: 0;
+      padding-top: 6px;
+      border-top: 1px solid #dcdcdc;
+      color: #969696;
+      font-family: "Open Sans", sans-serif;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    @media print {
+      @page {
+        size: A4 landscape;
+        margin: 5mm;
+      }
+
+      html, body {
+        width: 100%;
+        height: auto;
+        min-height: 0;
+        overflow: hidden;
+        background: #fff;
+      }
+
+      body {
+        display: block;
+      }
+
+      #header .inner,
+      #container,
+      #footer .inner {
+        width: 100%;
+        max-width: none;
+      }
+
+      #header {
+        min-height: 36px;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      #header .inner {
+        min-height: 36px;
+      }
+
+      .brand-ko {
+        margin-bottom: 0;
+        font-size: 10px;
+      }
+
+      .brand-en {
+        font-size: 12px;
+      }
+
+      .gnb,
+      .location,
+      .page-title .en,
+      .toolbar,
+      .status {
+        display: none !important;
+      }
+
+      #container {
+        padding: 4px 0 0;
+      }
+
+      .page-title {
+        margin-bottom: 6px;
+        padding: 4px 0;
+      }
+
+      .page-title h1 {
+        font-size: 16px;
+      }
+
+      .report {
+        margin-top: 0;
+        gap: 6px;
+      }
+
+      .report-main {
+        display: grid;
+        grid-template-columns: 140px minmax(0, 1fr) 140px;
+        gap: 6px;
+      }
+
+      .kpi-column {
+        width: auto;
+        gap: 5px;
+      }
+
+      .chart-column {
+        gap: 5px;
+      }
+
+      .chart-column,
+      .chart-card,
+      .chart-body {
+        min-width: 0;
+        max-width: 100%;
+        overflow: hidden;
+      }
+
+      .chart-card,
+      .kpi-card,
+      .insight-card {
+        padding: 6px 8px;
+        break-inside: auto;
+        page-break-inside: auto;
+        page-break-before: avoid;
+        page-break-after: avoid;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      .kpi-label,
+      .chart-title,
+      .insight-title {
+        margin-bottom: 2px;
+        font-size: 11px;
+      }
+
+      .kpi-value {
+        font-size: 15px;
+      }
+
+      .kpi-change {
+        margin-top: 2px;
+        font-size: 11px;
+      }
+
+      .chart-body {
+        height: 98px !important;
+      }
+
+      .chart-body canvas {
+        width: 100% !important;
+        max-width: 100% !important;
+        height: 98px !important;
+      }
+
+      .insight-row {
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 6px;
+        break-inside: auto;
+        page-break-inside: auto;
+        page-break-before: avoid;
+      }
+
+      .insight-body {
+        font-size: 10px;
+        line-height: 1.4;
+      }
+
+      #footer {
+        margin-top: 4px;
+        padding: 4px 0;
+      }
+
+      .copyright {
+        padding-top: 3px;
+        font-size: 9px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header id="header">
+    <div class="inner">
+      <div class="brand">
+        <p class="brand-ko">현대코퍼레이션</p>
+        <p class="brand-en">HYUNDAI CORPORATION</p>
+      </div>
+      <ul class="gnb">
+        <li><span class="on">주간 경영 리포트</span></li>
+      </ul>
+    </div>
+  </header>
+
+  <main id="container">
+    <p class="location">HOME &gt; 주간 경영 리포트</p>
+    <div class="page-title">
+      <h1>현대코퍼레이션 주간 경영 리포트</h1>
+      <p class="en">WEEKLY BUSINESS REPORT</p>
+    </div>
+    <div class="toolbar">
+      <label class="upload-label">
+        엑셀 파일 업로드
+        <input id="fileInput" type="file" accept=".xlsx,.csv,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,text/csv">
+      </label>
+      <button id="generateBtn" type="button" disabled>리포트 생성</button>
+    </div>
+    <p id="status" class="status"></p>
+
+    <div id="report" class="report">
+      <div class="report-main">
+        <div id="kpiColumn" class="kpi-column"></div>
+        <div class="chart-column">
+          <article class="chart-card">
+            <p class="chart-title">일별 영업이익</p>
+            <div class="chart-body"><canvas id="profitChart"></canvas></div>
+          </article>
+          <article class="chart-card">
+            <p class="chart-title">일별 신규수주 vs 매출</p>
+            <div class="chart-body"><canvas id="orderSalesChart"></canvas></div>
+          </article>
+        </div>
+        <div id="marketColumn" class="kpi-column"></div>
+      </div>
+      <div id="insightRow" class="insight-row"></div>
+    </div>
+  </main>
+
+  <footer id="footer">
+    <div class="inner">
+      <p class="copyright">Copyright &copy; Hyundai Corporation. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    const TARGET_SHEET = "주간현황";
+    const COL = {
+      date: "일자",
+      order: "신규수주(백만원)",
+      sales: "매출(백만원)",
+      profit: "영업이익(백만원)",
+      cash: "영업현금흐름(백만원)",
+      usd: "USD/KRW",
+      bdi: "BDI지수",
+      issue: "주요이슈"
+    };
+    const KPIS = [
+      { key: "order", label: "신규수주", warnNegative: false },
+      { key: "sales", label: "매출", warnNegative: false },
+      { key: "profit", label: "영업이익", warnNegative: true },
+      { key: "cash", label: "영업현금흐름", warnNegative: true }
+    ];
+    const WEEKDAYS = ["월", "화", "수", "목", "금", "토", "일"];
+    const DAY_ORDER = [1, 2, 3, 4, 5, 6, 0];
+    const HYUNDAI_GREEN = "#4aad0b";
+    const ALERT_RED = "#eb422c";
+    const ACCENT_CYAN = "#00b3f0";
+
+    const fileInput = document.getElementById("fileInput");
+    const generateBtn = document.getElementById("generateBtn");
+    const statusEl = document.getElementById("status");
+    const reportEl = document.getElementById("report");
+    const kpiColumn = document.getElementById("kpiColumn");
+    const marketColumn = document.getElementById("marketColumn");
+    const insightRow = document.getElementById("insightRow");
+
+    let loadedRows = [];
+    let profitChart = null;
+    let orderSalesChart = null;
+
+    fileInput.addEventListener("change", function () {
+      const file = fileInput.files && fileInput.files[0];
+      if (!file) return;
+
+      hideReport();
+      generateBtn.disabled = true;
+      statusEl.classList.remove("error");
+      statusEl.textContent = "파일을 읽는 중...";
+
+      const reader = new FileReader();
+      reader.onload = function (event) {
+        try {
+          const bytes = new Uint8Array(event.target.result);
+          loadedRows = parseFile(file.name, bytes);
+          generateBtn.disabled = false;
+          statusEl.textContent = "로드 완료, " + loadedRows.length + "행";
+        } catch (error) {
+          loadedRows = [];
+          generateBtn.disabled = true;
+          statusEl.classList.add("error");
+          statusEl.textContent = error.message || "파일을 읽지 못했습니다.";
+        }
+      };
+      reader.onerror = function () {
+        loadedRows = [];
+        generateBtn.disabled = true;
+        statusEl.classList.add("error");
+        statusEl.textContent = "파일을 읽지 못했습니다.";
+      };
+      reader.readAsArrayBuffer(file);
+    });
+
+    generateBtn.addEventListener("click", function () {
+      if (!loadedRows.length && generateBtn.disabled) return;
+      renderReport(loadedRows);
+    });
+
+    function hideReport() {
+      destroyCharts();
+      reportEl.classList.remove("is-open");
+      kpiColumn.innerHTML = "";
+      marketColumn.innerHTML = "";
+      insightRow.innerHTML = "";
+    }
+
+    function resizeCharts() {
+      if (profitChart) profitChart.resize();
+      if (orderSalesChart) orderSalesChart.resize();
+    }
+
+    function setPrintChartHeight(on) {
+      document.querySelectorAll(".chart-body").forEach(function (el) {
+        el.style.height = on ? "98px" : "";
+      });
+    }
+
+    function preparePrintCharts() {
+      setPrintChartHeight(true);
+      document.body.offsetHeight;
+      resizeCharts();
+      window.requestAnimationFrame(resizeCharts);
+    }
+
+    function restoreAfterPrint() {
+      setPrintChartHeight(false);
+      resizeCharts();
+    }
+
+    window.addEventListener("beforeprint", preparePrintCharts);
+    window.addEventListener("afterprint", restoreAfterPrint);
+    if (window.matchMedia) {
+      window.matchMedia("print").addEventListener("change", function (event) {
+        if (event.matches) preparePrintCharts();
+        else restoreAfterPrint();
+      });
+    }
+
+    function destroyCharts() {
+      if (profitChart) {
+        profitChart.destroy();
+        profitChart = null;
+      }
+      if (orderSalesChart) {
+        orderSalesChart.destroy();
+        orderSalesChart = null;
+      }
+    }
+
+    function parseFile(fileName, bytes) {
+      const isCsv = /\.csv$/i.test(fileName);
+      const workbook = isCsv
+        ? XLSX.read(decodeCsv(bytes), { type: "string", raw: false, codepage: 65001 })
+        : XLSX.read(bytes, { type: "array", cellDates: true, raw: true });
+
+      const sheetName = isCsv
+        ? workbook.SheetNames[0]
+        : findWeeklySheet(workbook.SheetNames);
+
+      if (!sheetName) {
+        throw new Error("'" + TARGET_SHEET + "' 시트를 찾을 수 없습니다.");
+      }
+
+      const sheet = workbook.Sheets[sheetName];
+      const rows = XLSX.utils.sheet_to_json(sheet, { defval: "", raw: true });
+      return rows.map(normalizeRow).filter(function (row) {
+        return row.date || hasAnyValue(row);
+      });
+    }
+
+    function findWeeklySheet(names) {
+      const exact = names.find(function (name) {
+        return String(name).trim() === TARGET_SHEET;
+      });
+      if (exact) return exact;
+
+      return names.find(function (name) {
+        return String(name).indexOf(TARGET_SHEET) !== -1;
+      }) || null;
+    }
+
+    function normalizeKey(key) {
+      return String(key == null ? "" : key).replace(/\s+/g, "").trim();
+    }
+
+    function pickField(row, expected) {
+      const target = normalizeKey(expected);
+      const keys = Object.keys(row);
+      for (var i = 0; i < keys.length; i++) {
+        if (normalizeKey(keys[i]) === target) return row[keys[i]];
+      }
+      return "";
+    }
+
+    function normalizeRow(row) {
+      return {
+        date: parseDate(pickField(row, COL.date)),
+        order: parseNumber(pickField(row, COL.order)),
+        sales: parseNumber(pickField(row, COL.sales)),
+        profit: parseNumber(pickField(row, COL.profit)),
+        cash: parseNumber(pickField(row, COL.cash)),
+        usd: parseNumber(pickField(row, COL.usd)),
+        bdi: parseNumber(pickField(row, COL.bdi)),
+        issue: parseIssue(pickField(row, COL.issue))
+      };
+    }
+
+    function parseIssue(value) {
+      if (value == null || value === "") return "";
+      return String(value).replace(/\s+/g, " ").trim();
+    }
+
+    function hasAnyValue(row) {
+      return row.order != null || row.sales != null || row.profit != null ||
+        row.cash != null || row.usd != null || row.bdi != null;
+    }
+
+    function parseNumber(value) {
+      if (value == null || value === "") return null;
+      if (typeof value === "number" && isFinite(value)) return value;
+      if (value instanceof Date) return null;
+      const text = String(value).trim().replace(/,/g, "");
+      if (!text) return null;
+      const num = Number(text);
+      return isFinite(num) ? num : null;
+    }
+
+    function parseDate(value) {
+      if (value == null || value === "") return null;
+      if (value instanceof Date && !isNaN(value.getTime())) {
+        return new Date(value.getFullYear(), value.getMonth(), value.getDate());
+      }
+      if (typeof value === "number" && isFinite(value)) {
+        const parsed = XLSX.SSF.parse_date_code(value);
+        if (parsed) return new Date(parsed.y, parsed.m - 1, parsed.d);
+      }
+
+      const text = String(value).trim();
+      const iso = text.match(/^(\d{4})[./-](\d{1,2})[./-](\d{1,2})/);
+      if (iso) return new Date(Number(iso[1]), Number(iso[2]) - 1, Number(iso[3]));
+
+      const kr = text.match(/^(\d{4})\s*년\s*(\d{1,2})\s*월\s*(\d{1,2})/);
+      if (kr) return new Date(Number(kr[1]), Number(kr[2]) - 1, Number(kr[3]));
+
+      const fallback = new Date(text);
+      if (!isNaN(fallback.getTime())) {
+        return new Date(fallback.getFullYear(), fallback.getMonth(), fallback.getDate());
+      }
+      return null;
+    }
+
+    function num(value) {
+      return value == null ? 0 : value;
+    }
+
+    function weekday(date) {
+      return date ? date.getDay() : null;
+    }
+
+    function isEarlyWeek(day) {
+      return day === 1 || day === 2 || day === 3;
+    }
+
+    function isLateWeek(day) {
+      return day === 4 || day === 5 || day === 6 || day === 0;
+    }
+
+    function sumField(rows, key) {
+      return rows.reduce(function (total, row) {
+        return total + num(row[key]);
+      }, 0);
+    }
+
+    function averageField(rows, key) {
+      if (!rows.length) return null;
+      return sumField(rows, key) / rows.length;
+    }
+
+    function changePct(earlyAvg, lateAvg) {
+      if (earlyAvg == null || lateAvg == null) return null;
+      if (earlyAvg === 0) return lateAvg === 0 ? 0 : null;
+      return ((lateAvg - earlyAvg) / Math.abs(earlyAvg)) * 100;
+    }
+
+    function formatOne(value) {
+      return Number(value).toLocaleString("ko-KR", {
+        minimumFractionDigits: 1,
+        maximumFractionDigits: 1
+      });
+    }
+
+    function changeHtml(pct) {
+      if (pct == null || !isFinite(pct)) {
+        return '<p class="kpi-change flat">-</p>';
+      }
+      const cls = pct > 0 ? "up" : pct < 0 ? "down" : "flat";
+      const text = (pct > 0 ? "+" : "") + pct.toFixed(1) + "%";
+      return '<p class="kpi-change ' + cls + '">' + text + "</p>";
+    }
+
+    function fieldValues(rows, key) {
+      return rows.map(function (row) { return row[key]; }).filter(function (value) {
+        return value != null && isFinite(value);
+      });
+    }
+
+    function averageValues(values) {
+      if (!values.length) return null;
+      return values.reduce(function (total, value) { return total + value; }, 0) / values.length;
+    }
+
+    function valueRange(values) {
+      if (!values.length) return null;
+      return Math.max.apply(null, values) - Math.min.apply(null, values);
+    }
+
+    function rangeHtml(range, unit) {
+      if (range == null || !isFinite(range)) {
+        return '<p class="kpi-change flat">-</p>';
+      }
+      return '<p class="kpi-change flat">± ' + formatOne(range) + unit + "</p>";
+    }
+
+    function marketCard(label, valueText, unit, footHtml, valueClass) {
+      return (
+        '<article class="kpi-card">' +
+          '<p class="kpi-label">' + label + "</p>" +
+          '<p class="kpi-value' + (valueClass ? " " + valueClass : "") + '">' +
+            valueText + '<span class="kpi-unit">' + unit + "</span>" +
+          "</p>" +
+          (footHtml || "") +
+        "</article>"
+      );
+    }
+
+    function renderMarketCards(rows) {
+      const usdValues = fieldValues(rows, "usd");
+      const bdiValues = fieldValues(rows, "bdi");
+      const usdAvg = averageValues(usdValues);
+      const bdiAvg = averageValues(bdiValues);
+      const sales = sumField(rows, "sales");
+      const profit = sumField(rows, "profit");
+      const order = sumField(rows, "order");
+      const margin = sales === 0 ? null : (profit / sales) * 100;
+      const bookToBill = sales === 0 ? null : order / sales;
+      const bookClass = bookToBill == null ? "" : bookToBill >= 1 ? "up" : "down";
+
+      marketColumn.innerHTML = [
+        marketCard(
+          "환율 USD/KRW",
+          usdAvg == null ? "-" : formatOne(usdAvg),
+          "원/달러",
+          rangeHtml(valueRange(usdValues), "원")
+        ),
+        marketCard(
+          "BDI지수",
+          bdiAvg == null ? "-" : formatOne(bdiAvg),
+          "포인트",
+          rangeHtml(valueRange(bdiValues), "포인트")
+        ),
+        marketCard(
+          "영업이익률",
+          margin == null ? "-" : formatOne(margin),
+          "%"
+        ),
+        marketCard(
+          "수주/매출 비율",
+          bookToBill == null ? "-" : formatOne(bookToBill),
+          "배",
+          "",
+          bookClass
+        )
+      ].join("");
+    }
+
+    function renderReport(rows) {
+      const dated = rows.filter(function (row) { return row.date; });
+      const earlyRows = dated.filter(function (row) { return isEarlyWeek(weekday(row.date)); });
+      const lateRows = dated.filter(function (row) { return isLateWeek(weekday(row.date)); });
+
+      kpiColumn.innerHTML = KPIS.map(function (kpi) {
+        const total = sumField(rows, kpi.key);
+        const pct = changePct(averageField(earlyRows, kpi.key), averageField(lateRows, kpi.key));
+        const negative = kpi.warnNegative && total < 0 ? " negative" : "";
+        return (
+          '<article class="kpi-card' + negative + '">' +
+            '<p class="kpi-label">' + kpi.label + "</p>" +
+            '<p class="kpi-value">' + formatOne(total) + '<span class="kpi-unit">백만원</span></p>' +
+            changeHtml(pct) +
+          "</article>"
+        );
+      }).join("");
+
+      renderMarketCards(rows);
+      reportEl.classList.add("is-open");
+      renderCharts(rows);
+      renderInsights(rows);
+    }
+
+    function weekdayBuckets(rows) {
+      const buckets = WEEKDAYS.map(function () {
+        return {
+          order: 0,
+          sales: 0,
+          profit: 0,
+          hasOrder: false,
+          hasSales: false,
+          hasProfit: false
+        };
+      });
+
+      rows.forEach(function (row) {
+        if (!row.date) return;
+        const index = DAY_ORDER.indexOf(row.date.getDay());
+        if (index < 0) return;
+        if (row.order != null) {
+          buckets[index].order += row.order;
+          buckets[index].hasOrder = true;
+        }
+        if (row.sales != null) {
+          buckets[index].sales += row.sales;
+          buckets[index].hasSales = true;
+        }
+        if (row.profit != null) {
+          buckets[index].profit += row.profit;
+          buckets[index].hasProfit = true;
+        }
+      });
+
+      return buckets;
+    }
+
+    function isProfitDrop(value, average) {
+      if (average == null || !isFinite(average) || average === 0) return false;
+      return value <= average - 0.3 * Math.abs(average);
+    }
+
+    const barLabelPlugin = {
+      id: "barLabels",
+      afterDatasetsDraw: function (chart) {
+        const items = chart.options.plugins.barLabels && chart.options.plugins.barLabels.items;
+        if (!items) return;
+        const ctx = chart.ctx;
+        const meta = chart.getDatasetMeta(0);
+        ctx.save();
+        ctx.font = "700 11px NanumBarunGothic, sans-serif";
+        ctx.textAlign = "center";
+        ctx.textBaseline = "bottom";
+        ctx.fillStyle = ALERT_RED;
+        meta.data.forEach(function (bar, index) {
+          const labels = items[index];
+          if (!labels || !labels.length) return;
+          var y = Math.min(bar.y, bar.base) - 3;
+          for (var i = 0; i < labels.length; i++) {
+            ctx.fillText(labels[i], bar.x, y - i * 13);
+          }
+        });
+        ctx.restore();
+      }
+    };
+
+    function renderCharts(rows) {
+      destroyCharts();
+      const buckets = weekdayBuckets(rows);
+      const profits = buckets.map(function (day) {
+        return day.hasProfit ? day.profit : null;
+      });
+      const orders = buckets.map(function (day) {
+        return day.hasOrder ? day.order : null;
+      });
+      const sales = buckets.map(function (day) {
+        return day.hasSales ? day.sales : null;
+      });
+      const profitAvg = averageValues(profits.filter(function (value) {
+        return value != null;
+      }));
+      const barColors = profits.map(function (value) {
+        if (value == null) return HYUNDAI_GREEN;
+        return isProfitDrop(value, profitAvg) ? ALERT_RED : HYUNDAI_GREEN;
+      });
+      const barLabels = profits.map(function (value) {
+        if (value == null) return [];
+        const labels = [];
+        if (value < 0) labels.push("적자");
+        if (isProfitDrop(value, profitAvg)) labels.push("급락");
+        return labels;
+      });
+      const depleting = buckets.map(function (day) {
+        return day.hasOrder && day.hasSales && day.order < day.sales;
+      });
+      const weekdayLabels = WEEKDAYS.map(function (label, index) {
+        return depleting[index] ? label + "▼" : label;
+      });
+
+      profitChart = new Chart(document.getElementById("profitChart"), {
+        type: "bar",
+        data: {
+          labels: WEEKDAYS,
+          datasets: [{
+            label: "영업이익",
+            data: profits,
+            backgroundColor: barColors,
+            borderColor: barColors,
+            borderWidth: 0
+          }]
+        },
+        plugins: [barLabelPlugin],
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          animation: false,
+          plugins: {
+            legend: { display: false },
+            barLabels: { items: barLabels }
+          },
+          layout: { padding: { top: 22 } },
+          scales: {
+            x: {
+              ticks: { font: { family: "NanumBarunGothic", size: 12 } },
+              grid: { display: false }
+            },
+            y: {
+              title: {
+                display: true,
+                text: "영업이익(백만원)",
+                font: { family: "NanumBarunGothic", size: 11 }
+              },
+              ticks: { font: { family: "Helvetica, Arial, sans-serif", size: 11 } }
+            }
+          }
+        }
+      });
+
+      orderSalesChart = new Chart(document.getElementById("orderSalesChart"), {
+        type: "line",
+        data: {
+          labels: weekdayLabels,
+          datasets: [
+            {
+              label: "신규수주",
+              data: orders,
+              yAxisID: "yOrder",
+              borderColor: HYUNDAI_GREEN,
+              backgroundColor: HYUNDAI_GREEN,
+              pointBackgroundColor: HYUNDAI_GREEN,
+              tension: 0.2,
+              spanGaps: true
+            },
+            {
+              label: "매출",
+              data: sales,
+              yAxisID: "ySales",
+              borderColor: ACCENT_CYAN,
+              backgroundColor: ACCENT_CYAN,
+              pointBackgroundColor: ACCENT_CYAN,
+              tension: 0.2,
+              spanGaps: true
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          animation: false,
+          plugins: {
+            legend: {
+              labels: { font: { family: "NanumBarunGothic", size: 12 } }
+            }
+          },
+          scales: {
+            x: {
+              ticks: {
+                font: { family: "NanumBarunGothic", size: 12 },
+                color: function (context) {
+                  return depleting[context.index] ? ALERT_RED : "#222";
+                }
+              },
+              grid: { display: false }
+            },
+            yOrder: {
+              position: "left",
+              title: {
+                display: true,
+                text: "신규수주(백만원)",
+                font: { family: "NanumBarunGothic", size: 11 }
+              },
+              ticks: { font: { family: "Helvetica, Arial, sans-serif", size: 11 } }
+            },
+            ySales: {
+              position: "right",
+              title: {
+                display: true,
+                text: "매출(백만원)",
+                font: { family: "NanumBarunGothic", size: 11 }
+              },
+              ticks: { font: { family: "Helvetica, Arial, sans-serif", size: 11 } },
+              grid: { drawOnChartArea: false }
+            }
+          }
+        }
+      });
+    }
+
+    function escapeHtml(text) {
+      return String(text)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;");
+    }
+
+    function formatSigned(value, unit) {
+      const sign = value > 0 ? "+" : "";
+      return sign + formatOne(value) + unit;
+    }
+
+    function wonBand(value) {
+      return String(Math.floor(value / 10) * 10) + "원대";
+    }
+
+    function argExtreme(days, key, preferMax) {
+      var best = null;
+      days.forEach(function (day) {
+        if (day[key] == null || !isFinite(day[key])) return;
+        if (!best) {
+          best = day;
+          return;
+        }
+        if (preferMax ? day[key] > best[key] : day[key] < best[key]) best = day;
+      });
+      return best;
+    }
+
+    function buildInsightDays(rows) {
+      const byIndex = {};
+      rows.forEach(function (row) {
+        if (!row.date) return;
+        const index = DAY_ORDER.indexOf(row.date.getDay());
+        if (index < 0) return;
+        if (!byIndex[index]) {
+          byIndex[index] = {
+            index: index,
+            weekday: WEEKDAYS[index] + "요일",
+            order: null,
+            sales: null,
+            profit: null,
+            cash: null,
+            usd: null,
+            bdi: null,
+            issues: []
+          };
+        }
+        const day = byIndex[index];
+        ["order", "sales", "profit", "cash"].forEach(function (key) {
+          if (row[key] != null) day[key] = num(day[key]) + row[key];
+        });
+        if (row.usd != null) day.usd = row.usd;
+        if (row.bdi != null) day.bdi = row.bdi;
+        if (row.issue) day.issues.push(row.issue);
+      });
+
+      return WEEKDAYS.map(function (_, index) {
+        return byIndex[index];
+      }).filter(Boolean).map(function (day) {
+        day.issue = day.issues.filter(Boolean).join("; ");
+        return day;
+      });
+    }
+
+    function findIssueDay(days, keywords, preferred) {
+      if (preferred && preferred.issue) {
+        if (!keywords || keywords.some(function (word) {
+          return preferred.issue.indexOf(word) !== -1;
+        })) {
+          return preferred;
+        }
+      }
+      var matched = days.find(function (day) {
+        return day.issue && keywords && keywords.some(function (word) {
+          return day.issue.indexOf(word) !== -1;
+        });
+      });
+      if (matched) return matched;
+      if (preferred && preferred.issue) return preferred;
+      return days.find(function (day) { return day.issue; }) || null;
+    }
+
+    function citeIssue(day) {
+      if (!day || !day.issue) return "";
+      return "(" + day.weekday + " 주요이슈 '" + day.issue + "' 참고)";
+    }
+
+    function joinInsight(parts) {
+      return parts.filter(Boolean).join(", ").replace(/, \(/g, " (");
+    }
+
+    function buildPositiveInsight(days, totals) {
+      const maxOrder = argExtreme(days, "order", true);
+      const maxProfit = argExtreme(days, "profit", true);
+      const maxCash = argExtreme(days, "cash", true);
+      const parts = [];
+
+      if (maxOrder) {
+        parts.push(maxOrder.weekday + " 신규수주 " + formatOne(maxOrder.order) + "백만원으로 주중 최대");
+      }
+      if (totals.bookToBill != null && totals.bookToBill >= 1) {
+        parts.push("주간 수주/매출 비율 " + formatOne(totals.bookToBill) + "배로 잔고 확대");
+      } else if (maxProfit && maxProfit.profit > 0) {
+        parts.push(maxProfit.weekday + " 영업이익 " + formatOne(maxProfit.profit) + "백만원으로 주중 최고");
+      } else if (maxCash && maxCash.cash > 0) {
+        parts.push(maxCash.weekday + " 영업현금흐름 " + formatOne(maxCash.cash) + "백만원으로 주중 최대 회수");
+      }
+      if (totals.margin != null && totals.margin > 0 && parts.length < 2) {
+        parts.push("주간 영업이익률 " + formatOne(totals.margin) + "% 확보");
+      }
+      if (!parts.length) {
+        parts.push(
+          "주간 신규수주 " + formatOne(totals.order) + "백만원, 매출 " +
+          formatOne(totals.sales) + "백만원"
+        );
+      }
+
+      const cite = findIssueDay(days, ["수주", "발주", "계약", "오더", "프로젝트"], maxOrder);
+      parts.push(citeIssue(cite));
+      return joinInsight(parts);
+    }
+
+    function buildWarningInsight(days, totals) {
+      const maxUsd = argExtreme(days, "usd", true);
+      const minUsd = argExtreme(days, "usd", false);
+      const minCash = argExtreme(days, "cash", false);
+      const minProfit = argExtreme(days, "profit", false);
+      const maxBdi = argExtreme(days, "bdi", true);
+      const minBdi = argExtreme(days, "bdi", false);
+      const deplete = days.find(function (day) {
+        return day.order != null && day.sales != null && day.order < day.sales;
+      });
+      const parts = [];
+
+      if (maxUsd && minUsd && maxUsd.usd !== minUsd.usd) {
+        const swing = maxUsd.usd - minUsd.usd;
+        parts.push(
+          maxUsd.weekday + " 환율 " + formatOne(maxUsd.usd) + "원까지 급등(주중 " +
+          formatSigned(swing, "원") + ")"
+        );
+      }
+      if (minCash) {
+        parts.push(minCash.weekday + " 영업현금흐름 " + formatOne(minCash.cash) + "백만원으로 주중 최저");
+      }
+      if (minProfit && minProfit.profit < 0) {
+        parts.push(minProfit.weekday + " 영업이익 " + formatOne(minProfit.profit) + "백만원 적자");
+      } else if (minProfit && totals.profitAvg != null && isProfitDrop(minProfit.profit, totals.profitAvg)) {
+        parts.push(
+          minProfit.weekday + " 영업이익 " + formatOne(minProfit.profit) +
+          "백만원으로 주간 평균 대비 30% 이상 급락"
+        );
+      }
+      if (deplete && parts.length < 2) {
+        parts.push(
+          deplete.weekday + " 신규수주 " + formatOne(deplete.order) +
+          "백만원 < 매출 " + formatOne(deplete.sales) + "백만원으로 잔고 소진"
+        );
+      }
+      if (maxBdi && minBdi && parts.length < 2 && maxBdi.bdi !== minBdi.bdi) {
+        parts.push(
+          maxBdi.weekday + " BDI " + formatOne(maxBdi.bdi) + "포인트(주중 " +
+          formatSigned(maxBdi.bdi - minBdi.bdi, "포인트") + ")"
+        );
+      }
+      if (totals.bookToBill != null && totals.bookToBill < 1 && parts.length < 2) {
+        parts.push("주간 수주/매출 비율 " + formatOne(totals.bookToBill) + "배로 잔고를 소진하며 판매");
+      }
+      if (!parts.length && minCash) {
+        parts.push(minCash.weekday + " 영업현금흐름 " + formatOne(minCash.cash) + "백만원 점검 필요");
+      }
+
+      var cite = findIssueDay(days, ["환율", "달러", "결제", "대금", "자금", "수입"], maxUsd || minCash);
+      if (!cite) cite = findIssueDay(days, ["운임", "BDI", "선적", "해운"], maxBdi);
+      if (!cite) cite = findIssueDay(days, ["수주", "매출", "채권"], deplete);
+      parts.push(citeIssue(cite));
+      return joinInsight(parts);
+    }
+
+    function buildActionInsight(days, totals) {
+      const maxUsd = argExtreme(days, "usd", true);
+      const minUsd = argExtreme(days, "usd", false);
+      const minCash = argExtreme(days, "cash", false);
+      const minProfit = argExtreme(days, "profit", false);
+      const maxBdi = argExtreme(days, "bdi", true);
+      const minBdi = argExtreme(days, "bdi", false);
+      const deplete = days.find(function (day) {
+        return day.order != null && day.sales != null && day.order < day.sales;
+      });
+      const usdSwing = maxUsd && minUsd ? maxUsd.usd - minUsd.usd : 0;
+      const bdiSwing = maxBdi && minBdi ? maxBdi.bdi - minBdi.bdi : 0;
+
+      if (maxUsd && usdSwing > 0) {
+        return joinInsight([
+          "자금팀: " + maxUsd.weekday + " 환율 " + wonBand(maxUsd.usd) +
+          " 급등 시점 USD 헤지 비중 +10%p 조정 → 환차손 방지 예상",
+          citeIssue(findIssueDay(days, ["환율", "달러", "헤지", "결제", "수입"], maxUsd))
+        ]);
+      }
+      if (minCash && (minCash.cash < 0 || (totals.cashAvg != null && minCash.cash < totals.cashAvg * 0.7))) {
+        return joinInsight([
+          "자금팀: " + minCash.weekday + " 영업현금흐름 " + formatOne(minCash.cash) +
+          "백만원 최저 구간 단기 운용 한도·결제 일정 재배치 → 자금 공백 차단 예상",
+          citeIssue(findIssueDay(days, ["결제", "대금", "자금", "현금", "회수"], minCash))
+        ]);
+      }
+      if (deplete || (totals.bookToBill != null && totals.bookToBill < 1)) {
+        const day = deplete || argExtreme(days, "order", false);
+        return joinInsight([
+          "영업관리팀: " + day.weekday + " 신규수주 " + formatOne(day.order) +
+          "백만원 대비 매출 " + formatOne(day.sales != null ? day.sales : totals.sales) +
+          "백만원 과잉 출하 점검, 채권 회수 일정 당김 → 잔고 소진 속도 억제 예상",
+          citeIssue(findIssueDay(days, ["수주", "매출", "채권", "회수"], day))
+        ]);
+      }
+      if (maxBdi && bdiSwing > 0) {
+        return joinInsight([
+          "물류운영팀: " + maxBdi.weekday + " BDI " + formatOne(maxBdi.bdi) +
+          "포인트 구간 선적 일정을 운임 낮은 요일로 재배치 → 물류비 상승분 흡수 예상",
+          citeIssue(findIssueDay(days, ["운임", "BDI", "선적", "해운", "선박"], maxBdi))
+        ]);
+      }
+      if (minProfit && (minProfit.profit < 0 || (totals.profitAvg != null && isProfitDrop(minProfit.profit, totals.profitAvg)))) {
+        return joinInsight([
+          "경영기획팀: " + minProfit.weekday + " 영업이익 " + formatOne(minProfit.profit) +
+          "백만원 구간 예산 대비 원가·판관비 통제 강화 → 주간 이익률 " +
+          (totals.margin == null ? "-" : formatOne(totals.margin) + "%") + " 하방 차단 예상",
+          citeIssue(findIssueDay(days, ["이익", "원가", "예산", "적자"], minProfit))
+        ]);
+      }
+
+      const maxOrder = argExtreme(days, "order", true);
+      return joinInsight([
+        "영업관리팀: " + (maxOrder ? maxOrder.weekday + " 신규수주 " + formatOne(maxOrder.order) + "백만원" : "주간 수주") +
+        " 건의 계약 전환·선수금 회수 일정 확정 → 주간 수주/매출 비율 " +
+        (totals.bookToBill == null ? "-" : formatOne(totals.bookToBill) + "배") + " 유지 예상",
+        citeIssue(findIssueDay(days, ["수주", "발주", "계약"], maxOrder))
+      ]);
+    }
+
+    function renderInsights(rows) {
+      const days = buildInsightDays(rows);
+      const sales = sumField(rows, "sales");
+      const profit = sumField(rows, "profit");
+      const order = sumField(rows, "order");
+      const profitValues = fieldValues(rows, "profit");
+      const cashValues = fieldValues(rows, "cash");
+      const totals = {
+        sales: sales,
+        order: order,
+        margin: sales === 0 ? null : (profit / sales) * 100,
+        bookToBill: sales === 0 ? null : order / sales,
+        profitAvg: averageValues(profitValues),
+        cashAvg: averageValues(cashValues)
+      };
+
+      const cards = [
+        { cls: "positive", title: "🎯 긍정 신호", text: buildPositiveInsight(days, totals) },
+        { cls: "warning", title: "⚠️ 주의 신호", text: buildWarningInsight(days, totals) },
+        { cls: "action", title: "💡 권장 액션", text: buildActionInsight(days, totals) }
+      ];
+
+      insightRow.innerHTML = cards.map(function (card) {
+        return (
+          '<article class="insight-card ' + card.cls + '">' +
+            '<p class="insight-title">' + card.title + "</p>" +
+            '<p class="insight-body">' + escapeHtml(card.text || "-") + "</p>" +
+          "</article>"
+        );
+      }).join("");
+    }
+
+    function decodeCsv(bytes) {
+      if (bytes.length >= 3 && bytes[0] === 0xEF && bytes[1] === 0xBB && bytes[2] === 0xBF) {
+        return new TextDecoder("utf-8").decode(bytes.subarray(3));
+      }
+      if (bytes.length >= 2 && bytes[0] === 0xFF && bytes[1] === 0xFE) {
+        return new TextDecoder("utf-16le").decode(bytes.subarray(2));
+      }
+      if (bytes.length >= 2 && bytes[0] === 0xFE && bytes[1] === 0xFF) {
+        return new TextDecoder("utf-16be").decode(bytes.subarray(2));
+      }
+
+      const utf8 = new TextDecoder("utf-8").decode(bytes);
+      if (!looksBrokenKorean(utf8)) return utf8;
+
+      try {
+        return new TextDecoder("euc-kr").decode(bytes);
+      } catch (error) {
+        try {
+          return new TextDecoder("windows-949").decode(bytes);
+        } catch (fallbackError) {
+          return utf8;
+        }
+      }
+    }
+
+    function looksBrokenKorean(text) {
+      if (text.indexOf("\uFFFD") !== -1) return true;
+
+      var hangul = 0;
+      var mojibake = 0;
+      for (var i = 0; i < text.length; i++) {
+        var code = text.charCodeAt(i);
+        if (code >= 0xAC00 && code <= 0xD7A3) hangul += 1;
+        if (
+          (code >= 0x00C0 && code <= 0x017F) ||
+          (code >= 0x2000 && code <= 0x206F)
+        ) {
+          mojibake += 1;
+        }
+      }
+
+      return hangul === 0 && mojibake > 0;
+    }
+  </script>
+</body>
+</html>
