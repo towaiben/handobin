@@ -1,0 +1,1381 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>엑셀 업로드</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      padding: 24px;
+      font-family: sans-serif;
+    }
+
+    .toolbar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .upload-label {
+      display: inline-block;
+      padding: 12px 20px;
+      border: 1px solid #ccc;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .upload-label input {
+      display: none;
+    }
+
+    select {
+      padding: 11px 12px;
+      border: 1px solid #ccc;
+      font-family: inherit;
+      font-size: 14px;
+      background: #fff;
+    }
+
+    .file-name {
+      display: none;
+      margin: 0 0 16px;
+      font-size: 16px;
+    }
+
+    .kpi-row {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .chart-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .chart-card {
+      min-width: 0;
+      padding: 16px;
+      border: 1px solid #ccc;
+    }
+
+    .chart-title {
+      margin: 0 0 4px;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .chart-note {
+      margin: 0 0 8px;
+      font-size: 12px;
+      color: #666;
+    }
+
+    .chart-body {
+      position: relative;
+      height: 280px;
+    }
+
+
+    .kpi-card {
+      flex: 1;
+      min-width: 0;
+      padding: 16px;
+      border: 1px solid #ccc;
+    }
+
+    .kpi-label {
+      margin: 0 0 8px;
+      font-size: 13px;
+      color: #555;
+    }
+
+    .kpi-value {
+      margin: 0;
+      font-size: 22px;
+      font-weight: 700;
+    }
+
+    .kpi-unit {
+      margin-left: 4px;
+      font-size: 13px;
+      font-weight: 400;
+      color: #555;
+    }
+
+    .result {
+      display: none;
+    }
+
+    .section-box {
+      margin-bottom: 16px;
+      padding: 16px;
+      border: 1px solid #ccc;
+    }
+
+    .section-title {
+      margin: 0 0 8px;
+      font-size: 16px;
+      font-weight: 700;
+    }
+
+    .section-note {
+      margin: 0 0 12px;
+      font-size: 13px;
+      color: #555;
+    }
+
+    .signal-groups {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 12px;
+    }
+
+    .signal-group-title {
+      margin: 0 0 8px;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .signal-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .signal-card {
+      padding: 10px 12px;
+      border: 1px solid #ccc;
+    }
+
+    .signal-card.green {
+      background: #e8f6e8;
+      border-color: #7cbc7c;
+    }
+
+    .signal-card.yellow {
+      background: #fff6d6;
+      border-color: #e0c35a;
+    }
+
+    .signal-card.red {
+      background: #fde8e8;
+      border-color: #e08a8a;
+    }
+
+    .signal-card-name {
+      margin: 0 0 6px;
+      font-weight: 700;
+    }
+
+    .signal-card p {
+      margin: 0 0 2px;
+      font-size: 13px;
+    }
+
+    .season-legend {
+      margin: 0 0 8px;
+      font-size: 13px;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    .data-table {
+      min-width: 1100px;
+    }
+
+    th,
+    td {
+      border: 1px solid #ccc;
+      padding: 8px 10px;
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    .data-table th:first-child,
+    .data-table td:first-child,
+    .data-table th:nth-child(2),
+    .data-table td:nth-child(2),
+    .season-table th:first-child,
+    .season-table td:first-child,
+    .season-table th:nth-child(2),
+    .season-table td:nth-child(2),
+    .season-table th:nth-child(4),
+    .season-table td:nth-child(4),
+    .season-table th:nth-child(6),
+    .season-table td:nth-child(6) {
+      text-align: left;
+    }
+
+    th {
+      background: #f5f5f5;
+    }
+
+    tr.season-strong,
+    tr.season-flat {
+      font-weight: 700;
+    }
+
+    .action-groups {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 12px;
+    }
+
+    .action-card {
+      padding: 10px 12px;
+      border: 1px solid #ccc;
+      background: #fafafa;
+    }
+
+    .action-card-name {
+      margin: 0 0 6px;
+      font-weight: 700;
+    }
+
+    .action-card p {
+      margin: 0 0 2px;
+      font-size: 13px;
+    }
+
+    .badge-pressure {
+      display: inline-block;
+      margin-left: 6px;
+      padding: 1px 6px;
+      border-radius: 10px;
+      background: #e15759;
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .table-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .table-bar button,
+    .data-table th.sortable {
+      cursor: pointer;
+    }
+
+    .table-bar button {
+      padding: 8px 12px;
+      border: 1px solid #ccc;
+      background: #fff;
+      font-family: inherit;
+      font-size: 13px;
+    }
+
+    .table-bar button.active {
+      background: #eef3f8;
+      border-color: #4e79a7;
+    }
+
+    .data-table th.sortable {
+      user-select: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="toolbar">
+    <label class="upload-label" id="uploadButton">
+      엑셀 파일 업로드
+      <input type="file" accept=".xlsx,.xls,.xlsm,.xlsb,.csv" id="excelInput">
+    </label>
+    <select id="deptSelect">
+      <option value="">전체</option>
+    </select>
+    <select id="yearSelect">
+      <option value="">전체</option>
+    </select>
+  </div>
+  <p class="file-name" id="fileName"></p>
+
+  <div class="kpi-row">
+    <div class="kpi-card">
+      <p class="kpi-label">총 매출</p>
+      <p class="kpi-value"><span id="kpiSales">-</span><span class="kpi-unit">백만원</span></p>
+    </div>
+    <div class="kpi-card">
+      <p class="kpi-label">영업이익률</p>
+      <p class="kpi-value"><span id="kpiMargin">-</span><span class="kpi-unit">%</span></p>
+    </div>
+    <div class="kpi-card">
+      <p class="kpi-label">총 영업이익</p>
+      <p class="kpi-value"><span id="kpiOpProfit">-</span><span class="kpi-unit">백만원</span></p>
+    </div>
+    <div class="kpi-card">
+      <p class="kpi-label">총 EBITDA</p>
+      <p class="kpi-value"><span id="kpiEbitda">-</span><span class="kpi-unit">백만원</span></p>
+    </div>
+    <div class="kpi-card">
+      <p class="kpi-label">평균 AR회전일수</p>
+      <p class="kpi-value"><span id="kpiArDays">-</span><span class="kpi-unit">일</span></p>
+    </div>
+  </div>
+
+  <div class="chart-grid">
+    <div class="chart-card">
+      <p class="chart-title">월별 매출·영업이익</p>
+      <div class="chart-body">
+        <canvas id="chartMonthly"></canvas>
+      </div>
+    </div>
+    <div class="chart-card">
+      <p class="chart-title">영업이익률 vs 매출액</p>
+      <div class="chart-body">
+        <canvas id="chartScatter"></canvas>
+      </div>
+    </div>
+    <div class="chart-card">
+      <p class="chart-title">사업부 매출 비중</p>
+      <div class="chart-body">
+        <canvas id="chartDonut"></canvas>
+      </div>
+    </div>
+    <div class="chart-card">
+      <p class="chart-title">AR회전일수 vs AP회전일수</p>
+      <p class="chart-note">AR이 AP보다 길면 운전자본 부담이 큰 사업부</p>
+      <div class="chart-body">
+        <canvas id="chartDays"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-box">
+    <p class="section-title">사업부 마진 신호등</p>
+    <p class="section-note">수치 해석은 보조용. 시황·환율·일회성 대형 수주 등 맥락을 함께 본다.</p>
+    <div class="signal-groups">
+      <div>
+        <p class="signal-group-title">초록 · 우량 (5% 이상)</p>
+        <div class="signal-cards" id="signalGreen"></div>
+      </div>
+      <div>
+        <p class="signal-group-title">노랑 · 현행 유지 (2~5%)</p>
+        <div class="signal-cards" id="signalYellow"></div>
+      </div>
+      <div>
+        <p class="signal-group-title">빨강 · 개선 검토 (2% 이하)</p>
+        <div class="signal-cards" id="signalRed"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-box">
+    <p class="section-title">시즌 자동 감지</p>
+    <p class="section-note">같은 월의 두 해 평균 매출을 사업부 연 평균과 비교합니다. 5% 이상 높으면 성수기, 5% 이상 낮으면 비수기입니다.</p>
+    <p class="season-legend" id="seasonLegend"></p>
+    <div class="table-wrap">
+      <table class="season-table">
+        <thead>
+          <tr>
+            <th>사업부</th>
+            <th>성수기 월</th>
+            <th>성수기 평균 영업이익률</th>
+            <th>비수기 월</th>
+            <th>비수기 평균 영업이익률</th>
+            <th>성수기 마진 패턴</th>
+          </tr>
+        </thead>
+        <tbody id="seasonRows"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="section-box">
+    <p class="section-title">오늘의 경영 액션</p>
+    <div class="action-groups">
+      <div>
+        <p class="signal-group-title">마진 개선 우선 후보</p>
+        <div class="signal-cards" id="actionMargin"></div>
+      </div>
+      <div>
+        <p class="signal-group-title">운전자본 압박 후보</p>
+        <div class="signal-cards" id="actionWorking"></div>
+      </div>
+      <div>
+        <p class="signal-group-title">현금흐름 우량 후보</p>
+        <div class="signal-cards" id="actionCash"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="result" id="result">
+    <div class="table-bar">
+      <button type="button" id="sortMarginLow">영업이익률 낮은 순</button>
+      <button type="button" id="sortArLong">AR회전일수 긴 순</button>
+      <button type="button" id="sortSalesHigh">매출 큰 순</button>
+      <button type="button" id="exportCsv">CSV 내보내기</button>
+    </div>
+    <div class="table-wrap">
+      <table class="data-table">
+        <thead>
+          <tr id="headerRow"></tr>
+        </thead>
+        <tbody id="bodyRows"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.6/dist/chart.umd.min.js"></script>
+  <script>
+    const COLUMNS = [
+      "사업부",
+      "월",
+      "매출액",
+      "수출비중",
+      "매출원가",
+      "매출총이익",
+      "판관비",
+      "영업이익",
+      "EBITDA",
+      "영업현금흐름",
+      "AR회전일수",
+      "AP회전일수"
+    ];
+
+    const uploadButton = document.getElementById("uploadButton");
+    const excelInput = document.getElementById("excelInput");
+    const result = document.getElementById("result");
+    const fileName = document.getElementById("fileName");
+    const headerRow = document.getElementById("headerRow");
+    const bodyRows = document.getElementById("bodyRows");
+    const deptSelect = document.getElementById("deptSelect");
+    const yearSelect = document.getElementById("yearSelect");
+
+    const donutCenterPlugin = {
+      id: "donutCenter",
+      afterDraw: function (chart) {
+        const text = chart.config.options.plugins.donutCenter && chart.config.options.plugins.donutCenter.text;
+        if (!text) return;
+        const meta = chart.getDatasetMeta(0);
+        if (!meta.data.length) return;
+        const center = meta.data[0];
+        const ctx = chart.ctx;
+        ctx.save();
+        ctx.textAlign = "center";
+        ctx.textBaseline = "middle";
+        ctx.fillStyle = "#111";
+        ctx.font = "700 16px sans-serif";
+        ctx.fillText(text, center.x, center.y - 8);
+        ctx.fillStyle = "#555";
+        ctx.font = "12px sans-serif";
+        ctx.fillText("백만원", center.x, center.y + 10);
+        ctx.restore();
+      }
+    };
+
+    const MONTHS = buildMonthRange("2024-07", "2026-06");
+    const DEPT_COLORS = [
+      "#4e79a7",
+      "#f28e2b",
+      "#e15759",
+      "#76b7b2",
+      "#59a14f",
+      "#edc948",
+      "#b07aa1",
+      "#9c755f"
+    ];
+
+    let allRows = [];
+    let deptColorMap = {};
+    let chartMonthly;
+    let chartScatter;
+    let chartDonut;
+    let chartDays;
+    let tableRows = [];
+    let sortState = { key: "", dir: "asc", quick: "" };
+
+    excelInput.addEventListener("change", function () {
+      const file = excelInput.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = function (event) {
+        const workbook = XLSX.read(event.target.result, { type: "array", cellDates: true });
+        const sheet = workbook.Sheets[workbook.SheetNames[0]];
+        allRows = XLSX.utils.sheet_to_json(sheet, { defval: "" });
+
+        const depts = uniqueValues(allRows, "사업부");
+        deptColorMap = {};
+        depts.forEach(function (dept, index) {
+          deptColorMap[dept] = DEPT_COLORS[index % DEPT_COLORS.length];
+        });
+
+        fillSelect(deptSelect, depts);
+        fillSelect(yearSelect, uniqueYears(allRows));
+
+        renderHeader();
+        applyFilters();
+
+        uploadButton.style.display = "none";
+        fileName.textContent = file.name;
+        fileName.style.display = "block";
+        result.style.display = "block";
+      };
+      reader.readAsArrayBuffer(file);
+    });
+
+    deptSelect.addEventListener("change", applyFilters);
+    yearSelect.addEventListener("change", applyFilters);
+    document.getElementById("sortMarginLow").addEventListener("click", function () {
+      setQuickSort("marginLow");
+    });
+    document.getElementById("sortArLong").addEventListener("click", function () {
+      setQuickSort("arLong");
+    });
+    document.getElementById("sortSalesHigh").addEventListener("click", function () {
+      setQuickSort("salesHigh");
+    });
+    document.getElementById("exportCsv").addEventListener("click", exportCsv);
+
+    function getYear(monthValue) {
+      if (monthValue instanceof Date && !isNaN(monthValue.getTime())) {
+        return String(monthValue.getFullYear());
+      }
+      const text = String(monthValue == null ? "" : monthValue).trim();
+      return /^\d{4}/.test(text) ? text.slice(0, 4) : "";
+    }
+
+    function uniqueValues(rows, name) {
+      const seen = {};
+      const values = [];
+      rows.forEach(function (row) {
+        const value = String(row[name] == null ? "" : row[name]).trim();
+        if (value && !seen[value]) {
+          seen[value] = true;
+          values.push(value);
+        }
+      });
+      return values;
+    }
+
+    function uniqueYears(rows) {
+      const seen = {};
+      const years = [];
+      rows.forEach(function (row) {
+        const year = getYear(row["월"]);
+        if (year && !seen[year]) {
+          seen[year] = true;
+          years.push(year);
+        }
+      });
+      years.sort();
+      return years;
+    }
+
+    function fillSelect(select, values) {
+      select.innerHTML = '<option value="">전체</option>' + values.map(function (value) {
+        return '<option value="' + value + '">' + value + "</option>";
+      }).join("");
+    }
+
+    function getFilteredRows() {
+      const dept = deptSelect.value;
+      const year = yearSelect.value;
+      return allRows.filter(function (row) {
+        const deptMatch = !dept || String(row["사업부"] == null ? "" : row["사업부"]).trim() === dept;
+        const yearMatch = !year || getYear(row["월"]) === year;
+        return deptMatch && yearMatch;
+      });
+    }
+
+    function applyFilters() {
+      if (!allRows.length) return;
+      const rows = getFilteredRows();
+      tableRows = sortRows(rows.slice());
+      renderHeader();
+      renderTable(tableRows);
+      updateKpis(rows);
+      updateCharts(rows);
+      updateSignalCards(rows);
+      updateSeasonTable(rows);
+      updateActionBox(rows);
+      updateQuickButtons();
+    }
+
+    function getDept(row) {
+      return String(row["사업부"] == null ? "" : row["사업부"]).trim();
+    }
+
+    function pad2(value) {
+      return String(value).padStart(2, "0");
+    }
+
+    function buildMonthRange(start, end) {
+      const months = [];
+      var year = Number(start.slice(0, 4));
+      var month = Number(start.slice(5, 7));
+      var endYear = Number(end.slice(0, 4));
+      var endMonth = Number(end.slice(5, 7));
+      while (year < endYear || (year === endYear && month <= endMonth)) {
+        months.push(year + "-" + pad2(month));
+        month += 1;
+        if (month > 12) {
+          month = 1;
+          year += 1;
+        }
+      }
+      return months;
+    }
+
+    function getYearMonth(monthValue) {
+      if (monthValue instanceof Date && !isNaN(monthValue.getTime())) {
+        return monthValue.getFullYear() + "-" + pad2(monthValue.getMonth() + 1);
+      }
+      const text = String(monthValue == null ? "" : monthValue).trim();
+      const matched = text.match(/^(\d{4})[-./]?(\d{1,2})/);
+      if (!matched) return "";
+      return matched[1] + "-" + pad2(matched[2]);
+    }
+
+    function formatCompact(value) {
+      return Number(value).toLocaleString("ko-KR");
+    }
+
+    function updateCharts(rows) {
+      updateMonthlyChart(rows);
+      updateScatterChart(rows);
+      updateDonutChart(rows);
+      updateDaysChart(rows);
+    }
+
+    function updateMonthlyChart(rows) {
+      const salesByMonth = {};
+      const profitByMonth = {};
+      MONTHS.forEach(function (month) {
+        salesByMonth[month] = 0;
+        profitByMonth[month] = 0;
+      });
+
+      rows.forEach(function (row) {
+        const month = getYearMonth(row["월"]);
+        if (!(month in salesByMonth)) return;
+        salesByMonth[month] += toNumber(row["매출액"]) || 0;
+        profitByMonth[month] += toNumber(row["영업이익"]) || 0;
+      });
+
+      const data = {
+        labels: MONTHS,
+        datasets: [
+          {
+            type: "bar",
+            label: "매출액",
+            data: MONTHS.map(function (month) { return salesByMonth[month]; }),
+            backgroundColor: "rgba(78, 121, 167, 0.7)",
+            yAxisID: "ySales"
+          },
+          {
+            type: "line",
+            label: "영업이익",
+            data: MONTHS.map(function (month) { return profitByMonth[month]; }),
+            borderColor: "#e15759",
+            backgroundColor: "#e15759",
+            yAxisID: "yProfit",
+            tension: 0.2,
+            pointRadius: 3
+          }
+        ]
+      };
+
+      if (chartMonthly) {
+        chartMonthly.data = data;
+        chartMonthly.update();
+        return;
+      }
+
+      chartMonthly = new Chart(document.getElementById("chartMonthly"), {
+        type: "bar",
+        data: data,
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          interaction: { mode: "index", intersect: false },
+          plugins: {
+            legend: { position: "top" }
+          },
+          scales: {
+            ySales: {
+              type: "linear",
+              position: "left",
+              title: { display: true, text: "매출액" },
+              ticks: {
+                callback: function (value) { return formatCompact(value); }
+              }
+            },
+            yProfit: {
+              type: "linear",
+              position: "right",
+              title: { display: true, text: "영업이익" },
+              grid: { drawOnChartArea: false },
+              ticks: {
+                callback: function (value) { return formatCompact(value); }
+              }
+            }
+          }
+        }
+      });
+    }
+
+    function updateScatterChart(rows) {
+      var maxEbitda = 0;
+      rows.forEach(function (row) {
+        var ebitda = Math.abs(toNumber(row["EBITDA"]) || 0);
+        if (ebitda > maxEbitda) maxEbitda = ebitda;
+      });
+
+      const depts = uniqueValues(rows, "사업부");
+      const datasets = depts.map(function (dept) {
+        return {
+          label: dept,
+          data: rows.filter(function (row) {
+            return getDept(row) === dept;
+          }).map(function (row) {
+            var sales = toNumber(row["매출액"]);
+            var profit = toNumber(row["영업이익"]);
+            var ebitda = Math.abs(toNumber(row["EBITDA"]) || 0);
+            if (sales === null || sales === 0 || profit === null) return null;
+            return {
+              x: sales,
+              y: (profit / sales) * 100,
+              r: maxEbitda === 0 ? 6 : 4 + (ebitda / maxEbitda) * 16,
+              month: getYearMonth(row["월"]),
+              ebitda: toNumber(row["EBITDA"])
+            };
+          }).filter(Boolean),
+          backgroundColor: deptColorMap[dept] || "#888"
+        };
+      });
+
+      const options = {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: { position: "top" },
+          tooltip: {
+            callbacks: {
+              label: function (ctx) {
+                var point = ctx.raw;
+                return [
+                  ctx.dataset.label + " " + point.month,
+                  "매출액: " + formatCompact(point.x),
+                  "영업이익률: " + formatOneDecimal(point.y) + "%",
+                  "EBITDA: " + formatCompact(point.ebitda || 0)
+                ];
+              }
+            }
+          }
+        },
+        scales: {
+          x: {
+            title: { display: true, text: "매출액" },
+            ticks: {
+              callback: function (value) { return formatCompact(value); }
+            }
+          },
+          y: {
+            title: { display: true, text: "영업이익률 (%)" }
+          }
+        }
+      };
+
+      if (chartScatter) {
+        chartScatter.data.datasets = datasets;
+        chartScatter.update();
+        return;
+      }
+
+      chartScatter = new Chart(document.getElementById("chartScatter"), {
+        type: "bubble",
+        data: { datasets: datasets },
+        options: options
+      });
+    }
+
+    function chartDepts(rows) {
+      return deptSelect.value ? [deptSelect.value] : uniqueValues(allRows, "사업부");
+    }
+
+    function updateDonutChart(rows) {
+      const depts = chartDepts(rows);
+      const salesByDept = depts.map(function (dept) {
+        return sumColumn(rows.filter(function (row) {
+          return getDept(row) === dept;
+        }), "매출액");
+      });
+      const total = salesByDept.reduce(function (sum, value) { return sum + value; }, 0);
+
+      const data = {
+        labels: depts,
+        datasets: [{
+          data: salesByDept,
+          backgroundColor: depts.map(function (dept) {
+            return deptColorMap[dept] || "#888";
+          }),
+          borderWidth: 1
+        }]
+      };
+      const options = {
+        responsive: true,
+        maintainAspectRatio: false,
+        cutout: "62%",
+        plugins: {
+          legend: { position: "right" },
+          donutCenter: { text: total === 0 ? "-" : formatInteger(total) }
+        }
+      };
+
+      if (chartDonut) {
+        chartDonut.data = data;
+        chartDonut.options.plugins.donutCenter.text = options.plugins.donutCenter.text;
+        chartDonut.update();
+        return;
+      }
+
+      chartDonut = new Chart(document.getElementById("chartDonut"), {
+        type: "doughnut",
+        data: data,
+        options: options,
+        plugins: [donutCenterPlugin]
+      });
+    }
+
+    function updateDaysChart(rows) {
+      const depts = chartDepts(rows);
+      const arValues = [];
+      const apValues = [];
+
+      depts.forEach(function (dept) {
+        const deptRows = rows.filter(function (row) {
+          return getDept(row) === dept;
+        });
+        var ar = averageColumn(deptRows, "AR회전일수");
+        var ap = averageColumn(deptRows, "AP회전일수");
+        arValues.push(ar === null ? 0 : ar);
+        apValues.push(ap === null ? 0 : ap);
+      });
+
+      const data = {
+        labels: depts,
+        datasets: [
+          {
+            label: "평균 AR회전일수",
+            data: arValues,
+            backgroundColor: "rgba(78, 121, 167, 0.8)"
+          },
+          {
+            label: "평균 AP회전일수",
+            data: apValues,
+            backgroundColor: "rgba(242, 142, 43, 0.8)"
+          }
+        ]
+      };
+
+      if (chartDays) {
+        chartDays.data = data;
+        chartDays.update();
+        return;
+      }
+
+      chartDays = new Chart(document.getElementById("chartDays"), {
+        type: "bar",
+        data: data,
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { position: "top" }
+          },
+          scales: {
+            y: {
+              title: { display: true, text: "일" },
+              ticks: {
+                callback: function (value) { return formatInteger(value); }
+              }
+            }
+          }
+        }
+      });
+    }
+
+    function renderHeader() {
+      headerRow.innerHTML = COLUMNS.map(function (name) {
+        var mark = "";
+        if (sortState.key === name) mark = sortState.dir === "asc" ? " ▲" : " ▼";
+        return '<th class="sortable" data-col="' + name + '">' + name + mark + "</th>";
+      }).join("");
+      Array.prototype.forEach.call(headerRow.querySelectorAll("th"), function (th) {
+        th.addEventListener("click", function () {
+          var key = th.getAttribute("data-col");
+          if (sortState.key === key) {
+            sortState.dir = sortState.dir === "asc" ? "desc" : "asc";
+          } else {
+            sortState.key = key;
+            sortState.dir = (key === "사업부" || key === "월") ? "asc" : "desc";
+          }
+          sortState.quick = "";
+          applyFilters();
+        });
+      });
+    }
+
+    function compareRows(a, b, key, dir) {
+      var av = a[key];
+      var bv = b[key];
+      var an = toNumber(av);
+      var bn = toNumber(bv);
+      var result = 0;
+      if (an !== null || bn !== null) {
+        if (an === null) result = 1;
+        else if (bn === null) result = -1;
+        else result = an - bn;
+      } else {
+        result = String(av == null ? "" : av).localeCompare(String(bv == null ? "" : bv), "ko");
+      }
+      return dir === "desc" ? -result : result;
+    }
+
+    function sortRows(rows) {
+      if (sortState.quick === "marginLow") {
+        return rows.sort(function (a, b) {
+          var am = getMargin(a);
+          var bm = getMargin(b);
+          if (am === null && bm === null) return 0;
+          if (am === null) return 1;
+          if (bm === null) return -1;
+          return am - bm;
+        });
+      }
+      if (sortState.quick === "arLong") {
+        return rows.sort(function (a, b) {
+          return compareRows(a, b, "AR회전일수", "desc");
+        });
+      }
+      if (sortState.quick === "salesHigh") {
+        return rows.sort(function (a, b) {
+          return compareRows(a, b, "매출액", "desc");
+        });
+      }
+      if (!sortState.key) return rows;
+      return rows.sort(function (a, b) {
+        return compareRows(a, b, sortState.key, sortState.dir);
+      });
+    }
+
+    function setQuickSort(quick) {
+      sortState.quick = quick;
+      sortState.key = "";
+      applyFilters();
+    }
+
+    function updateQuickButtons() {
+      document.getElementById("sortMarginLow").classList.toggle("active", sortState.quick === "marginLow");
+      document.getElementById("sortArLong").classList.toggle("active", sortState.quick === "arLong");
+      document.getElementById("sortSalesHigh").classList.toggle("active", sortState.quick === "salesHigh");
+    }
+
+    function exportCsv() {
+      if (!tableRows.length) return;
+      const lines = [COLUMNS.join(",")];
+      tableRows.forEach(function (row) {
+        lines.push(COLUMNS.map(function (name) {
+          var value = row[name];
+          if (value instanceof Date && !isNaN(value.getTime())) {
+            value = getYearMonth(value);
+          }
+          var text = value == null ? "" : String(value);
+          if (/[",\n]/.test(text)) text = '"' + text.replace(/"/g, '""') + '"';
+          return text;
+        }).join(","));
+      });
+      const blob = new Blob(["\uFEFF" + lines.join("\n")], { type: "text/csv;charset=utf-8;" });
+      const link = document.createElement("a");
+      link.href = URL.createObjectURL(blob);
+      link.download = (fileName.textContent || "data").replace(/\.[^.]+$/, "") + ".csv";
+      link.click();
+      URL.revokeObjectURL(link.href);
+    }
+
+    function renderTable(rows) {
+      bodyRows.innerHTML = rows.map(function (row) {
+        return "<tr>" + COLUMNS.map(function (name) {
+          return "<td>" + formatValue(row[name]) + "</td>";
+        }).join("") + "</tr>";
+      }).join("");
+    }
+
+    function emptyActionHtml() {
+      return '<p class="section-note">해당 없음</p>';
+    }
+
+    function actionCardHtml(title, lines, badge) {
+      return (
+        '<div class="action-card">' +
+          '<p class="action-card-name">' + title + (badge || "") + "</p>" +
+          lines.map(function (line) { return "<p>" + line + "</p>"; }).join("") +
+        "</div>"
+      );
+    }
+
+    function percentileThreshold(values, ratio) {
+      if (!values.length) return null;
+      const sorted = values.slice().sort(function (a, b) { return a - b; });
+      var index = Math.ceil(sorted.length * ratio) - 1;
+      if (index < 0) index = 0;
+      return sorted[index];
+    }
+
+    function getCashRatio(row) {
+      var sales = toNumber(row["매출액"]);
+      var cash = toNumber(row["영업현금흐름"]);
+      if (sales === null || sales === 0 || cash === null) return null;
+      return cash / sales;
+    }
+
+    function updateActionBox(rows) {
+      const salesValues = rows.map(function (row) {
+        return toNumber(row["매출액"]);
+      }).filter(function (value) { return value !== null; });
+      const salesCut = percentileThreshold(salesValues, 0.5);
+
+      const marginCandidates = rows.filter(function (row) {
+        var margin = getMargin(row);
+        var sales = toNumber(row["매출액"]);
+        return margin !== null && margin <= 4 && sales !== null && salesCut !== null && sales >= salesCut;
+      }).sort(function (a, b) {
+        return getMargin(a) - getMargin(b);
+      }).slice(0, 3);
+
+      document.getElementById("actionMargin").innerHTML = marginCandidates.map(function (row) {
+        return actionCardHtml(
+          getDept(row) + " · " + getYearMonth(row["월"]),
+          [
+            "영업이익률 " + formatOneDecimal(getMargin(row)) + "%",
+            "매출액 " + formatInteger(toNumber(row["매출액"]) || 0) + " 백만원",
+            "영업이익 " + formatInteger(toNumber(row["영업이익"]) || 0) + " 백만원"
+          ]
+        );
+      }).join("") || emptyActionHtml();
+
+      const working = uniqueValues(rows, "사업부").map(function (dept) {
+        const deptRows = rows.filter(function (row) { return getDept(row) === dept; });
+        var ar = averageColumn(deptRows, "AR회전일수");
+        var ap = averageColumn(deptRows, "AP회전일수");
+        if (ar === null || ap === null) return null;
+        var worst = deptRows.slice().sort(function (a, b) {
+          var ag = (toNumber(a["AR회전일수"]) || 0) - (toNumber(a["AP회전일수"]) || 0);
+          var bg = (toNumber(b["AR회전일수"]) || 0) - (toNumber(b["AP회전일수"]) || 0);
+          return bg - ag;
+        })[0];
+        return {
+          dept: dept,
+          month: worst ? getYearMonth(worst["월"]) : "",
+          ar: ar,
+          ap: ap,
+          gap: ar - ap
+        };
+      }).filter(Boolean).sort(function (a, b) {
+        return b.gap - a.gap;
+      }).slice(0, 3);
+
+      document.getElementById("actionWorking").innerHTML = working.map(function (item) {
+        var badge = item.gap >= 30 ? '<span class="badge-pressure">압박</span>' : "";
+        return actionCardHtml(
+          item.dept + " · " + item.month,
+          [
+            "AR " + formatInteger(item.ar) + "일 / AP " + formatInteger(item.ap) + "일",
+            "격차 " + formatInteger(item.gap) + "일"
+          ],
+          badge
+        );
+      }).join("") || emptyActionHtml();
+
+      const cashRows = rows.map(function (row) {
+        return { row: row, ratio: getCashRatio(row) };
+      }).filter(function (item) { return item.ratio !== null; });
+      const cashCut = percentileThreshold(cashRows.map(function (item) { return item.ratio; }), 0.8);
+      const cashCandidates = cashRows.filter(function (item) {
+        return cashCut !== null && item.ratio >= cashCut;
+      }).sort(function (a, b) {
+        return b.ratio - a.ratio;
+      }).slice(0, 3);
+
+      document.getElementById("actionCash").innerHTML = cashCandidates.map(function (item) {
+        var row = item.row;
+        return actionCardHtml(
+          getDept(row) + " · " + getYearMonth(row["월"]),
+          [
+            "영업현금흐름/매출 " + formatOneDecimal(item.ratio * 100) + "%",
+            "영업현금흐름 " + formatInteger(toNumber(row["영업현금흐름"]) || 0) + " 백만원",
+            "매출액 " + formatInteger(toNumber(row["매출액"]) || 0) + " 백만원"
+          ]
+        );
+      }).join("") || emptyActionHtml();
+    }
+
+    function getMargin(row) {
+      var sales = toNumber(row["매출액"]);
+      var profit = toNumber(row["영업이익"]);
+      if (sales === null || sales === 0 || profit === null) return null;
+      return (profit / sales) * 100;
+    }
+
+    function signalCardHtml(item, tone) {
+      return (
+        '<div class="signal-card ' + tone + '">' +
+          '<p class="signal-card-name">' + item.dept + " · " + item.month + "</p>" +
+          "<p>영업이익률 " + formatOneDecimal(item.margin) + "%</p>" +
+          "<p>매출액 " + formatInteger(item.sales) + " 백만원</p>" +
+          "<p>영업이익 " + formatInteger(item.profit) + " 백만원</p>" +
+        "</div>"
+      );
+    }
+
+    function updateSignalCards(rows) {
+      const green = [];
+      const yellow = [];
+      const red = [];
+
+      rows.forEach(function (row) {
+        var margin = getMargin(row);
+        if (margin === null) return;
+        var item = {
+          dept: getDept(row),
+          month: getYearMonth(row["월"]),
+          margin: margin,
+          sales: toNumber(row["매출액"]) || 0,
+          profit: toNumber(row["영업이익"]) || 0
+        };
+        if (margin >= 5) green.push(item);
+        else if (margin > 2) yellow.push(item);
+        else red.push(item);
+      });
+
+      function byMonth(a, b) {
+        if (a.dept !== b.dept) return a.dept.localeCompare(b.dept, "ko");
+        return a.month.localeCompare(b.month);
+      }
+
+      document.getElementById("signalGreen").innerHTML = green.sort(byMonth).map(function (item) {
+        return signalCardHtml(item, "green");
+      }).join("") || '<p class="section-note">해당 없음</p>';
+      document.getElementById("signalYellow").innerHTML = yellow.sort(byMonth).map(function (item) {
+        return signalCardHtml(item, "yellow");
+      }).join("") || '<p class="section-note">해당 없음</p>';
+      document.getElementById("signalRed").innerHTML = red.sort(byMonth).map(function (item) {
+        return signalCardHtml(item, "red");
+      }).join("") || '<p class="section-note">해당 없음</p>';
+    }
+
+    function weightedMargin(list) {
+      var sales = 0;
+      var profit = 0;
+      list.forEach(function (row) {
+        sales += toNumber(row["매출액"]) || 0;
+        profit += toNumber(row["영업이익"]) || 0;
+      });
+      if (sales === 0) return null;
+      return (profit / sales) * 100;
+    }
+
+    function updateSeasonTable(rows) {
+      const depts = deptSelect.value ? [deptSelect.value] : uniqueValues(allRows, "사업부");
+      const summaries = [];
+
+      depts.forEach(function (dept) {
+        const deptRows = rows.filter(function (row) {
+          return getDept(row) === dept;
+        });
+        if (!deptRows.length) return;
+
+        const byCalendarMonth = {};
+        var totalSales = 0;
+        var salesCount = 0;
+
+        deptRows.forEach(function (row) {
+          var yearMonth = getYearMonth(row["월"]);
+          var calendarMonth = yearMonth.slice(5, 7);
+          var sales = toNumber(row["매출액"]);
+          if (!calendarMonth || sales === null) return;
+          if (!byCalendarMonth[calendarMonth]) {
+            byCalendarMonth[calendarMonth] = { sales: [], rows: [] };
+          }
+          byCalendarMonth[calendarMonth].sales.push(sales);
+          byCalendarMonth[calendarMonth].rows.push(row);
+          totalSales += sales;
+          salesCount += 1;
+        });
+
+        if (!salesCount) return;
+        var yearAvg = totalSales / salesCount;
+        const peakMonths = [];
+        const offMonths = [];
+        const monthAvgs = [];
+
+        Object.keys(byCalendarMonth).sort().forEach(function (calendarMonth) {
+          var values = byCalendarMonth[calendarMonth].sales;
+          var monthAvg = values.reduce(function (sum, value) { return sum + value; }, 0) / values.length;
+          monthAvgs.push(monthAvg);
+          if (monthAvg >= yearAvg * 1.05) peakMonths.push(calendarMonth);
+          else if (monthAvg <= yearAvg * 0.95) offMonths.push(calendarMonth);
+        });
+
+        var peakRows = [];
+        var offRows = [];
+        peakMonths.forEach(function (calendarMonth) {
+          peakRows = peakRows.concat(byCalendarMonth[calendarMonth].rows);
+        });
+        offMonths.forEach(function (calendarMonth) {
+          offRows = offRows.concat(byCalendarMonth[calendarMonth].rows);
+        });
+
+        var peakMargin = weightedMargin(peakRows);
+        var offMargin = weightedMargin(offRows);
+        var pattern = "-";
+        if (peakMargin !== null && offMargin !== null) {
+          if (peakMargin > offMargin) pattern = "성수기에 영업이익률도 상승";
+          else if (peakMargin < offMargin) pattern = "매출만 늘고 마진은 하락";
+          else pattern = "성수기·비수기 마진 유사";
+        } else if (peakMonths.length && !offMonths.length) {
+          pattern = "비수기 없음";
+        } else if (!peakMonths.length) {
+          pattern = "성수기 없음";
+        }
+
+        var maxAvg = Math.max.apply(null, monthAvgs);
+        var minAvg = Math.min.apply(null, monthAvgs);
+        summaries.push({
+          dept: dept,
+          peakMonths: peakMonths.map(function (m) { return Number(m) + "월"; }).join(", ") || "-",
+          peakMargin: peakMargin,
+          offMonths: offMonths.map(function (m) { return Number(m) + "월"; }).join(", ") || "-",
+          offMargin: offMargin,
+          pattern: pattern,
+          swing: yearAvg === 0 ? 0 : (maxAvg - minAvg) / yearAvg
+        });
+      });
+
+      if (!summaries.length) {
+        document.getElementById("seasonLegend").textContent = "";
+        document.getElementById("seasonRows").innerHTML = "";
+        return;
+      }
+
+      var strongest = summaries[0];
+      var flattest = summaries[0];
+      summaries.forEach(function (item) {
+        if (item.swing > strongest.swing) strongest = item;
+        if (item.swing < flattest.swing) flattest = item;
+      });
+
+      document.getElementById("seasonLegend").textContent =
+        "가장 시즌성이 강한 사업부: " + strongest.dept +
+        " · 가장 평탄한 사업부: " + flattest.dept;
+
+      document.getElementById("seasonRows").innerHTML = summaries.map(function (item) {
+        var cls = "";
+        if (item.dept === strongest.dept) cls = "season-strong";
+        if (item.dept === flattest.dept) cls = cls ? cls + " season-flat" : "season-flat";
+        return (
+          '<tr class="' + cls + '">' +
+            "<td>" + item.dept + "</td>" +
+            "<td>" + item.peakMonths + "</td>" +
+            "<td>" + (item.peakMargin === null ? "-" : formatOneDecimal(item.peakMargin) + "%") + "</td>" +
+            "<td>" + item.offMonths + "</td>" +
+            "<td>" + (item.offMargin === null ? "-" : formatOneDecimal(item.offMargin) + "%") + "</td>" +
+            "<td>" + item.pattern + "</td>" +
+          "</tr>"
+        );
+      }).join("");
+    }
+
+    function toNumber(value) {
+      if (typeof value === "number" && Number.isFinite(value)) return value;
+      if (typeof value === "string") {
+        const cleaned = value.replace(/,/g, "").trim();
+        if (cleaned === "") return null;
+        const parsed = Number(cleaned);
+        return Number.isFinite(parsed) ? parsed : null;
+      }
+      return null;
+    }
+
+    function sumColumn(rows, name) {
+      return rows.reduce(function (total, row) {
+        const parsed = toNumber(row[name]);
+        return parsed === null ? total : total + parsed;
+      }, 0);
+    }
+
+    function averageColumn(rows, name) {
+      var total = 0;
+      var count = 0;
+      rows.forEach(function (row) {
+        var parsed = toNumber(row[name]);
+        if (parsed !== null) {
+          total += parsed;
+          count += 1;
+        }
+      });
+      return count === 0 ? null : total / count;
+    }
+
+    function formatInteger(value) {
+      return Math.round(value).toLocaleString("ko-KR");
+    }
+
+    function formatOneDecimal(value) {
+      return value.toLocaleString("ko-KR", {
+        minimumFractionDigits: 1,
+        maximumFractionDigits: 1
+      });
+    }
+
+    function updateKpis(rows) {
+      var sales = sumColumn(rows, "매출액");
+      var opProfit = sumColumn(rows, "영업이익");
+      var ebitda = sumColumn(rows, "EBITDA");
+      var arDays = averageColumn(rows, "AR회전일수");
+
+      document.getElementById("kpiSales").textContent = formatInteger(sales);
+      document.getElementById("kpiOpProfit").textContent = formatInteger(opProfit);
+      document.getElementById("kpiEbitda").textContent = formatInteger(ebitda);
+      document.getElementById("kpiMargin").textContent = sales === 0
+        ? "-"
+        : formatOneDecimal((opProfit / sales) * 100);
+      document.getElementById("kpiArDays").textContent = arDays === null
+        ? "-"
+        : formatInteger(arDays);
+    }
+
+    function formatValue(value) {
+      if (value === null || value === undefined || value === "") return "";
+      if (typeof value === "number") {
+        return value.toLocaleString("ko-KR");
+      }
+      return String(value);
+    }
+  </script>
+</body>
+</html>

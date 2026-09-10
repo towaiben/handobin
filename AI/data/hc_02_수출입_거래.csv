@@ -1,0 +1,601 @@
+﻿거래ID,선적일,구분,사업부,거래처,국가,품목,금액_USD,통화,인코텀즈,결제조건,결제예정일,결제상태,연체일수
+TRD-25000,2025-02-04,수출,물류솔루션,Nagoya Parts Co,일본,복합운송,27100,USD,FOB,T/T 60,2025-04-19,완료,0
+TRD-25001,2026-02-09,수입,철강강관,Gulf Petro Chem,사우디,송유관,143100,USD,CFR,T/T 30,2026-03-25,완료,0
+TRD-25002,2026-05-20,삼국간,물류솔루션,Osaka Trading KK,일본,복합운송,275300,USD,CIF,L/C Usance 60,2026-08-02,예정,0
+TRD-25003,2025-05-02,수입,물류솔루션,Houston Energy LLC,미국,복합운송,61700,USD,CFR,L/C Usance 60,2025-07-15,완료,0
+TRD-25004,2026-05-03,수출,차량소재,Chennai Trans Co,인도,차체부품,65600,USD,CIF,L/C Usance 90,2026-08-15,예정,0
+TRD-25005,2026-03-12,수출,화학에너지,Shanghai Bright Intl,중국,윤활기유,139400,USD,DAP,T/T 60,2026-05-25,완료,0
+TRD-25006,2025-08-14,수입,식량자원,Bangkok Grain House,태국,대두,33800,USD,CIF,L/C Usance 90,2025-11-26,완료,0
+TRD-25007,2025-01-22,수출,전력플랜트,PT Nusantara Logam,인도네시아,배전변압기,289300,USD,CFR,L/C Usance 60,2025-04-06,완료,0
+TRD-25008,2026-03-10,수출,전력플랜트,Qingdao Chem Group,중국,개폐기,295500,USD,CFR,L/C at sight,2026-03-24,완료,0
+TRD-25009,2026-02-27,수입,화학에너지,Emirates Steel Est.,UAE,윤활기유,596600,USD,DAP,T/T 30,2026-04-12,완료,0
+TRD-25010,2025-01-31,수출,화학에너지,Emirates Steel Est.,UAE,PVC레진,145800,USD,DAP,T/T 30,2025-03-16,완료,0
+TRD-25011,2025-08-14,수입,화학에너지,Lagos Agro Ltd,나이지리아,PVC레진,279500,USD,FOB,L/C at sight,2025-08-28,완료,0
+TRD-25012,2026-06-13,수입,그린에너지,Cairo Grid Co,이집트,ESS배터리,560800,USD,CIF,L/C Usance 90,2026-09-25,예정,0
+TRD-25013,2025-05-24,수출,화학에너지,Hanoi AutoParts,베트남,윤활기유,191700,USD,CFR,L/C Usance 60,2025-08-06,완료,0
+TRD-25014,2025-02-26,수출,그린에너지,Chennai Trans Co,인도,인버터,596700,USD,CFR,T/T 60,2025-05-11,완료,0
+TRD-25015,2026-04-11,수입,차량소재,Qingdao Chem Group,중국,차체부품,33100,USD,CIF,L/C Usance 60,2026-06-24,완료,0
+TRD-25016,2025-09-20,수입,전력플랜트,Gulf Petro Chem,사우디,몰드변압기,87900,USD,FOB,L/C Usance 60,2025-12-03,완료,0
+TRD-25017,2026-05-27,삼국간,철강판재,Lagos Agro Ltd,나이지리아,냉연강판,9200,USD,CFR,L/C Usance 60,2026-08-09,예정,0
+TRD-25018,2025-04-11,수출,식량자원,Hamburg Stahl GmbH,독일,대두,92800,USD,CFR,T/T 30,2025-05-25,완료,0
+TRD-25019,2025-02-26,수출,식량자원,Lagos Agro Ltd,나이지리아,옥수수,287900,USD,CFR,T/T 60,2025-05-11,연체,51
+TRD-25020,2026-02-08,수출,물류솔루션,Hamburg Stahl GmbH,독일,해상운송,147900,USD,CFR,L/C Usance 60,2026-04-23,완료,0
+TRD-25021,2025-09-11,삼국간,전력플랜트,Shanghai Bright Intl,중국,개폐기,86500,USD,FOB,L/C Usance 60,2025-11-24,완료,0
+TRD-25022,2026-06-22,수출,식량자원,Houston Energy LLC,미국,옥수수,86300,USD,FOB,L/C Usance 60,2026-09-04,예정,0
+TRD-25023,2025-12-18,수출,그린에너지,Hanoi AutoParts,베트남,ESS배터리,48100,USD,CIF,T/T 30,2026-01-31,완료,0
+TRD-25024,2026-05-08,수입,철강판재,PT Nusantara Logam,인도네시아,아연도금강판,156800,USD,CFR,L/C Usance 90,2026-08-20,예정,0
+TRD-25025,2025-10-03,수출,전력플랜트,Shanghai Bright Intl,중국,배전변압기,741800,USD,DAP,T/T 60,2025-12-16,완료,0
+TRD-25026,2026-05-09,수출,철강강관,Al-Rashid Trading,UAE,구조용강관,577200,USD,DAP,L/C Usance 90,2026-08-21,예정,0
+TRD-25027,2025-03-12,수출,화학에너지,Cairo Grid Co,이집트,PVC레진,51200,USD,CIF,T/T 30,2025-04-25,완료,0
+TRD-25028,2025-09-25,수입,식량자원,Al-Rashid Trading,UAE,밀,391200,USD,CFR,T/T 60,2025-12-08,완료,0
+TRD-25029,2025-02-08,수출,화학에너지,Nagoya Parts Co,일본,납사,95100,USD,CFR,L/C Usance 60,2025-04-23,완료,0
+TRD-25030,2025-07-31,수출,그린에너지,Hanoi AutoParts,베트남,ESS배터리,193500,USD,FOB,T/T 30,2025-09-13,완료,0
+TRD-25031,2025-08-16,수출,전력플랜트,Emirates Steel Est.,UAE,몰드변압기,109300,USD,FOB,L/C at sight,2025-08-30,완료,0
+TRD-25032,2025-12-14,수출,철강판재,Nagoya Parts Co,일본,열연코일,425900,USD,DAP,L/C at sight,2025-12-28,완료,0
+TRD-25033,2026-05-22,수출,차량소재,Shanghai Bright Intl,중국,전장부품,251600,USD,CFR,T/T 30,2026-07-05,예정,0
+TRD-25034,2025-09-22,수출,그린에너지,Gulf Petro Chem,사우디,ESS배터리,131600,USD,FOB,L/C at sight,2025-10-06,완료,0
+TRD-25035,2026-06-02,삼국간,화학에너지,Gulf Petro Chem,사우디,납사,461100,USD,CIF,T/T 60,2026-08-15,예정,0
+TRD-25036,2026-05-02,수출,화학에너지,Viet Thanh Steel,베트남,납사,260200,USD,CFR,T/T 30,2026-06-15,완료,0
+TRD-25037,2025-03-25,수출,차량소재,Hanoi AutoParts,베트남,차체부품,441400,USD,CFR,T/T 30,2025-05-08,완료,0
+TRD-25038,2025-05-18,삼국간,철강판재,Siam Power Ltd,태국,열연코일,201500,USD,DAP,L/C at sight,2025-06-01,완료,0
+TRD-25039,2026-01-17,수출,화학에너지,Shanghai Bright Intl,중국,PVC레진,202200,USD,CFR,T/T 30,2026-03-02,완료,0
+TRD-25040,2025-08-13,삼국간,식량자원,Chennai Trans Co,인도,밀,190200,USD,CFR,T/T 60,2025-10-26,완료,0
+TRD-25041,2026-03-01,수출,식량자원,Hanoi AutoParts,베트남,밀,318100,USD,FOB,L/C at sight,2026-03-15,완료,0
+TRD-25042,2025-10-30,수출,전력플랜트,Al-Rashid Trading,UAE,몰드변압기,583900,USD,CFR,T/T 30,2025-12-13,연체,39
+TRD-25043,2025-03-26,수출,철강강관,Shanghai Bright Intl,중국,송유관,122900,USD,DAP,L/C Usance 60,2025-06-08,완료,0
+TRD-25044,2025-12-14,수출,물류솔루션,Rotterdam AgriTrade,네덜란드,해상운송,372400,USD,FOB,L/C Usance 90,2026-03-28,완료,0
+TRD-25045,2026-05-24,수출,그린에너지,PT Nusantara Logam,인도네시아,인버터,363200,USD,FOB,T/T 30,2026-07-07,예정,0
+TRD-25046,2026-04-12,수입,전력플랜트,Mumbai Metal Corp,인도,몰드변압기,77100,USD,CIF,L/C Usance 60,2026-06-25,완료,0
+TRD-25047,2026-03-02,수출,철강판재,Gulf Petro Chem,사우디,열연코일,46500,USD,DAP,L/C at sight,2026-03-16,완료,0
+TRD-25048,2025-04-06,수출,화학에너지,Shanghai Bright Intl,중국,윤활기유,608100,USD,CFR,L/C Usance 60,2025-06-19,완료,0
+TRD-25049,2025-06-19,수출,철강판재,Nagoya Parts Co,일본,아연도금강판,232100,USD,FOB,L/C at sight,2025-07-03,완료,0
+TRD-25050,2025-01-26,수출,식량자원,PT Nusantara Logam,인도네시아,밀,267000,USD,FOB,T/T 30,2025-03-11,완료,0
+TRD-25051,2026-04-06,수출,차량소재,PT Nusantara Logam,인도네시아,차체부품,137300,USD,DAP,L/C at sight,2026-04-20,완료,0
+TRD-25052,2025-04-24,수출,식량자원,PT Nusantara Logam,인도네시아,대두,266000,USD,FOB,T/T 60,2025-07-07,완료,0
+TRD-25053,2025-03-27,수출,차량소재,Cairo Grid Co,이집트,전장부품,303100,USD,DAP,T/T 60,2025-06-09,완료,0
+TRD-25054,2025-09-17,수출,물류솔루션,Lagos Agro Ltd,나이지리아,복합운송,304700,USD,FOB,T/T 30,2025-10-31,완료,0
+TRD-25055,2025-12-23,수출,화학에너지,Rotterdam AgriTrade,네덜란드,윤활기유,151600,USD,FOB,T/T 60,2026-03-07,완료,0
+TRD-25056,2026-02-23,수출,철강강관,Osaka Trading KK,일본,구조용강관,71700,USD,CFR,L/C Usance 60,2026-05-08,완료,0
+TRD-25057,2026-02-11,수출,화학에너지,Hanoi AutoParts,베트남,윤활기유,90400,USD,CFR,L/C Usance 60,2026-04-26,완료,0
+TRD-25058,2025-12-07,수입,전력플랜트,Nagoya Parts Co,일본,배전변압기,182600,USD,CIF,L/C at sight,2025-12-21,완료,0
+TRD-25059,2025-08-22,수입,물류솔루션,Emirates Steel Est.,UAE,복합운송,46000,USD,FOB,T/T 30,2025-10-05,완료,0
+TRD-25060,2025-08-21,수입,그린에너지,Houston Energy LLC,미국,태양광모듈,270000,USD,FOB,T/T 30,2025-10-04,완료,0
+TRD-25061,2025-07-29,수입,차량소재,Shanghai Bright Intl,중국,샤시모듈,244200,USD,CIF,L/C Usance 60,2025-10-11,완료,0
+TRD-25062,2025-10-12,수출,화학에너지,Mumbai Metal Corp,인도,납사,128200,USD,CFR,L/C at sight,2025-10-26,완료,0
+TRD-25063,2026-02-16,수입,철강판재,Gulf Petro Chem,사우디,냉연강판,250100,USD,CIF,T/T 60,2026-05-01,완료,0
+TRD-25064,2025-12-17,수입,철강강관,Cairo Grid Co,이집트,송유관,270500,USD,DAP,L/C at sight,2025-12-31,완료,0
+TRD-25065,2026-04-21,수입,철강강관,Bangkok Grain House,태국,구조용강관,47700,USD,CIF,T/T 30,2026-06-04,완료,0
+TRD-25066,2025-12-29,수출,화학에너지,Nagoya Parts Co,일본,윤활기유,452200,USD,CFR,T/T 60,2026-03-13,완료,0
+TRD-25067,2025-06-23,수출,식량자원,Cairo Grid Co,이집트,대두,251000,USD,DAP,T/T 30,2025-08-06,연체,30
+TRD-25068,2026-06-13,수입,철강판재,Gulf Petro Chem,사우디,아연도금강판,640500,USD,FOB,T/T 60,2026-08-26,예정,0
+TRD-25069,2025-09-16,수출,철강강관,Bangkok Grain House,태국,송유관,85100,USD,CIF,L/C at sight,2025-09-30,완료,0
+TRD-25070,2026-01-24,수출,철강판재,Rotterdam AgriTrade,네덜란드,아연도금강판,36500,USD,CIF,L/C at sight,2026-02-07,완료,0
+TRD-25071,2025-04-27,수출,화학에너지,Qingdao Chem Group,중국,윤활기유,211800,USD,DAP,L/C at sight,2025-05-11,완료,0
+TRD-25072,2026-05-03,수출,철강강관,Al-Rashid Trading,UAE,구조용강관,366700,USD,DAP,L/C Usance 90,2026-08-15,예정,0
+TRD-25073,2025-10-05,수출,철강판재,Qingdao Chem Group,중국,열연코일,660500,USD,CIF,L/C Usance 60,2025-12-18,완료,0
+TRD-25074,2026-06-25,수출,물류솔루션,PT Nusantara Logam,인도네시아,해상운송,155100,USD,DAP,L/C Usance 90,2026-10-07,예정,0
+TRD-25075,2026-02-09,수출,식량자원,Osaka Trading KK,일본,옥수수,111900,USD,CIF,L/C Usance 90,2026-05-24,완료,0
+TRD-25076,2025-06-23,수출,차량소재,Al-Rashid Trading,UAE,차체부품,52200,USD,DAP,T/T 60,2025-09-05,완료,0
+TRD-25077,2025-02-03,수출,철강판재,Lagos Agro Ltd,나이지리아,아연도금강판,169700,USD,DAP,T/T 30,2025-03-19,완료,0
+TRD-25078,2026-03-06,삼국간,차량소재,Qingdao Chem Group,중국,전장부품,198600,USD,DAP,L/C at sight,2026-03-20,완료,0
+TRD-25079,2025-06-09,수출,물류솔루션,Houston Energy LLC,미국,해상운송,322000,USD,DAP,L/C at sight,2025-06-23,완료,0
+TRD-25080,2025-11-14,수입,화학에너지,Cairo Grid Co,이집트,PVC레진,795800,USD,DAP,L/C Usance 90,2026-02-26,완료,0
+TRD-25081,2026-05-13,수출,전력플랜트,Siam Power Ltd,태국,배전변압기,169800,USD,DAP,L/C Usance 90,2026-08-25,예정,0
+TRD-25082,2025-08-20,수출,철강판재,Hanoi AutoParts,베트남,냉연강판,280800,USD,CIF,T/T 60,2025-11-02,완료,0
+TRD-25083,2025-04-01,수입,물류솔루션,Mumbai Metal Corp,인도,복합운송,1278100,USD,CFR,L/C Usance 60,2025-06-14,완료,0
+TRD-25084,2026-06-18,수출,식량자원,Shanghai Bright Intl,중국,옥수수,158800,USD,CIF,T/T 60,2026-08-31,예정,0
+TRD-25085,2026-02-13,수출,그린에너지,Houston Energy LLC,미국,인버터,175000,USD,FOB,L/C Usance 60,2026-04-28,완료,0
+TRD-25086,2026-04-09,수출,철강판재,Hanoi AutoParts,베트남,냉연강판,352200,USD,CFR,L/C Usance 90,2026-07-22,예정,0
+TRD-25087,2025-03-08,수출,차량소재,Osaka Trading KK,일본,샤시모듈,102900,USD,FOB,T/T 30,2025-04-21,완료,0
+TRD-25088,2026-01-08,수출,차량소재,Lagos Agro Ltd,나이지리아,샤시모듈,144500,USD,CFR,T/T 30,2026-02-21,완료,0
+TRD-25089,2026-01-01,수출,식량자원,Hanoi AutoParts,베트남,밀,189400,USD,DAP,L/C Usance 90,2026-04-15,완료,0
+TRD-25090,2026-01-30,수입,식량자원,Qingdao Chem Group,중국,대두,216300,USD,CFR,T/T 30,2026-03-15,완료,0
+TRD-25091,2026-01-24,수출,식량자원,Rotterdam AgriTrade,네덜란드,대두,483000,USD,FOB,L/C Usance 60,2026-04-08,완료,0
+TRD-25092,2026-06-22,수출,그린에너지,Qingdao Chem Group,중국,인버터,205700,USD,CFR,L/C Usance 90,2026-10-04,예정,0
+TRD-25093,2026-01-16,수입,화학에너지,Lagos Agro Ltd,나이지리아,PVC레진,547100,USD,DAP,L/C Usance 90,2026-04-30,연체,70
+TRD-25094,2026-02-13,수출,화학에너지,Chennai Trans Co,인도,윤활기유,195600,USD,CFR,L/C at sight,2026-02-27,완료,0
+TRD-25095,2026-03-17,수출,전력플랜트,Gulf Petro Chem,사우디,배전변압기,118900,USD,CFR,T/T 30,2026-04-30,완료,0
+TRD-25096,2026-06-06,수출,철강강관,Lagos Agro Ltd,나이지리아,구조용강관,50200,USD,DAP,L/C Usance 90,2026-09-18,예정,0
+TRD-25097,2026-01-21,수출,철강강관,Gulf Petro Chem,사우디,구조용강관,279100,USD,CIF,L/C at sight,2026-02-04,완료,0
+TRD-25098,2026-05-12,삼국간,차량소재,Emirates Steel Est.,UAE,전장부품,83600,USD,DAP,L/C Usance 60,2026-07-25,예정,0
+TRD-25099,2025-07-24,삼국간,화학에너지,Mumbai Metal Corp,인도,PVC레진,192700,USD,FOB,L/C Usance 90,2025-11-05,완료,0
+TRD-25100,2026-04-10,수출,그린에너지,Emirates Steel Est.,UAE,인버터,88900,USD,DAP,L/C Usance 60,2026-06-23,완료,0
+TRD-25101,2025-06-13,수출,전력플랜트,Nagoya Parts Co,일본,개폐기,243100,USD,CFR,T/T 60,2025-08-26,완료,0
+TRD-25102,2026-04-13,삼국간,물류솔루션,Rotterdam AgriTrade,네덜란드,해상운송,98900,USD,CFR,T/T 60,2026-06-26,완료,0
+TRD-25103,2025-03-01,수입,철강판재,Chennai Trans Co,인도,냉연강판,129100,USD,CIF,T/T 60,2025-05-14,완료,0
+TRD-25104,2025-04-25,수입,전력플랜트,Gulf Petro Chem,사우디,배전변압기,273500,USD,CFR,T/T 60,2025-07-08,완료,0
+TRD-25105,2025-10-08,수출,그린에너지,Qingdao Chem Group,중국,태양광모듈,42000,USD,DAP,L/C at sight,2025-10-22,연체,6
+TRD-25106,2025-12-18,수출,차량소재,Emirates Steel Est.,UAE,샤시모듈,645800,USD,CIF,T/T 30,2026-01-31,완료,0
+TRD-25107,2025-05-29,수출,식량자원,Houston Energy LLC,미국,대두,175800,USD,FOB,L/C Usance 90,2025-09-10,완료,0
+TRD-25108,2025-10-15,수출,철강강관,Chennai Trans Co,인도,송유관,240600,USD,CFR,L/C at sight,2025-10-29,완료,0
+TRD-25109,2025-07-13,수입,식량자원,Osaka Trading KK,일본,밀,626600,USD,FOB,L/C Usance 60,2025-09-25,완료,0
+TRD-25110,2025-05-17,수출,화학에너지,Nagoya Parts Co,일본,PVC레진,103500,USD,CFR,L/C Usance 60,2025-07-30,완료,0
+TRD-25111,2026-05-21,수출,그린에너지,Houston Energy LLC,미국,인버터,203100,USD,CIF,L/C Usance 60,2026-08-03,예정,0
+TRD-25112,2026-02-22,삼국간,화학에너지,Cairo Grid Co,이집트,납사,180800,USD,CIF,T/T 60,2026-05-07,완료,0
+TRD-25113,2026-06-21,수입,철강판재,Viet Thanh Steel,베트남,냉연강판,73800,USD,DAP,L/C at sight,2026-07-05,예정,0
+TRD-25114,2025-12-17,수출,화학에너지,Al-Rashid Trading,UAE,윤활기유,190700,USD,DAP,L/C at sight,2025-12-31,완료,0
+TRD-25115,2025-06-26,수출,차량소재,Rotterdam AgriTrade,네덜란드,샤시모듈,187900,USD,DAP,T/T 30,2025-08-09,완료,0
+TRD-25116,2025-12-01,수출,식량자원,Cairo Grid Co,이집트,옥수수,35800,USD,FOB,L/C at sight,2025-12-15,연체,59
+TRD-25117,2026-06-10,수입,전력플랜트,Gulf Petro Chem,사우디,몰드변압기,422000,USD,DAP,L/C Usance 90,2026-09-22,예정,0
+TRD-25118,2025-07-15,삼국간,식량자원,Chennai Trans Co,인도,대두,193700,USD,FOB,L/C at sight,2025-07-29,완료,0
+TRD-25119,2025-05-27,수출,전력플랜트,Qingdao Chem Group,중국,개폐기,127100,USD,DAP,T/T 60,2025-08-09,완료,0
+TRD-25120,2025-09-06,수출,화학에너지,Viet Thanh Steel,베트남,납사,165000,USD,CFR,L/C at sight,2025-09-20,완료,0
+TRD-25121,2026-01-26,수입,식량자원,Viet Thanh Steel,베트남,대두,58900,USD,CFR,L/C at sight,2026-02-09,완료,0
+TRD-25122,2025-07-30,수출,철강강관,Osaka Trading KK,일본,송유관,48000,USD,CFR,T/T 30,2025-09-12,완료,0
+TRD-25123,2025-09-04,삼국간,전력플랜트,Mumbai Metal Corp,인도,몰드변압기,166500,USD,CFR,L/C Usance 60,2025-11-17,완료,0
+TRD-25124,2025-07-04,수출,철강강관,Lagos Agro Ltd,나이지리아,송유관,312600,USD,DAP,T/T 60,2025-09-16,완료,0
+TRD-25125,2025-10-26,수출,화학에너지,Osaka Trading KK,일본,윤활기유,525800,USD,CFR,L/C Usance 90,2026-02-07,완료,0
+TRD-25126,2025-08-17,수출,화학에너지,Shanghai Bright Intl,중국,PVC레진,436400,USD,CIF,L/C Usance 60,2025-10-30,완료,0
+TRD-25127,2025-07-05,수출,전력플랜트,Hamburg Stahl GmbH,독일,개폐기,79700,USD,FOB,T/T 60,2025-09-17,완료,0
+TRD-25128,2025-04-06,수입,전력플랜트,Gulf Petro Chem,사우디,개폐기,279400,USD,DAP,L/C at sight,2025-04-20,완료,0
+TRD-25129,2026-06-14,수출,전력플랜트,Qingdao Chem Group,중국,몰드변압기,81100,USD,DAP,T/T 60,2026-08-27,예정,0
+TRD-25130,2025-04-22,수입,전력플랜트,Rotterdam AgriTrade,네덜란드,개폐기,208400,USD,CIF,L/C Usance 60,2025-07-05,완료,0
+TRD-25131,2026-06-27,수입,화학에너지,Chennai Trans Co,인도,PVC레진,16200,USD,CIF,L/C Usance 60,2026-09-09,예정,0
+TRD-25132,2025-11-20,삼국간,물류솔루션,Qingdao Chem Group,중국,복합운송,98300,USD,DAP,L/C Usance 60,2026-02-02,완료,0
+TRD-25133,2026-06-09,수출,물류솔루션,Al-Rashid Trading,UAE,해상운송,214300,USD,CFR,L/C Usance 60,2026-08-22,예정,0
+TRD-25134,2025-09-10,수출,그린에너지,Cairo Grid Co,이집트,태양광모듈,57700,USD,FOB,L/C at sight,2025-09-24,완료,0
+TRD-25135,2025-03-06,삼국간,그린에너지,Shanghai Bright Intl,중국,태양광모듈,146000,USD,DAP,T/T 60,2025-05-19,완료,0
+TRD-25136,2025-03-17,삼국간,화학에너지,Viet Thanh Steel,베트남,납사,136300,USD,CFR,L/C Usance 90,2025-06-29,완료,0
+TRD-25137,2025-08-11,수출,철강강관,Osaka Trading KK,일본,송유관,174500,USD,DAP,L/C Usance 60,2025-10-24,완료,0
+TRD-25138,2025-08-19,수출,그린에너지,Gulf Petro Chem,사우디,인버터,138200,USD,CFR,L/C Usance 90,2025-12-01,연체,32
+TRD-25139,2026-02-19,수출,물류솔루션,Qingdao Chem Group,중국,해상운송,63300,USD,FOB,L/C at sight,2026-03-05,완료,0
+TRD-25140,2025-09-07,수출,철강강관,Hamburg Stahl GmbH,독일,송유관,160500,USD,CFR,L/C Usance 60,2025-11-20,완료,0
+TRD-25141,2026-04-07,수출,그린에너지,Cairo Grid Co,이집트,태양광모듈,125200,USD,CFR,T/T 60,2026-06-20,연체,37
+TRD-25142,2025-03-06,수입,식량자원,Houston Energy LLC,미국,옥수수,140800,USD,FOB,L/C Usance 90,2025-06-18,완료,0
+TRD-25143,2026-04-28,수출,그린에너지,Nagoya Parts Co,일본,태양광모듈,120500,USD,FOB,L/C at sight,2026-05-12,완료,0
+TRD-25144,2025-08-17,수출,화학에너지,Mumbai Metal Corp,인도,납사,98400,USD,CIF,T/T 60,2025-10-30,완료,0
+TRD-25145,2025-09-28,수입,철강판재,Hanoi AutoParts,베트남,아연도금강판,320800,USD,FOB,T/T 60,2025-12-11,완료,0
+TRD-25146,2025-03-01,수출,그린에너지,Qingdao Chem Group,중국,태양광모듈,268800,USD,FOB,T/T 60,2025-05-14,완료,0
+TRD-25147,2025-12-22,수출,전력플랜트,Lagos Agro Ltd,나이지리아,배전변압기,209100,USD,DAP,L/C at sight,2026-01-05,완료,0
+TRD-25148,2025-11-14,수입,차량소재,Shanghai Bright Intl,중국,전장부품,88900,USD,CIF,L/C Usance 90,2026-02-26,연체,60
+TRD-25149,2025-04-29,수입,물류솔루션,Nagoya Parts Co,일본,복합운송,350600,USD,DAP,T/T 60,2025-07-12,완료,0
+TRD-25150,2026-03-06,수출,식량자원,Dallas Solar Inc,미국,대두,148500,USD,CIF,L/C Usance 60,2026-05-19,완료,0
+TRD-25151,2026-04-09,수출,물류솔루션,Houston Energy LLC,미국,복합운송,149800,USD,CFR,T/T 60,2026-06-22,연체,61
+TRD-25152,2025-01-19,수출,식량자원,Osaka Trading KK,일본,옥수수,266400,USD,CFR,T/T 60,2025-04-03,완료,0
+TRD-25153,2026-06-11,수입,그린에너지,Hanoi AutoParts,베트남,태양광모듈,119400,USD,DAP,L/C Usance 60,2026-08-24,예정,0
+TRD-25154,2026-02-16,수출,식량자원,Viet Thanh Steel,베트남,대두,201800,USD,CFR,L/C Usance 90,2026-05-31,완료,0
+TRD-25155,2025-09-14,수출,화학에너지,Osaka Trading KK,일본,PVC레진,212200,USD,DAP,L/C at sight,2025-09-28,완료,0
+TRD-25156,2025-03-30,수입,그린에너지,Mumbai Metal Corp,인도,ESS배터리,111000,USD,FOB,T/T 30,2025-05-13,완료,0
+TRD-25157,2025-12-04,수출,식량자원,Lagos Agro Ltd,나이지리아,밀,349000,USD,CFR,T/T 30,2026-01-17,완료,0
+TRD-25158,2025-03-05,삼국간,차량소재,Shanghai Bright Intl,중국,전장부품,483800,USD,DAP,L/C Usance 90,2025-06-17,연체,36
+TRD-25159,2025-12-06,수입,식량자원,Qingdao Chem Group,중국,대두,87000,USD,CIF,L/C Usance 60,2026-02-18,완료,0
+TRD-25160,2026-06-25,수입,철강판재,Lagos Agro Ltd,나이지리아,아연도금강판,250900,USD,CIF,T/T 60,2026-09-07,예정,0
+TRD-25161,2026-04-19,수출,전력플랜트,Mumbai Metal Corp,인도,배전변압기,733400,USD,CFR,L/C at sight,2026-05-03,완료,0
+TRD-25162,2025-11-29,수출,물류솔루션,Osaka Trading KK,일본,해상운송,106900,USD,CIF,L/C Usance 90,2026-03-13,완료,0
+TRD-25163,2025-03-13,수출,철강판재,Mumbai Metal Corp,인도,열연코일,96300,USD,CFR,T/T 30,2025-04-26,완료,0
+TRD-25164,2026-01-11,수출,그린에너지,Osaka Trading KK,일본,인버터,213900,USD,CIF,L/C Usance 60,2026-03-26,완료,0
+TRD-25165,2025-11-21,수입,그린에너지,Hamburg Stahl GmbH,독일,인버터,53300,USD,CIF,L/C Usance 90,2026-03-05,완료,0
+TRD-25166,2026-03-28,수출,식량자원,Hamburg Stahl GmbH,독일,옥수수,260600,USD,DAP,L/C at sight,2026-04-11,완료,0
+TRD-25167,2025-10-08,수출,물류솔루션,Houston Energy LLC,미국,복합운송,156900,USD,FOB,T/T 30,2025-11-21,완료,0
+TRD-25168,2025-12-16,수입,식량자원,Viet Thanh Steel,베트남,밀,350200,USD,CFR,T/T 60,2026-02-28,완료,0
+TRD-25169,2026-05-22,수출,철강강관,Mumbai Metal Corp,인도,구조용강관,663000,USD,CIF,T/T 60,2026-08-04,예정,0
+TRD-25170,2025-02-28,수출,식량자원,Cairo Grid Co,이집트,밀,199400,USD,CFR,L/C at sight,2025-03-14,연체,54
+TRD-25171,2025-12-21,수출,철강판재,Chennai Trans Co,인도,냉연강판,347900,USD,DAP,L/C Usance 90,2026-04-04,완료,0
+TRD-25172,2025-09-22,수출,물류솔루션,Emirates Steel Est.,UAE,해상운송,218700,USD,CFR,T/T 30,2025-11-05,완료,0
+TRD-25173,2026-05-21,삼국간,물류솔루션,Osaka Trading KK,일본,복합운송,66600,USD,FOB,L/C at sight,2026-06-04,연체,69
+TRD-25174,2025-05-25,수출,식량자원,Rotterdam AgriTrade,네덜란드,옥수수,220200,USD,CFR,L/C Usance 60,2025-08-07,완료,0
+TRD-25175,2026-05-02,수입,전력플랜트,Houston Energy LLC,미국,몰드변압기,139800,USD,FOB,L/C at sight,2026-05-16,완료,0
+TRD-25176,2026-02-06,삼국간,식량자원,Hamburg Stahl GmbH,독일,옥수수,146500,USD,DAP,L/C Usance 60,2026-04-21,완료,0
+TRD-25177,2025-11-28,수출,차량소재,Mumbai Metal Corp,인도,샤시모듈,3219900,USD,CFR,L/C Usance 90,2026-03-12,완료,0
+TRD-25178,2025-01-31,수출,철강강관,Gulf Petro Chem,사우디,송유관,392100,USD,DAP,L/C at sight,2025-02-14,완료,0
+TRD-25179,2025-09-27,삼국간,화학에너지,Cairo Grid Co,이집트,윤활기유,112300,USD,FOB,T/T 60,2025-12-10,완료,0
+TRD-25180,2026-06-11,수출,그린에너지,Shanghai Bright Intl,중국,태양광모듈,74200,USD,FOB,L/C Usance 90,2026-09-23,예정,0
+TRD-25181,2025-02-25,수입,전력플랜트,Gulf Petro Chem,사우디,배전변압기,198900,USD,CFR,T/T 30,2025-04-10,완료,0
+TRD-25182,2026-02-07,수출,철강판재,PT Nusantara Logam,인도네시아,열연코일,45500,USD,CIF,L/C Usance 90,2026-05-22,완료,0
+TRD-25183,2025-03-24,수입,화학에너지,Mumbai Metal Corp,인도,납사,434400,USD,CFR,L/C Usance 90,2025-07-06,완료,0
+TRD-25184,2025-12-25,수출,철강판재,Emirates Steel Est.,UAE,아연도금강판,552100,USD,CIF,T/T 60,2026-03-09,완료,0
+TRD-25185,2026-04-26,수입,철강판재,Bangkok Grain House,태국,열연코일,43500,USD,FOB,T/T 30,2026-06-09,완료,0
+TRD-25186,2025-10-09,수출,차량소재,Emirates Steel Est.,UAE,차체부품,164200,USD,CFR,T/T 30,2025-11-22,완료,0
+TRD-25187,2025-02-17,수출,식량자원,Bangkok Grain House,태국,대두,100000,USD,CFR,T/T 60,2025-05-02,완료,0
+TRD-25188,2025-03-05,수출,식량자원,Lagos Agro Ltd,나이지리아,옥수수,114600,USD,FOB,T/T 30,2025-04-18,연체,56
+TRD-25189,2026-05-04,수출,그린에너지,Houston Energy LLC,미국,태양광모듈,111900,USD,CIF,L/C Usance 60,2026-07-17,예정,0
+TRD-25190,2026-02-25,수출,식량자원,Emirates Steel Est.,UAE,밀,128500,USD,CFR,T/T 30,2026-04-10,완료,0
+TRD-25191,2025-06-03,수출,전력플랜트,Rotterdam AgriTrade,네덜란드,몰드변압기,240400,USD,FOB,L/C Usance 90,2025-09-15,완료,0
+TRD-25192,2025-12-27,수출,식량자원,Lagos Agro Ltd,나이지리아,옥수수,52100,USD,FOB,L/C Usance 90,2026-04-10,완료,0
+TRD-25193,2025-12-04,삼국간,전력플랜트,PT Nusantara Logam,인도네시아,개폐기,64000,USD,CFR,L/C at sight,2025-12-18,완료,0
+TRD-25194,2026-06-04,수출,식량자원,Hamburg Stahl GmbH,독일,옥수수,400700,USD,FOB,T/T 60,2026-08-17,예정,0
+TRD-25195,2026-05-06,삼국간,철강강관,Houston Energy LLC,미국,송유관,180200,USD,CFR,L/C at sight,2026-05-20,완료,0
+TRD-25196,2026-01-24,수출,철강판재,Nagoya Parts Co,일본,아연도금강판,338600,USD,FOB,L/C Usance 90,2026-05-08,완료,0
+TRD-25197,2025-11-08,수출,그린에너지,Gulf Petro Chem,사우디,태양광모듈,270900,USD,FOB,T/T 60,2026-01-21,완료,0
+TRD-25198,2026-01-22,삼국간,그린에너지,Al-Rashid Trading,UAE,태양광모듈,175700,USD,CIF,L/C Usance 60,2026-04-06,완료,0
+TRD-25199,2025-06-10,수출,물류솔루션,Mumbai Metal Corp,인도,복합운송,123200,USD,CIF,T/T 60,2025-08-23,완료,0
+TRD-25200,2025-07-31,수출,물류솔루션,Mumbai Metal Corp,인도,복합운송,37300,USD,FOB,T/T 60,2025-10-13,완료,0
+TRD-25201,2025-02-16,수출,차량소재,Cairo Grid Co,이집트,차체부품,146400,USD,CFR,T/T 60,2025-05-01,완료,0
+TRD-25202,2025-01-23,수출,화학에너지,Hamburg Stahl GmbH,독일,납사,162200,USD,CFR,T/T 30,2025-03-08,완료,0
+TRD-25203,2026-05-12,삼국간,그린에너지,Cairo Grid Co,이집트,ESS배터리,105700,USD,DAP,T/T 60,2026-07-25,예정,0
+TRD-25204,2026-06-24,수출,전력플랜트,Qingdao Chem Group,중국,몰드변압기,125600,USD,DAP,L/C Usance 60,2026-09-06,예정,0
+TRD-25205,2025-10-08,수입,식량자원,Hamburg Stahl GmbH,독일,대두,463500,USD,CIF,T/T 60,2025-12-21,완료,0
+TRD-25206,2025-01-21,수출,전력플랜트,Al-Rashid Trading,UAE,개폐기,463300,USD,DAP,T/T 60,2025-04-05,완료,0
+TRD-25207,2025-02-17,수출,철강강관,Viet Thanh Steel,베트남,송유관,352200,USD,CIF,L/C Usance 90,2025-06-01,완료,0
+TRD-25208,2025-03-03,수입,차량소재,Dallas Solar Inc,미국,샤시모듈,56600,USD,DAP,L/C Usance 90,2025-06-15,완료,0
+TRD-25209,2025-04-24,수출,화학에너지,Chennai Trans Co,인도,윤활기유,236300,USD,CIF,L/C at sight,2025-05-08,완료,0
+TRD-25210,2025-07-25,수입,물류솔루션,Hamburg Stahl GmbH,독일,해상운송,282400,USD,FOB,L/C Usance 90,2025-11-06,완료,0
+TRD-25211,2025-05-02,수입,그린에너지,Rotterdam AgriTrade,네덜란드,인버터,159300,USD,CFR,L/C Usance 60,2025-07-15,완료,0
+TRD-25212,2025-11-16,수출,물류솔루션,Nagoya Parts Co,일본,복합운송,47600,USD,CFR,L/C Usance 60,2026-01-29,완료,0
+TRD-25213,2025-08-21,수입,철강판재,Hanoi AutoParts,베트남,아연도금강판,262000,USD,FOB,L/C Usance 90,2025-12-03,완료,0
+TRD-25214,2025-08-15,수출,물류솔루션,Gulf Petro Chem,사우디,복합운송,302900,USD,CIF,T/T 30,2025-09-28,완료,0
+TRD-25215,2025-07-25,수입,물류솔루션,Nagoya Parts Co,일본,해상운송,210700,USD,FOB,L/C at sight,2025-08-08,완료,0
+TRD-25216,2026-03-29,수출,식량자원,Lagos Agro Ltd,나이지리아,옥수수,95000,USD,CFR,T/T 60,2026-06-11,완료,0
+TRD-25217,2026-03-03,수출,식량자원,Osaka Trading KK,일본,밀,195900,USD,FOB,T/T 30,2026-04-16,완료,0
+TRD-25218,2026-04-27,수입,그린에너지,PT Nusantara Logam,인도네시아,인버터,163100,USD,CIF,L/C at sight,2026-05-11,완료,0
+TRD-25219,2026-01-23,수출,그린에너지,Hamburg Stahl GmbH,독일,ESS배터리,83200,USD,CIF,T/T 60,2026-04-07,완료,0
+TRD-25220,2025-05-14,수출,화학에너지,Siam Power Ltd,태국,납사,383700,USD,DAP,L/C Usance 60,2025-07-27,완료,0
+TRD-25221,2025-12-02,수출,철강판재,PT Nusantara Logam,인도네시아,냉연강판,459900,USD,FOB,L/C Usance 90,2026-03-16,완료,0
+TRD-25222,2025-07-25,수출,그린에너지,Osaka Trading KK,일본,인버터,161200,USD,FOB,T/T 60,2025-10-07,완료,0
+TRD-25223,2026-06-26,수출,식량자원,PT Nusantara Logam,인도네시아,밀,145800,USD,CFR,T/T 30,2026-08-09,예정,0
+TRD-25224,2025-02-27,삼국간,전력플랜트,Nagoya Parts Co,일본,몰드변압기,130800,USD,DAP,L/C Usance 90,2025-06-11,완료,0
+TRD-25225,2025-07-12,삼국간,차량소재,Siam Power Ltd,태국,차체부품,121100,USD,DAP,L/C Usance 60,2025-09-24,완료,0
+TRD-25226,2025-07-21,수출,화학에너지,Emirates Steel Est.,UAE,PVC레진,173400,USD,DAP,L/C at sight,2025-08-04,완료,0
+TRD-25227,2026-01-28,삼국간,화학에너지,Siam Power Ltd,태국,윤활기유,159700,USD,FOB,L/C Usance 90,2026-05-12,완료,0
+TRD-25228,2026-03-09,수출,식량자원,Hanoi AutoParts,베트남,밀,217600,USD,DAP,L/C Usance 60,2026-05-22,완료,0
+TRD-25229,2025-11-23,수출,차량소재,Lagos Agro Ltd,나이지리아,차체부품,203800,USD,CFR,L/C Usance 60,2026-02-05,완료,0
+TRD-25230,2026-05-15,수입,철강강관,Viet Thanh Steel,베트남,구조용강관,26200,USD,FOB,T/T 30,2026-06-28,완료,0
+TRD-25231,2025-04-04,수입,그린에너지,Siam Power Ltd,태국,ESS배터리,256800,USD,CFR,T/T 30,2025-05-18,완료,0
+TRD-25232,2025-12-02,수입,차량소재,Hanoi AutoParts,베트남,차체부품,157700,USD,CIF,T/T 60,2026-02-14,완료,0
+TRD-25233,2025-05-15,수출,화학에너지,Hamburg Stahl GmbH,독일,윤활기유,118300,USD,DAP,L/C Usance 60,2025-07-28,연체,62
+TRD-25234,2025-07-13,삼국간,전력플랜트,Shanghai Bright Intl,중국,배전변압기,368900,USD,DAP,T/T 30,2025-08-26,완료,0
+TRD-25235,2026-06-28,수출,철강강관,Dallas Solar Inc,미국,송유관,365900,USD,FOB,L/C Usance 90,2026-10-10,예정,0
+TRD-25236,2025-12-30,수출,전력플랜트,Osaka Trading KK,일본,몰드변압기,88900,USD,DAP,L/C at sight,2026-01-13,완료,0
+TRD-25237,2025-09-02,수출,전력플랜트,Hamburg Stahl GmbH,독일,배전변압기,93500,USD,DAP,L/C Usance 90,2025-12-15,완료,0
+TRD-25238,2025-09-14,수입,차량소재,Emirates Steel Est.,UAE,전장부품,78300,USD,DAP,L/C at sight,2025-09-28,완료,0
+TRD-25239,2026-02-08,수출,철강판재,Dallas Solar Inc,미국,열연코일,47700,USD,CFR,T/T 60,2026-04-23,완료,0
+TRD-25240,2025-11-07,수입,전력플랜트,Hanoi AutoParts,베트남,몰드변압기,809700,USD,DAP,L/C at sight,2025-11-21,완료,0
+TRD-25241,2025-02-18,삼국간,물류솔루션,Dallas Solar Inc,미국,복합운송,327200,USD,CIF,T/T 60,2025-05-03,완료,0
+TRD-25242,2025-02-20,삼국간,물류솔루션,Dallas Solar Inc,미국,해상운송,315500,USD,FOB,L/C at sight,2025-03-06,완료,0
+TRD-25243,2025-02-18,수입,식량자원,Nagoya Parts Co,일본,옥수수,100600,USD,CFR,T/T 60,2025-05-03,완료,0
+TRD-25244,2026-05-25,수입,철강판재,Rotterdam AgriTrade,네덜란드,열연코일,50400,USD,DAP,L/C at sight,2026-06-08,완료,0
+TRD-25245,2026-06-04,수출,차량소재,PT Nusantara Logam,인도네시아,차체부품,304400,USD,CIF,T/T 60,2026-08-17,예정,0
+TRD-25246,2025-04-25,수출,차량소재,Houston Energy LLC,미국,차체부품,59100,USD,CFR,L/C Usance 60,2025-07-08,연체,46
+TRD-25247,2026-04-26,수입,화학에너지,Nagoya Parts Co,일본,납사,278700,USD,CFR,L/C Usance 60,2026-07-09,예정,0
+TRD-25248,2026-03-22,삼국간,차량소재,Osaka Trading KK,일본,샤시모듈,1614400,USD,CIF,L/C at sight,2026-04-05,완료,0
+TRD-25249,2025-06-08,수출,식량자원,Gulf Petro Chem,사우디,대두,54900,USD,CFR,T/T 60,2025-08-21,완료,0
+TRD-25250,2025-05-14,수출,철강강관,Gulf Petro Chem,사우디,송유관,113000,USD,DAP,L/C at sight,2025-05-28,완료,0
+TRD-25251,2025-06-08,수입,차량소재,Siam Power Ltd,태국,전장부품,388700,USD,FOB,L/C at sight,2025-06-22,완료,0
+TRD-25252,2025-05-13,삼국간,차량소재,Bangkok Grain House,태국,샤시모듈,70400,USD,CIF,L/C Usance 60,2025-07-26,완료,0
+TRD-25253,2025-05-27,수출,물류솔루션,Emirates Steel Est.,UAE,복합운송,103700,USD,FOB,L/C Usance 90,2025-09-08,완료,0
+TRD-25254,2026-05-11,수출,철강강관,Dallas Solar Inc,미국,구조용강관,207800,USD,CIF,L/C at sight,2026-05-25,완료,0
+TRD-25255,2026-05-16,삼국간,식량자원,Shanghai Bright Intl,중국,밀,17900,USD,DAP,L/C Usance 60,2026-07-29,예정,0
+TRD-25256,2025-10-02,삼국간,철강판재,Shanghai Bright Intl,중국,아연도금강판,393500,USD,FOB,L/C Usance 60,2025-12-15,완료,0
+TRD-25257,2026-06-26,수출,그린에너지,Osaka Trading KK,일본,태양광모듈,1066600,USD,CFR,L/C at sight,2026-07-10,예정,0
+TRD-25258,2025-05-01,수출,화학에너지,Osaka Trading KK,일본,PVC레진,321500,USD,DAP,T/T 60,2025-07-14,완료,0
+TRD-25259,2025-11-01,수입,철강판재,Rotterdam AgriTrade,네덜란드,열연코일,1385400,USD,FOB,T/T 60,2026-01-14,완료,0
+TRD-25260,2026-01-25,수출,식량자원,Emirates Steel Est.,UAE,옥수수,425300,USD,FOB,L/C at sight,2026-02-08,완료,0
+TRD-25261,2025-06-12,수출,물류솔루션,Al-Rashid Trading,UAE,해상운송,125700,USD,FOB,L/C Usance 60,2025-08-25,연체,71
+TRD-25262,2025-08-03,수출,철강판재,Qingdao Chem Group,중국,열연코일,193400,USD,CIF,T/T 60,2025-10-16,완료,0
+TRD-25263,2026-03-08,수출,물류솔루션,Rotterdam AgriTrade,네덜란드,해상운송,339600,USD,FOB,L/C Usance 60,2026-05-21,완료,0
+TRD-25264,2025-04-13,수출,전력플랜트,Nagoya Parts Co,일본,몰드변압기,79000,USD,CFR,T/T 30,2025-05-27,완료,0
+TRD-25265,2025-04-10,수출,식량자원,Bangkok Grain House,태국,대두,134700,USD,FOB,L/C at sight,2025-04-24,연체,20
+TRD-25266,2026-02-15,수입,철강판재,Hanoi AutoParts,베트남,열연코일,88000,USD,DAP,L/C at sight,2026-03-01,완료,0
+TRD-25267,2025-05-18,수출,화학에너지,Shanghai Bright Intl,중국,PVC레진,508300,USD,FOB,L/C Usance 60,2025-07-31,연체,40
+TRD-25268,2025-01-20,수출,차량소재,Houston Energy LLC,미국,차체부품,353000,USD,CFR,L/C Usance 90,2025-05-04,완료,0
+TRD-25269,2026-04-11,수입,물류솔루션,Emirates Steel Est.,UAE,해상운송,349400,USD,CIF,L/C Usance 90,2026-07-24,예정,0
+TRD-25270,2025-11-16,수출,그린에너지,Bangkok Grain House,태국,인버터,225400,USD,CFR,L/C at sight,2025-11-30,완료,0
+TRD-25271,2025-04-25,수출,전력플랜트,Cairo Grid Co,이집트,배전변압기,23800,USD,DAP,L/C Usance 60,2025-07-08,연체,37
+TRD-25272,2026-01-11,삼국간,식량자원,PT Nusantara Logam,인도네시아,옥수수,256900,USD,DAP,L/C at sight,2026-01-25,완료,0
+TRD-25273,2025-12-16,수입,차량소재,Hamburg Stahl GmbH,독일,전장부품,212700,USD,DAP,T/T 30,2026-01-29,완료,0
+TRD-25274,2025-08-17,수출,물류솔루션,Hamburg Stahl GmbH,독일,복합운송,415300,USD,DAP,T/T 60,2025-10-30,완료,0
+TRD-25275,2026-02-21,수입,차량소재,Viet Thanh Steel,베트남,차체부품,81200,USD,DAP,L/C Usance 90,2026-06-05,완료,0
+TRD-25276,2026-03-30,수출,철강강관,Hanoi AutoParts,베트남,구조용강관,146200,USD,CFR,L/C Usance 90,2026-07-12,예정,0
+TRD-25277,2026-03-03,수입,그린에너지,Mumbai Metal Corp,인도,태양광모듈,50200,USD,CFR,L/C at sight,2026-03-17,완료,0
+TRD-25278,2026-02-02,수출,차량소재,Hamburg Stahl GmbH,독일,전장부품,93200,USD,DAP,T/T 30,2026-03-18,완료,0
+TRD-25279,2025-02-15,수출,철강강관,Siam Power Ltd,태국,송유관,48700,USD,FOB,L/C at sight,2025-03-01,완료,0
+TRD-25280,2025-02-17,삼국간,그린에너지,Shanghai Bright Intl,중국,인버터,202300,USD,CFR,T/T 60,2025-05-02,완료,0
+TRD-25281,2026-03-28,수입,화학에너지,Rotterdam AgriTrade,네덜란드,PVC레진,598400,USD,DAP,L/C Usance 60,2026-06-10,완료,0
+TRD-25282,2025-01-23,삼국간,철강판재,Bangkok Grain House,태국,아연도금강판,208600,USD,FOB,L/C at sight,2025-02-06,완료,0
+TRD-25283,2025-02-01,수출,그린에너지,Mumbai Metal Corp,인도,ESS배터리,75700,USD,CIF,T/T 60,2025-04-16,완료,0
+TRD-25284,2025-03-20,수출,식량자원,Nagoya Parts Co,일본,대두,223200,USD,CIF,L/C Usance 60,2025-06-02,완료,0
+TRD-25285,2025-02-01,수입,그린에너지,Al-Rashid Trading,UAE,인버터,1849000,USD,CIF,L/C Usance 60,2025-04-16,완료,0
+TRD-25286,2026-06-27,수출,식량자원,Chennai Trans Co,인도,옥수수,191600,USD,DAP,T/T 60,2026-09-09,예정,0
+TRD-25287,2025-06-21,수입,차량소재,Hanoi AutoParts,베트남,차체부품,203900,USD,CFR,L/C Usance 60,2025-09-03,완료,0
+TRD-25288,2026-06-12,수입,철강강관,Cairo Grid Co,이집트,구조용강관,592200,USD,CFR,L/C Usance 60,2026-08-25,예정,0
+TRD-25289,2025-09-27,삼국간,철강판재,Gulf Petro Chem,사우디,아연도금강판,300200,USD,CFR,L/C Usance 60,2025-12-10,완료,0
+TRD-25290,2026-06-27,수입,식량자원,Houston Energy LLC,미국,옥수수,529700,USD,FOB,L/C Usance 60,2026-09-09,예정,0
+TRD-25291,2025-04-10,수출,그린에너지,Cairo Grid Co,이집트,태양광모듈,317000,USD,CIF,L/C at sight,2025-04-24,완료,0
+TRD-25292,2025-04-28,수입,그린에너지,Rotterdam AgriTrade,네덜란드,태양광모듈,76700,USD,CIF,T/T 60,2025-07-11,완료,0
+TRD-25293,2025-08-31,수출,화학에너지,Emirates Steel Est.,UAE,윤활기유,145900,USD,FOB,T/T 30,2025-10-14,완료,0
+TRD-25294,2025-06-17,삼국간,철강판재,Hanoi AutoParts,베트남,냉연강판,252700,USD,CFR,L/C Usance 60,2025-08-30,완료,0
+TRD-25295,2025-05-31,수출,전력플랜트,PT Nusantara Logam,인도네시아,개폐기,114700,USD,CIF,T/T 30,2025-07-14,완료,0
+TRD-25296,2025-09-28,수출,철강강관,Gulf Petro Chem,사우디,송유관,134600,USD,DAP,L/C at sight,2025-10-12,완료,0
+TRD-25297,2025-09-13,수출,그린에너지,Gulf Petro Chem,사우디,태양광모듈,195100,USD,CFR,L/C at sight,2025-09-27,완료,0
+TRD-25298,2026-04-13,수출,차량소재,Siam Power Ltd,태국,차체부품,104600,USD,FOB,L/C Usance 60,2026-06-26,완료,0
+TRD-25299,2026-06-20,수출,그린에너지,Al-Rashid Trading,UAE,태양광모듈,150500,USD,DAP,T/T 60,2026-09-02,예정,0
+TRD-25300,2026-02-04,수출,식량자원,Nagoya Parts Co,일본,밀,422900,USD,CFR,L/C at sight,2026-02-18,완료,0
+TRD-25301,2026-04-22,수출,차량소재,Rotterdam AgriTrade,네덜란드,샤시모듈,166700,USD,CIF,L/C Usance 60,2026-07-05,예정,0
+TRD-25302,2026-02-05,수출,철강강관,Al-Rashid Trading,UAE,송유관,329200,USD,DAP,L/C Usance 60,2026-04-20,연체,7
+TRD-25303,2025-04-25,수출,차량소재,Viet Thanh Steel,베트남,샤시모듈,47900,USD,CIF,L/C Usance 60,2025-07-08,연체,45
+TRD-25304,2025-05-20,삼국간,차량소재,Rotterdam AgriTrade,네덜란드,차체부품,332500,USD,DAP,L/C Usance 60,2025-08-02,완료,0
+TRD-25305,2026-01-24,수출,그린에너지,Houston Energy LLC,미국,인버터,150000,USD,FOB,L/C Usance 60,2026-04-08,연체,29
+TRD-25306,2026-05-14,수출,물류솔루션,Siam Power Ltd,태국,복합운송,68500,USD,FOB,L/C at sight,2026-05-28,완료,0
+TRD-25307,2025-09-08,수입,식량자원,Houston Energy LLC,미국,옥수수,245000,USD,CFR,T/T 60,2025-11-21,완료,0
+TRD-25308,2025-12-10,수출,화학에너지,Mumbai Metal Corp,인도,PVC레진,552400,USD,CFR,T/T 30,2026-01-23,완료,0
+TRD-25309,2026-03-11,수출,차량소재,Chennai Trans Co,인도,전장부품,197700,USD,DAP,L/C at sight,2026-03-25,완료,0
+TRD-25310,2026-01-26,수출,전력플랜트,Mumbai Metal Corp,인도,배전변압기,361100,USD,CIF,L/C Usance 90,2026-05-10,완료,0
+TRD-25311,2025-02-02,수출,차량소재,PT Nusantara Logam,인도네시아,전장부품,148800,USD,CIF,T/T 30,2025-03-18,완료,0
+TRD-25312,2026-03-29,수출,식량자원,Bangkok Grain House,태국,밀,149000,USD,DAP,T/T 60,2026-06-11,완료,0
+TRD-25313,2025-07-16,수출,화학에너지,Osaka Trading KK,일본,윤활기유,167800,USD,CIF,L/C Usance 60,2025-09-28,완료,0
+TRD-25314,2026-04-04,삼국간,식량자원,Houston Energy LLC,미국,밀,245800,USD,DAP,L/C Usance 90,2026-07-17,예정,0
+TRD-25315,2025-02-10,수입,물류솔루션,Cairo Grid Co,이집트,복합운송,143200,USD,FOB,L/C Usance 60,2025-04-25,완료,0
+TRD-25316,2025-08-30,수출,철강강관,Cairo Grid Co,이집트,구조용강관,69900,USD,CIF,T/T 30,2025-10-13,완료,0
+TRD-25317,2025-04-12,수출,화학에너지,Nagoya Parts Co,일본,PVC레진,1268600,USD,FOB,T/T 60,2025-06-25,완료,0
+TRD-25318,2026-05-29,수출,철강판재,Osaka Trading KK,일본,아연도금강판,42200,USD,DAP,T/T 30,2026-07-12,예정,0
+TRD-25319,2025-11-23,수입,식량자원,Osaka Trading KK,일본,대두,249600,USD,CIF,T/T 60,2026-02-05,완료,0
+TRD-25320,2025-09-01,수입,차량소재,Houston Energy LLC,미국,전장부품,231500,USD,CIF,L/C at sight,2025-09-15,완료,0
+TRD-25321,2026-04-02,수출,물류솔루션,Qingdao Chem Group,중국,복합운송,187300,USD,CFR,T/T 60,2026-06-15,완료,0
+TRD-25322,2026-05-24,수입,철강강관,Mumbai Metal Corp,인도,구조용강관,58800,USD,DAP,L/C Usance 90,2026-09-05,예정,0
+TRD-25323,2026-06-22,수출,전력플랜트,Nagoya Parts Co,일본,몰드변압기,82400,USD,CIF,T/T 30,2026-08-05,예정,0
+TRD-25324,2026-04-11,수출,식량자원,Hanoi AutoParts,베트남,옥수수,96200,USD,FOB,T/T 60,2026-06-24,완료,0
+TRD-25325,2026-03-11,수입,물류솔루션,Chennai Trans Co,인도,해상운송,298900,USD,FOB,T/T 30,2026-04-24,완료,0
+TRD-25326,2025-02-25,수출,식량자원,Siam Power Ltd,태국,밀,103800,USD,FOB,L/C at sight,2025-03-11,완료,0
+TRD-25327,2025-01-05,수출,철강강관,PT Nusantara Logam,인도네시아,송유관,136200,USD,CIF,T/T 30,2025-02-18,완료,0
+TRD-25328,2026-06-27,수입,전력플랜트,Dallas Solar Inc,미국,배전변압기,156200,USD,CFR,T/T 30,2026-08-10,예정,0
+TRD-25329,2026-05-05,수출,전력플랜트,PT Nusantara Logam,인도네시아,몰드변압기,307700,USD,CFR,T/T 60,2026-07-18,예정,0
+TRD-25330,2026-06-25,수출,철강강관,Chennai Trans Co,인도,송유관,42600,USD,FOB,T/T 30,2026-08-08,예정,0
+TRD-25331,2025-04-24,수출,화학에너지,Bangkok Grain House,태국,PVC레진,518600,USD,DAP,L/C at sight,2025-05-08,완료,0
+TRD-25332,2025-12-30,수출,물류솔루션,Shanghai Bright Intl,중국,복합운송,240100,USD,DAP,L/C Usance 60,2026-03-14,완료,0
+TRD-25333,2025-08-03,수출,차량소재,Shanghai Bright Intl,중국,샤시모듈,61900,USD,FOB,L/C Usance 60,2025-10-16,연체,40
+TRD-25334,2025-11-14,수출,차량소재,Viet Thanh Steel,베트남,차체부품,130000,USD,CIF,L/C Usance 60,2026-01-27,완료,0
+TRD-25335,2025-11-02,수출,철강강관,Bangkok Grain House,태국,송유관,217300,USD,DAP,T/T 60,2026-01-15,완료,0
+TRD-25336,2026-01-25,수출,차량소재,Lagos Agro Ltd,나이지리아,샤시모듈,124200,USD,CIF,T/T 60,2026-04-09,완료,0
+TRD-25337,2026-06-23,수출,차량소재,PT Nusantara Logam,인도네시아,전장부품,126000,USD,FOB,T/T 60,2026-09-05,예정,0
+TRD-25338,2026-05-04,수출,물류솔루션,Viet Thanh Steel,베트남,해상운송,239600,USD,FOB,L/C at sight,2026-05-18,완료,0
+TRD-25339,2025-09-18,수입,그린에너지,Houston Energy LLC,미국,ESS배터리,765100,USD,CFR,L/C at sight,2025-10-02,완료,0
+TRD-25340,2025-11-04,수출,물류솔루션,Osaka Trading KK,일본,복합운송,85900,USD,FOB,T/T 30,2025-12-18,완료,0
+TRD-25341,2026-01-15,수출,그린에너지,Rotterdam AgriTrade,네덜란드,ESS배터리,154500,USD,DAP,T/T 60,2026-03-30,완료,0
+TRD-25342,2025-05-05,삼국간,물류솔루션,PT Nusantara Logam,인도네시아,해상운송,307300,USD,CFR,L/C at sight,2025-05-19,완료,0
+TRD-25343,2025-01-18,수출,화학에너지,Lagos Agro Ltd,나이지리아,납사,522400,USD,DAP,T/T 60,2025-04-02,완료,0
+TRD-25344,2025-09-19,수입,철강판재,Gulf Petro Chem,사우디,열연코일,67600,USD,CFR,L/C Usance 90,2026-01-01,완료,0
+TRD-25345,2025-05-16,수입,차량소재,Shanghai Bright Intl,중국,전장부품,68700,USD,DAP,L/C at sight,2025-05-30,완료,0
+TRD-25346,2025-03-05,수출,물류솔루션,Rotterdam AgriTrade,네덜란드,해상운송,185300,USD,FOB,L/C Usance 60,2025-05-18,완료,0
+TRD-25347,2025-11-18,수출,물류솔루션,Al-Rashid Trading,UAE,복합운송,212900,USD,DAP,T/T 60,2026-01-31,연체,50
+TRD-25348,2026-05-14,수출,차량소재,Mumbai Metal Corp,인도,샤시모듈,360400,USD,CFR,L/C Usance 60,2026-07-27,예정,0
+TRD-25349,2025-11-09,삼국간,차량소재,Gulf Petro Chem,사우디,전장부품,213400,USD,CFR,T/T 30,2025-12-23,완료,0
+TRD-25350,2025-06-09,수입,식량자원,Siam Power Ltd,태국,밀,214100,USD,FOB,L/C at sight,2025-06-23,완료,0
+TRD-25351,2025-07-16,수출,차량소재,Chennai Trans Co,인도,전장부품,148000,USD,FOB,T/T 30,2025-08-29,완료,0
+TRD-25352,2025-09-16,수출,화학에너지,Rotterdam AgriTrade,네덜란드,납사,75100,USD,CIF,L/C at sight,2025-09-30,완료,0
+TRD-25353,2025-12-13,수출,식량자원,Dallas Solar Inc,미국,밀,302900,USD,FOB,L/C Usance 60,2026-02-25,완료,0
+TRD-25354,2025-01-16,수출,식량자원,Cairo Grid Co,이집트,옥수수,127200,USD,CIF,L/C Usance 90,2025-04-30,완료,0
+TRD-25355,2026-01-25,수출,식량자원,Gulf Petro Chem,사우디,옥수수,480900,USD,CFR,L/C Usance 90,2026-05-09,완료,0
+TRD-25356,2025-12-17,수출,철강강관,Rotterdam AgriTrade,네덜란드,구조용강관,85600,USD,FOB,L/C Usance 60,2026-03-01,연체,46
+TRD-25357,2026-03-18,수출,식량자원,Gulf Petro Chem,사우디,대두,230200,USD,CFR,L/C Usance 90,2026-06-30,완료,0
+TRD-25358,2025-05-09,수출,그린에너지,Viet Thanh Steel,베트남,인버터,177800,USD,CIF,T/T 60,2025-07-22,완료,0
+TRD-25359,2026-04-12,수출,그린에너지,Viet Thanh Steel,베트남,인버터,313300,USD,DAP,L/C Usance 60,2026-06-25,완료,0
+TRD-25360,2026-04-15,수출,식량자원,Shanghai Bright Intl,중국,옥수수,333100,USD,FOB,T/T 60,2026-06-28,완료,0
+TRD-25361,2025-07-20,수입,철강강관,Shanghai Bright Intl,중국,구조용강관,419800,USD,FOB,T/T 30,2025-09-02,완료,0
+TRD-25362,2025-12-24,삼국간,차량소재,Cairo Grid Co,이집트,전장부품,194500,USD,FOB,L/C Usance 90,2026-04-07,연체,74
+TRD-25363,2025-07-20,수출,차량소재,PT Nusantara Logam,인도네시아,전장부품,454900,USD,FOB,T/T 60,2025-10-02,완료,0
+TRD-25364,2025-12-12,수출,전력플랜트,Hanoi AutoParts,베트남,몰드변압기,267800,USD,DAP,L/C Usance 60,2026-02-24,완료,0
+TRD-25365,2025-01-29,수출,철강판재,Dallas Solar Inc,미국,열연코일,570800,USD,CFR,L/C Usance 90,2025-05-13,완료,0
+TRD-25366,2025-03-24,수출,물류솔루션,Viet Thanh Steel,베트남,해상운송,137600,USD,CFR,T/T 30,2025-05-07,완료,0
+TRD-25367,2025-04-13,수입,그린에너지,Cairo Grid Co,이집트,태양광모듈,109500,USD,CFR,L/C Usance 90,2025-07-26,완료,0
+TRD-25368,2025-06-24,수출,물류솔루션,Nagoya Parts Co,일본,복합운송,288800,USD,CFR,T/T 30,2025-08-07,완료,0
+TRD-25369,2025-10-09,수출,철강판재,Lagos Agro Ltd,나이지리아,아연도금강판,400100,USD,FOB,L/C Usance 60,2025-12-22,완료,0
+TRD-25370,2025-06-08,수입,물류솔루션,Mumbai Metal Corp,인도,해상운송,58100,USD,CFR,T/T 60,2025-08-21,완료,0
+TRD-25371,2025-08-09,수입,차량소재,Cairo Grid Co,이집트,차체부품,543200,USD,FOB,T/T 60,2025-10-22,완료,0
+TRD-25372,2025-12-15,수입,물류솔루션,PT Nusantara Logam,인도네시아,해상운송,56400,USD,FOB,L/C at sight,2025-12-29,완료,0
+TRD-25373,2026-01-19,수출,그린에너지,Siam Power Ltd,태국,인버터,71000,USD,CIF,T/T 60,2026-04-03,완료,0
+TRD-25374,2025-09-16,수출,차량소재,Chennai Trans Co,인도,샤시모듈,227800,USD,FOB,L/C Usance 60,2025-11-29,완료,0
+TRD-25375,2025-02-25,수입,전력플랜트,Viet Thanh Steel,베트남,몰드변압기,191100,USD,CFR,T/T 30,2025-04-10,완료,0
+TRD-25376,2026-06-05,수출,철강판재,Siam Power Ltd,태국,아연도금강판,99500,USD,DAP,L/C Usance 90,2026-09-17,예정,0
+TRD-25377,2026-01-10,수출,전력플랜트,Emirates Steel Est.,UAE,배전변압기,158000,USD,FOB,L/C Usance 90,2026-04-24,완료,0
+TRD-25378,2025-05-29,수출,그린에너지,Viet Thanh Steel,베트남,태양광모듈,117900,USD,CIF,L/C Usance 60,2025-08-11,완료,0
+TRD-25379,2025-05-09,수입,철강판재,Rotterdam AgriTrade,네덜란드,아연도금강판,229600,USD,CIF,L/C Usance 90,2025-08-21,완료,0
+TRD-25380,2026-04-30,수입,전력플랜트,Mumbai Metal Corp,인도,배전변압기,134800,USD,CFR,L/C at sight,2026-05-14,완료,0
+TRD-25381,2025-12-30,수출,화학에너지,Viet Thanh Steel,베트남,윤활기유,187600,USD,DAP,L/C Usance 60,2026-03-14,연체,49
+TRD-25382,2025-09-25,삼국간,그린에너지,Rotterdam AgriTrade,네덜란드,태양광모듈,230800,USD,FOB,L/C Usance 90,2026-01-07,완료,0
+TRD-25383,2026-05-21,수출,물류솔루션,Lagos Agro Ltd,나이지리아,해상운송,157500,USD,FOB,T/T 30,2026-07-04,예정,0
+TRD-25384,2025-12-12,수출,식량자원,Shanghai Bright Intl,중국,대두,123400,USD,CIF,T/T 60,2026-02-24,완료,0
+TRD-25385,2026-06-07,수입,철강강관,PT Nusantara Logam,인도네시아,송유관,235300,USD,DAP,L/C Usance 90,2026-09-19,예정,0
+TRD-25386,2026-02-22,수출,전력플랜트,PT Nusantara Logam,인도네시아,개폐기,67400,USD,FOB,L/C Usance 60,2026-05-07,완료,0
+TRD-25387,2026-01-31,수출,철강강관,Osaka Trading KK,일본,구조용강관,114700,USD,CFR,L/C Usance 60,2026-04-15,완료,0
+TRD-25388,2025-08-12,수출,식량자원,Hanoi AutoParts,베트남,옥수수,76300,USD,DAP,L/C Usance 90,2025-11-24,완료,0
+TRD-25389,2025-06-29,수출,그린에너지,Hanoi AutoParts,베트남,ESS배터리,115100,USD,CFR,L/C Usance 60,2025-09-11,완료,0
+TRD-25390,2025-02-03,삼국간,화학에너지,Dallas Solar Inc,미국,윤활기유,85900,USD,CIF,T/T 30,2025-03-19,완료,0
+TRD-25391,2025-03-03,수출,전력플랜트,Al-Rashid Trading,UAE,몰드변압기,148600,USD,DAP,L/C at sight,2025-03-17,완료,0
+TRD-25392,2025-01-24,삼국간,차량소재,Mumbai Metal Corp,인도,샤시모듈,371100,USD,CIF,L/C at sight,2025-02-07,완료,0
+TRD-25393,2026-06-27,수출,물류솔루션,Hamburg Stahl GmbH,독일,복합운송,104600,USD,FOB,L/C Usance 90,2026-10-09,예정,0
+TRD-25394,2026-02-25,수출,화학에너지,Osaka Trading KK,일본,납사,255700,USD,CIF,L/C Usance 60,2026-05-10,완료,0
+TRD-25395,2026-04-05,수출,화학에너지,Houston Energy LLC,미국,납사,267000,USD,DAP,T/T 60,2026-06-18,완료,0
+TRD-25396,2025-01-26,수출,전력플랜트,Bangkok Grain House,태국,몰드변압기,66200,USD,FOB,T/T 30,2025-03-11,완료,0
+TRD-25397,2025-07-07,수입,그린에너지,Dallas Solar Inc,미국,ESS배터리,276500,USD,DAP,L/C Usance 90,2025-10-19,완료,0
+TRD-25398,2026-06-19,수출,그린에너지,Hamburg Stahl GmbH,독일,태양광모듈,154500,USD,DAP,T/T 30,2026-08-02,예정,0
+TRD-25399,2025-02-24,수출,철강판재,Shanghai Bright Intl,중국,열연코일,749800,USD,FOB,T/T 30,2025-04-09,완료,0
+TRD-25400,2026-03-05,수출,철강강관,Qingdao Chem Group,중국,송유관,130300,USD,CIF,T/T 30,2026-04-18,완료,0
+TRD-25401,2025-11-02,수입,물류솔루션,Dallas Solar Inc,미국,해상운송,80000,USD,DAP,L/C Usance 60,2026-01-15,완료,0
+TRD-25402,2025-02-27,수출,식량자원,Al-Rashid Trading,UAE,대두,601000,USD,DAP,L/C at sight,2025-03-13,완료,0
+TRD-25403,2025-02-06,수입,전력플랜트,Qingdao Chem Group,중국,개폐기,97800,USD,CIF,L/C at sight,2025-02-20,완료,0
+TRD-25404,2025-03-12,수출,물류솔루션,Gulf Petro Chem,사우디,복합운송,116700,USD,CFR,L/C Usance 90,2025-06-24,연체,42
+TRD-25405,2025-06-13,수출,차량소재,Al-Rashid Trading,UAE,차체부품,222300,USD,FOB,L/C at sight,2025-06-27,완료,0
+TRD-25406,2025-01-16,수입,철강강관,Cairo Grid Co,이집트,송유관,420900,USD,FOB,L/C at sight,2025-01-30,완료,0
+TRD-25407,2025-07-25,수출,그린에너지,PT Nusantara Logam,인도네시아,태양광모듈,274800,USD,FOB,T/T 60,2025-10-07,연체,17
+TRD-25408,2026-03-21,수출,철강강관,Houston Energy LLC,미국,구조용강관,147200,USD,FOB,L/C at sight,2026-04-04,완료,0
+TRD-25409,2026-04-17,수입,식량자원,Dallas Solar Inc,미국,밀,364000,USD,DAP,T/T 30,2026-05-31,완료,0
+TRD-25410,2025-07-01,삼국간,철강판재,Lagos Agro Ltd,나이지리아,아연도금강판,359500,USD,DAP,L/C at sight,2025-07-15,완료,0
+TRD-25411,2026-02-12,수출,화학에너지,Emirates Steel Est.,UAE,납사,144400,USD,CFR,T/T 30,2026-03-28,완료,0
+TRD-25412,2026-01-25,수출,전력플랜트,Hanoi AutoParts,베트남,몰드변압기,368200,USD,FOB,L/C Usance 60,2026-04-09,완료,0
+TRD-25413,2025-09-07,삼국간,차량소재,Cairo Grid Co,이집트,전장부품,193400,USD,CFR,T/T 60,2025-11-20,완료,0
+TRD-25414,2025-12-05,수출,그린에너지,Rotterdam AgriTrade,네덜란드,ESS배터리,439200,USD,DAP,L/C Usance 90,2026-03-19,완료,0
+TRD-25415,2026-03-26,수출,식량자원,Mumbai Metal Corp,인도,옥수수,33500,USD,FOB,T/T 30,2026-05-09,완료,0
+TRD-25416,2025-02-21,수입,화학에너지,Siam Power Ltd,태국,납사,212800,USD,FOB,L/C Usance 90,2025-06-05,완료,0
+TRD-25417,2025-01-21,삼국간,철강강관,Hanoi AutoParts,베트남,구조용강관,580900,USD,CFR,L/C at sight,2025-02-04,연체,26
+TRD-25418,2026-02-04,수출,물류솔루션,Bangkok Grain House,태국,해상운송,227100,USD,DAP,L/C Usance 60,2026-04-19,연체,38
+TRD-25419,2025-10-28,수출,전력플랜트,Osaka Trading KK,일본,배전변압기,126800,USD,CFR,T/T 60,2026-01-10,완료,0
+TRD-25420,2025-06-27,수출,차량소재,Houston Energy LLC,미국,샤시모듈,35100,USD,DAP,L/C Usance 60,2025-09-09,연체,52
+TRD-25421,2025-08-19,수출,그린에너지,Viet Thanh Steel,베트남,ESS배터리,100400,USD,CIF,L/C at sight,2025-09-02,완료,0
+TRD-25422,2025-03-18,수출,철강강관,Al-Rashid Trading,UAE,구조용강관,97500,USD,DAP,L/C at sight,2025-04-01,완료,0
+TRD-25423,2025-02-23,삼국간,화학에너지,Nagoya Parts Co,일본,윤활기유,914800,USD,CFR,L/C at sight,2025-03-09,완료,0
+TRD-25424,2025-05-09,삼국간,물류솔루션,Al-Rashid Trading,UAE,복합운송,172200,USD,CIF,L/C Usance 90,2025-08-21,완료,0
+TRD-25425,2026-06-05,수출,전력플랜트,Shanghai Bright Intl,중국,개폐기,61200,USD,FOB,T/T 60,2026-08-18,예정,0
+TRD-25426,2025-10-21,수입,화학에너지,Dallas Solar Inc,미국,윤활기유,165400,USD,DAP,L/C Usance 60,2026-01-03,완료,0
+TRD-25427,2026-01-20,수입,식량자원,Dallas Solar Inc,미국,밀,210500,USD,FOB,L/C Usance 60,2026-04-04,완료,0
+TRD-25428,2026-04-17,수입,그린에너지,Shanghai Bright Intl,중국,태양광모듈,208000,USD,DAP,T/T 30,2026-05-31,완료,0
+TRD-25429,2025-09-01,수출,그린에너지,Qingdao Chem Group,중국,인버터,748600,USD,CFR,L/C Usance 60,2025-11-14,완료,0
+TRD-25430,2025-08-30,수입,식량자원,Mumbai Metal Corp,인도,대두,355300,USD,CFR,L/C Usance 60,2025-11-12,완료,0
+TRD-25431,2025-01-05,삼국간,차량소재,Hamburg Stahl GmbH,독일,차체부품,160400,USD,CFR,T/T 60,2025-03-20,완료,0
+TRD-25432,2025-12-17,수출,화학에너지,Emirates Steel Est.,UAE,PVC레진,57500,USD,DAP,T/T 30,2026-01-30,완료,0
+TRD-25433,2026-06-25,수출,그린에너지,Osaka Trading KK,일본,ESS배터리,99300,USD,FOB,T/T 30,2026-08-08,예정,0
+TRD-25434,2025-05-07,수출,그린에너지,Mumbai Metal Corp,인도,태양광모듈,73200,USD,FOB,T/T 60,2025-07-20,완료,0
+TRD-25435,2025-05-12,삼국간,철강판재,Qingdao Chem Group,중국,열연코일,378400,USD,FOB,T/T 30,2025-06-25,완료,0
+TRD-25436,2025-06-08,수입,식량자원,Emirates Steel Est.,UAE,밀,750400,USD,CIF,T/T 60,2025-08-21,완료,0
+TRD-25437,2025-08-10,수출,철강판재,Rotterdam AgriTrade,네덜란드,아연도금강판,46300,USD,CFR,T/T 60,2025-10-23,완료,0
+TRD-25438,2026-05-01,수출,화학에너지,Viet Thanh Steel,베트남,윤활기유,689500,USD,DAP,L/C at sight,2026-05-15,완료,0
+TRD-25439,2025-11-17,수출,물류솔루션,Gulf Petro Chem,사우디,해상운송,52700,USD,CFR,L/C Usance 60,2026-01-30,완료,0
+TRD-25440,2026-05-25,수입,철강판재,Cairo Grid Co,이집트,냉연강판,255700,USD,FOB,L/C Usance 60,2026-08-07,예정,0
+TRD-25441,2025-12-02,수출,그린에너지,Osaka Trading KK,일본,인버터,282200,USD,CIF,T/T 60,2026-02-14,연체,41
+TRD-25442,2025-01-21,수출,물류솔루션,Viet Thanh Steel,베트남,복합운송,504900,USD,FOB,L/C Usance 60,2025-04-05,완료,0
+TRD-25443,2026-03-13,수입,식량자원,Hamburg Stahl GmbH,독일,밀,285500,USD,FOB,T/T 60,2026-05-26,완료,0
+TRD-25444,2025-11-17,수출,그린에너지,Lagos Agro Ltd,나이지리아,인버터,245300,USD,CFR,L/C Usance 60,2026-01-30,연체,22
+TRD-25445,2025-06-27,수출,철강강관,Hamburg Stahl GmbH,독일,송유관,272900,USD,FOB,L/C Usance 60,2025-09-09,완료,0
+TRD-25446,2025-12-17,수출,화학에너지,Houston Energy LLC,미국,납사,129500,USD,FOB,L/C Usance 90,2026-03-31,완료,0
+TRD-25447,2025-12-24,수입,전력플랜트,PT Nusantara Logam,인도네시아,배전변압기,159600,USD,FOB,L/C Usance 90,2026-04-07,완료,0
+TRD-25448,2025-11-16,수입,전력플랜트,Bangkok Grain House,태국,배전변압기,74200,USD,FOB,L/C at sight,2025-11-30,완료,0
+TRD-25449,2026-01-30,수출,그린에너지,PT Nusantara Logam,인도네시아,인버터,377300,USD,CIF,T/T 60,2026-04-14,연체,52
+TRD-25450,2026-06-16,수입,식량자원,Rotterdam AgriTrade,네덜란드,옥수수,88500,USD,CIF,L/C Usance 60,2026-08-29,예정,0
+TRD-25451,2026-03-16,삼국간,물류솔루션,Gulf Petro Chem,사우디,해상운송,207600,USD,CFR,T/T 30,2026-04-29,완료,0
+TRD-25452,2025-08-06,수출,물류솔루션,Chennai Trans Co,인도,해상운송,61200,USD,FOB,L/C at sight,2025-08-20,완료,0
+TRD-25453,2025-04-16,수출,물류솔루션,PT Nusantara Logam,인도네시아,해상운송,553000,USD,CFR,L/C at sight,2025-04-30,완료,0
+TRD-25454,2025-03-29,수출,그린에너지,Gulf Petro Chem,사우디,태양광모듈,107400,USD,CFR,L/C Usance 60,2025-06-11,완료,0
+TRD-25455,2025-01-17,수입,화학에너지,Nagoya Parts Co,일본,윤활기유,728900,USD,DAP,L/C Usance 90,2025-05-01,연체,73
+TRD-25456,2025-08-14,수출,차량소재,Houston Energy LLC,미국,전장부품,146800,USD,CFR,L/C Usance 90,2025-11-26,연체,55
+TRD-25457,2025-05-10,수출,화학에너지,Qingdao Chem Group,중국,PVC레진,47900,USD,DAP,L/C at sight,2025-05-24,연체,71
+TRD-25458,2025-07-01,수출,식량자원,Osaka Trading KK,일본,옥수수,311700,USD,FOB,L/C Usance 90,2025-10-13,완료,0
+TRD-25459,2026-06-17,삼국간,전력플랜트,PT Nusantara Logam,인도네시아,배전변압기,463000,USD,DAP,L/C at sight,2026-07-01,예정,0
+TRD-25460,2026-06-21,수입,철강판재,Viet Thanh Steel,베트남,냉연강판,65800,USD,CIF,T/T 60,2026-09-03,예정,0
+TRD-25461,2026-06-18,수출,전력플랜트,PT Nusantara Logam,인도네시아,몰드변압기,152400,USD,CIF,L/C Usance 60,2026-08-31,예정,0
+TRD-25462,2025-10-22,수출,물류솔루션,Dallas Solar Inc,미국,복합운송,45600,USD,FOB,T/T 60,2026-01-04,완료,0
+TRD-25463,2025-03-10,수입,식량자원,Bangkok Grain House,태국,밀,285500,USD,DAP,L/C Usance 60,2025-05-23,연체,35
+TRD-25464,2025-03-03,삼국간,그린에너지,Gulf Petro Chem,사우디,태양광모듈,265200,USD,DAP,T/T 60,2025-05-16,완료,0
+TRD-25465,2026-02-09,수출,물류솔루션,Qingdao Chem Group,중국,복합운송,124100,USD,CIF,L/C Usance 90,2026-05-24,연체,29
+TRD-25466,2026-03-14,수출,화학에너지,Viet Thanh Steel,베트남,윤활기유,140600,USD,CFR,T/T 30,2026-04-27,완료,0
+TRD-25467,2025-04-22,삼국간,전력플랜트,PT Nusantara Logam,인도네시아,몰드변압기,313900,USD,CIF,T/T 30,2025-06-05,완료,0
+TRD-25468,2025-01-25,수출,차량소재,Viet Thanh Steel,베트남,차체부품,493400,USD,DAP,T/T 60,2025-04-09,연체,10
+TRD-25469,2025-05-16,수출,그린에너지,Rotterdam AgriTrade,네덜란드,인버터,72800,USD,DAP,L/C at sight,2025-05-30,완료,0
+TRD-25470,2025-01-29,수출,차량소재,Gulf Petro Chem,사우디,차체부품,867700,USD,DAP,T/T 60,2025-04-13,연체,6
+TRD-25471,2026-06-05,수출,철강판재,Qingdao Chem Group,중국,아연도금강판,143900,USD,FOB,T/T 30,2026-07-19,예정,0
+TRD-25472,2025-08-15,수출,전력플랜트,Nagoya Parts Co,일본,몰드변압기,294600,USD,CIF,L/C Usance 90,2025-11-27,완료,0
+TRD-25473,2026-05-04,수입,철강강관,Shanghai Bright Intl,중국,구조용강관,261700,USD,FOB,L/C Usance 90,2026-08-16,예정,0
+TRD-25474,2026-03-12,수출,차량소재,Emirates Steel Est.,UAE,차체부품,106300,USD,DAP,L/C Usance 90,2026-06-24,완료,0
+TRD-25475,2025-10-03,삼국간,철강강관,Hamburg Stahl GmbH,독일,구조용강관,1120800,USD,CFR,L/C Usance 90,2026-01-15,완료,0
+TRD-25476,2026-03-27,수출,그린에너지,Hanoi AutoParts,베트남,ESS배터리,1348100,USD,FOB,L/C Usance 60,2026-06-09,완료,0
+TRD-25477,2025-02-23,삼국간,철강강관,Shanghai Bright Intl,중국,구조용강관,100400,USD,CIF,L/C Usance 90,2025-06-07,완료,0
+TRD-25478,2025-07-30,삼국간,식량자원,Mumbai Metal Corp,인도,대두,127100,USD,CIF,T/T 30,2025-09-12,완료,0
+TRD-25479,2026-03-07,수출,식량자원,Siam Power Ltd,태국,밀,431800,USD,CFR,T/T 60,2026-05-20,완료,0
+TRD-25480,2026-03-03,삼국간,화학에너지,Gulf Petro Chem,사우디,납사,255100,USD,CFR,T/T 60,2026-05-16,완료,0
+TRD-25481,2026-03-05,수입,그린에너지,Osaka Trading KK,일본,태양광모듈,118300,USD,FOB,T/T 30,2026-04-18,완료,0
+TRD-25482,2025-01-05,수출,그린에너지,Shanghai Bright Intl,중국,인버터,99700,USD,CFR,L/C Usance 90,2025-04-19,완료,0
+TRD-25483,2025-08-12,수출,그린에너지,Lagos Agro Ltd,나이지리아,태양광모듈,414600,USD,CIF,L/C Usance 90,2025-11-24,연체,48
+TRD-25484,2025-11-16,수출,물류솔루션,Osaka Trading KK,일본,해상운송,309400,USD,DAP,T/T 30,2025-12-30,완료,0
+TRD-25485,2025-10-10,수출,철강강관,Qingdao Chem Group,중국,송유관,72800,USD,CFR,L/C Usance 60,2025-12-23,완료,0
+TRD-25486,2026-03-17,수출,물류솔루션,Lagos Agro Ltd,나이지리아,복합운송,147100,USD,CFR,T/T 60,2026-05-30,연체,36
+TRD-25487,2025-09-19,수출,그린에너지,Qingdao Chem Group,중국,ESS배터리,7300,USD,DAP,L/C Usance 60,2025-12-02,연체,11
+TRD-25488,2025-11-19,수입,식량자원,Houston Energy LLC,미국,밀,179800,USD,FOB,L/C Usance 90,2026-03-03,완료,0
+TRD-25489,2025-09-18,수출,차량소재,Houston Energy LLC,미국,차체부품,63000,USD,CFR,T/T 30,2025-11-01,완료,0
+TRD-25490,2025-07-10,수출,철강판재,Siam Power Ltd,태국,열연코일,361700,USD,FOB,L/C at sight,2025-07-24,완료,0
+TRD-25491,2025-01-29,수출,차량소재,Al-Rashid Trading,UAE,샤시모듈,56100,USD,FOB,L/C Usance 90,2025-05-13,연체,60
+TRD-25492,2025-08-05,수입,철강판재,Nagoya Parts Co,일본,열연코일,73900,USD,DAP,T/T 60,2025-10-18,완료,0
+TRD-25493,2025-10-08,수입,철강강관,Al-Rashid Trading,UAE,구조용강관,67100,USD,CFR,T/T 60,2025-12-21,연체,54
+TRD-25494,2025-12-14,수입,철강판재,Houston Energy LLC,미국,아연도금강판,135600,USD,CIF,L/C Usance 60,2026-02-26,완료,0
+TRD-25495,2025-11-17,수입,그린에너지,Hamburg Stahl GmbH,독일,ESS배터리,64600,USD,DAP,T/T 30,2025-12-31,완료,0
+TRD-25496,2025-03-29,수출,물류솔루션,Cairo Grid Co,이집트,해상운송,228600,USD,CIF,T/T 60,2025-06-11,완료,0
+TRD-25497,2026-01-24,삼국간,전력플랜트,Hanoi AutoParts,베트남,몰드변압기,428000,USD,CFR,L/C Usance 60,2026-04-08,완료,0
+TRD-25498,2025-08-15,수출,물류솔루션,Osaka Trading KK,일본,해상운송,241300,USD,CFR,T/T 30,2025-09-28,완료,0
+TRD-25499,2026-01-25,수입,철강판재,Nagoya Parts Co,일본,아연도금강판,454900,USD,FOB,T/T 60,2026-04-09,완료,0
+TRD-25500,2026-02-14,수입,식량자원,Rotterdam AgriTrade,네덜란드,대두,159800,USD,CIF,L/C Usance 90,2026-05-29,완료,0
+TRD-25501,2025-09-30,수출,철강강관,Gulf Petro Chem,사우디,구조용강관,137300,USD,FOB,T/T 60,2025-12-13,완료,0
+TRD-25502,2025-10-26,삼국간,철강강관,Nagoya Parts Co,일본,송유관,227500,USD,CFR,L/C Usance 90,2026-02-07,완료,0
+TRD-25503,2025-05-02,삼국간,철강판재,Rotterdam AgriTrade,네덜란드,냉연강판,634300,USD,DAP,T/T 60,2025-07-15,완료,0
+TRD-25504,2025-10-10,수출,전력플랜트,Osaka Trading KK,일본,몰드변압기,125400,USD,CFR,T/T 30,2025-11-23,완료,0
+TRD-25505,2026-06-23,수출,식량자원,Emirates Steel Est.,UAE,밀,101600,USD,CIF,T/T 30,2026-08-06,예정,0
+TRD-25506,2025-07-24,수출,화학에너지,Osaka Trading KK,일본,납사,173700,USD,CIF,L/C Usance 60,2025-10-06,완료,0
+TRD-25507,2025-07-03,수출,차량소재,Al-Rashid Trading,UAE,차체부품,167600,USD,CFR,L/C Usance 90,2025-10-15,완료,0
+TRD-25508,2025-10-17,수출,물류솔루션,Bangkok Grain House,태국,해상운송,53300,USD,DAP,T/T 30,2025-11-30,완료,0
+TRD-25509,2025-07-02,수출,차량소재,PT Nusantara Logam,인도네시아,샤시모듈,240200,USD,DAP,L/C Usance 90,2025-10-14,연체,54
+TRD-25510,2025-05-23,수출,화학에너지,Shanghai Bright Intl,중국,윤활기유,235800,USD,CIF,T/T 60,2025-08-05,완료,0
+TRD-25511,2025-12-19,수출,그린에너지,Cairo Grid Co,이집트,인버터,340400,USD,CFR,L/C Usance 60,2026-03-03,완료,0
+TRD-25512,2026-05-22,수입,그린에너지,Osaka Trading KK,일본,ESS배터리,200900,USD,FOB,L/C at sight,2026-06-05,완료,0
+TRD-25513,2025-11-29,수입,식량자원,Nagoya Parts Co,일본,대두,115200,USD,FOB,T/T 30,2026-01-12,완료,0
+TRD-25514,2025-10-31,삼국간,물류솔루션,Dallas Solar Inc,미국,해상운송,239500,USD,CIF,T/T 30,2025-12-14,완료,0
+TRD-25515,2025-09-28,삼국간,철강판재,Siam Power Ltd,태국,열연코일,124300,USD,CIF,L/C at sight,2025-10-12,완료,0
+TRD-25516,2025-02-08,수출,화학에너지,Siam Power Ltd,태국,PVC레진,111600,USD,DAP,T/T 30,2025-03-24,완료,0
+TRD-25517,2025-03-18,수출,화학에너지,PT Nusantara Logam,인도네시아,납사,68700,USD,CIF,L/C at sight,2025-04-01,완료,0
+TRD-25518,2026-06-27,수입,식량자원,Mumbai Metal Corp,인도,밀,241100,USD,CFR,T/T 30,2026-08-10,예정,0
+TRD-25519,2026-02-19,수입,그린에너지,Gulf Petro Chem,사우디,ESS배터리,134900,USD,CFR,T/T 30,2026-04-04,완료,0
+TRD-25520,2026-06-18,수출,그린에너지,Viet Thanh Steel,베트남,인버터,224600,USD,DAP,L/C Usance 60,2026-08-31,예정,0
+TRD-25521,2025-11-07,수출,화학에너지,Bangkok Grain House,태국,PVC레진,704700,USD,DAP,T/T 30,2025-12-21,완료,0
+TRD-25522,2025-02-27,삼국간,차량소재,Nagoya Parts Co,일본,차체부품,810600,USD,DAP,L/C at sight,2025-03-13,완료,0
+TRD-25523,2026-01-30,수출,화학에너지,Dallas Solar Inc,미국,PVC레진,58200,USD,FOB,L/C Usance 60,2026-04-14,완료,0
+TRD-25524,2025-08-24,수입,그린에너지,Bangkok Grain House,태국,태양광모듈,199700,USD,CIF,T/T 30,2025-10-07,완료,0
+TRD-25525,2025-06-01,수입,철강판재,PT Nusantara Logam,인도네시아,냉연강판,157000,USD,CFR,L/C Usance 90,2025-09-13,완료,0
+TRD-25526,2026-06-06,수출,화학에너지,Siam Power Ltd,태국,PVC레진,171500,USD,CIF,L/C Usance 60,2026-08-19,예정,0
+TRD-25527,2025-05-26,삼국간,그린에너지,Hamburg Stahl GmbH,독일,태양광모듈,57900,USD,CIF,L/C Usance 90,2025-09-07,완료,0
+TRD-25528,2025-08-09,수입,물류솔루션,Osaka Trading KK,일본,복합운송,400900,USD,DAP,L/C Usance 60,2025-10-22,완료,0
+TRD-25529,2025-07-22,수입,화학에너지,PT Nusantara Logam,인도네시아,PVC레진,503700,USD,FOB,T/T 60,2025-10-04,완료,0
+TRD-25530,2025-04-23,수출,차량소재,Osaka Trading KK,일본,차체부품,288500,USD,DAP,L/C Usance 60,2025-07-06,완료,0
+TRD-25531,2026-06-21,수출,전력플랜트,Gulf Petro Chem,사우디,개폐기,24400,USD,CFR,T/T 30,2026-08-04,예정,0
+TRD-25532,2025-08-27,삼국간,철강강관,Siam Power Ltd,태국,구조용강관,578600,USD,FOB,L/C Usance 60,2025-11-09,완료,0
+TRD-25533,2025-04-26,수출,화학에너지,PT Nusantara Logam,인도네시아,PVC레진,48500,USD,DAP,L/C at sight,2025-05-10,완료,0
+TRD-25534,2025-01-07,수출,전력플랜트,Shanghai Bright Intl,중국,몰드변압기,148300,USD,FOB,T/T 30,2025-02-20,완료,0
+TRD-25535,2026-02-28,수출,화학에너지,Shanghai Bright Intl,중국,납사,31300,USD,FOB,T/T 60,2026-05-13,완료,0
+TRD-25536,2026-03-14,수입,차량소재,Cairo Grid Co,이집트,전장부품,387200,USD,FOB,L/C Usance 90,2026-06-26,연체,40
+TRD-25537,2025-04-07,수입,식량자원,Lagos Agro Ltd,나이지리아,대두,127300,USD,DAP,T/T 60,2025-06-20,완료,0
+TRD-25538,2025-10-29,수입,전력플랜트,Rotterdam AgriTrade,네덜란드,배전변압기,42400,USD,CFR,L/C Usance 60,2026-01-11,완료,0
+TRD-25539,2026-04-12,수출,물류솔루션,Rotterdam AgriTrade,네덜란드,해상운송,354900,USD,FOB,T/T 60,2026-06-25,완료,0
+TRD-25540,2025-04-10,수출,물류솔루션,Gulf Petro Chem,사우디,복합운송,89800,USD,FOB,L/C Usance 90,2025-07-23,완료,0
+TRD-25541,2025-09-17,삼국간,물류솔루션,Chennai Trans Co,인도,복합운송,330100,USD,CIF,T/T 30,2025-10-31,완료,0
+TRD-25542,2026-05-16,수출,철강강관,Bangkok Grain House,태국,송유관,274300,USD,CFR,L/C Usance 90,2026-08-28,예정,0
+TRD-25543,2025-03-28,수입,그린에너지,Lagos Agro Ltd,나이지리아,태양광모듈,142700,USD,DAP,L/C Usance 90,2025-07-10,완료,0
+TRD-25544,2025-08-17,수출,화학에너지,Viet Thanh Steel,베트남,윤활기유,170800,USD,DAP,L/C Usance 90,2025-11-29,완료,0
+TRD-25545,2025-04-16,삼국간,식량자원,Shanghai Bright Intl,중국,밀,80800,USD,CIF,T/T 30,2025-05-30,완료,0
+TRD-25546,2026-03-27,수입,차량소재,Lagos Agro Ltd,나이지리아,샤시모듈,289700,USD,DAP,T/T 60,2026-06-09,완료,0
+TRD-25547,2026-04-26,수출,물류솔루션,Gulf Petro Chem,사우디,복합운송,167200,USD,CIF,L/C Usance 90,2026-08-08,예정,0
+TRD-25548,2025-10-05,수출,식량자원,Al-Rashid Trading,UAE,대두,124900,USD,CFR,L/C at sight,2025-10-19,완료,0
+TRD-25549,2026-01-10,수출,식량자원,Hamburg Stahl GmbH,독일,대두,182100,USD,CFR,T/T 60,2026-03-25,완료,0
+TRD-25550,2026-05-20,수출,식량자원,Houston Energy LLC,미국,대두,802200,USD,FOB,L/C Usance 90,2026-09-01,예정,0
+TRD-25551,2025-01-17,삼국간,차량소재,Siam Power Ltd,태국,샤시모듈,152000,USD,CIF,T/T 30,2025-03-02,완료,0
+TRD-25552,2026-05-23,수출,그린에너지,Osaka Trading KK,일본,태양광모듈,793800,USD,CFR,L/C Usance 60,2026-08-05,예정,0
+TRD-25553,2026-06-17,수출,그린에너지,Viet Thanh Steel,베트남,ESS배터리,175800,USD,CIF,T/T 60,2026-08-30,예정,0
+TRD-25554,2025-05-02,수출,화학에너지,PT Nusantara Logam,인도네시아,윤활기유,179000,USD,CFR,L/C Usance 90,2025-08-14,완료,0
+TRD-25555,2025-01-31,수입,물류솔루션,Osaka Trading KK,일본,해상운송,129000,USD,FOB,L/C Usance 90,2025-05-15,완료,0
+TRD-25556,2025-06-29,삼국간,철강강관,Qingdao Chem Group,중국,송유관,310700,USD,FOB,T/T 30,2025-08-12,완료,0
+TRD-25557,2026-01-31,수입,철강판재,Hanoi AutoParts,베트남,아연도금강판,158700,USD,CIF,T/T 30,2026-03-16,완료,0
+TRD-25558,2025-06-23,수출,물류솔루션,Osaka Trading KK,일본,복합운송,91400,USD,FOB,T/T 30,2025-08-06,연체,74
+TRD-25559,2026-03-21,수출,차량소재,Dallas Solar Inc,미국,차체부품,432700,USD,CIF,T/T 30,2026-05-04,완료,0
+TRD-25560,2025-06-22,수출,식량자원,Hamburg Stahl GmbH,독일,밀,203400,USD,FOB,L/C Usance 90,2025-10-04,완료,0
+TRD-25561,2025-04-18,삼국간,전력플랜트,Osaka Trading KK,일본,몰드변압기,130700,USD,CFR,T/T 60,2025-07-01,완료,0
+TRD-25562,2025-02-09,수출,식량자원,Rotterdam AgriTrade,네덜란드,대두,206600,USD,DAP,T/T 60,2025-04-24,완료,0
+TRD-25563,2025-01-23,수출,화학에너지,Hamburg Stahl GmbH,독일,PVC레진,207600,USD,CFR,L/C Usance 90,2025-05-07,연체,16
+TRD-25564,2025-09-09,수출,철강강관,Al-Rashid Trading,UAE,송유관,103800,USD,CIF,L/C Usance 60,2025-11-22,완료,0
+TRD-25565,2026-06-20,수출,식량자원,Rotterdam AgriTrade,네덜란드,옥수수,108000,USD,FOB,T/T 30,2026-08-03,예정,0
+TRD-25566,2025-03-28,수입,전력플랜트,Lagos Agro Ltd,나이지리아,배전변압기,561500,USD,DAP,L/C at sight,2025-04-11,완료,0
+TRD-25567,2025-12-24,수출,물류솔루션,Siam Power Ltd,태국,해상운송,35400,USD,FOB,T/T 30,2026-02-06,완료,0
+TRD-25568,2026-01-06,수출,물류솔루션,Al-Rashid Trading,UAE,해상운송,45500,USD,DAP,L/C Usance 60,2026-03-21,연체,23
+TRD-25569,2025-08-28,삼국간,철강강관,Osaka Trading KK,일본,구조용강관,96900,USD,FOB,L/C Usance 60,2025-11-10,완료,0
+TRD-25570,2025-06-01,수입,물류솔루션,Hamburg Stahl GmbH,독일,해상운송,26200,USD,CFR,L/C Usance 60,2025-08-14,완료,0
+TRD-25571,2026-03-14,삼국간,물류솔루션,Lagos Agro Ltd,나이지리아,복합운송,314600,USD,CIF,L/C at sight,2026-03-28,완료,0
+TRD-25572,2025-07-20,삼국간,철강강관,Dallas Solar Inc,미국,구조용강관,40600,USD,DAP,T/T 30,2025-09-02,완료,0
+TRD-25573,2026-01-11,삼국간,물류솔루션,Cairo Grid Co,이집트,해상운송,183900,USD,FOB,T/T 60,2026-03-26,완료,0
+TRD-25574,2025-10-04,수출,물류솔루션,Dallas Solar Inc,미국,복합운송,194900,USD,CFR,T/T 30,2025-11-17,완료,0
+TRD-25575,2026-05-18,수입,그린에너지,Al-Rashid Trading,UAE,태양광모듈,159000,USD,FOB,L/C Usance 90,2026-08-30,예정,0
+TRD-25576,2025-08-23,수출,철강강관,Rotterdam AgriTrade,네덜란드,송유관,702000,USD,DAP,L/C Usance 90,2025-12-05,완료,0
+TRD-25577,2025-06-17,수입,식량자원,Nagoya Parts Co,일본,대두,86600,USD,CFR,T/T 30,2025-07-31,완료,0
+TRD-25578,2025-04-24,수출,철강강관,Siam Power Ltd,태국,구조용강관,191300,USD,CFR,L/C at sight,2025-05-08,연체,68
+TRD-25579,2025-07-20,수출,차량소재,Hamburg Stahl GmbH,독일,전장부품,85900,USD,CIF,T/T 60,2025-10-02,연체,41
+TRD-25580,2025-07-08,수출,차량소재,Lagos Agro Ltd,나이지리아,샤시모듈,214600,USD,FOB,L/C Usance 60,2025-09-20,완료,0
+TRD-25581,2026-04-15,수출,그린에너지,Hamburg Stahl GmbH,독일,인버터,536800,USD,DAP,L/C Usance 60,2026-06-28,연체,71
+TRD-25582,2026-02-01,수입,차량소재,Emirates Steel Est.,UAE,샤시모듈,42400,USD,CFR,T/T 60,2026-04-16,완료,0
+TRD-25583,2025-01-09,수출,차량소재,Rotterdam AgriTrade,네덜란드,전장부품,239400,USD,FOB,L/C Usance 90,2025-04-23,완료,0
+TRD-25584,2026-04-25,삼국간,철강판재,Siam Power Ltd,태국,열연코일,327500,USD,DAP,T/T 60,2026-07-08,예정,0
+TRD-25585,2025-10-04,수출,차량소재,Nagoya Parts Co,일본,전장부품,256200,USD,DAP,T/T 60,2025-12-17,완료,0
+TRD-25586,2025-07-07,수입,식량자원,Lagos Agro Ltd,나이지리아,밀,113900,USD,FOB,L/C Usance 60,2025-09-19,완료,0
+TRD-25587,2026-03-18,수출,전력플랜트,Al-Rashid Trading,UAE,개폐기,114000,USD,FOB,L/C at sight,2026-04-01,완료,0
+TRD-25588,2025-09-08,수입,그린에너지,Nagoya Parts Co,일본,태양광모듈,324800,USD,CIF,L/C Usance 90,2025-12-21,완료,0
+TRD-25589,2025-03-13,삼국간,그린에너지,Hamburg Stahl GmbH,독일,ESS배터리,739700,USD,DAP,L/C Usance 60,2025-05-26,완료,0
+TRD-25590,2025-08-09,수출,그린에너지,Siam Power Ltd,태국,태양광모듈,344900,USD,CIF,L/C at sight,2025-08-23,완료,0
+TRD-25591,2025-02-07,수입,전력플랜트,Rotterdam AgriTrade,네덜란드,배전변압기,78300,USD,CIF,T/T 60,2025-04-22,완료,0
+TRD-25592,2025-09-25,삼국간,철강판재,Osaka Trading KK,일본,열연코일,288100,USD,FOB,L/C at sight,2025-10-09,연체,56
+TRD-25593,2025-02-21,수출,물류솔루션,Shanghai Bright Intl,중국,복합운송,110500,USD,CIF,L/C Usance 90,2025-06-05,완료,0
+TRD-25594,2026-02-22,삼국간,그린에너지,Chennai Trans Co,인도,ESS배터리,52600,USD,FOB,L/C at sight,2026-03-08,완료,0
+TRD-25595,2026-03-16,수입,그린에너지,Hanoi AutoParts,베트남,태양광모듈,111300,USD,CFR,L/C at sight,2026-03-30,완료,0
+TRD-25596,2025-11-12,수출,물류솔루션,Osaka Trading KK,일본,해상운송,103300,USD,FOB,T/T 30,2025-12-26,완료,0
+TRD-25597,2026-06-01,수출,차량소재,Dallas Solar Inc,미국,차체부품,458000,USD,CIF,L/C Usance 60,2026-08-14,예정,0
+TRD-25598,2026-03-09,수입,철강판재,Hanoi AutoParts,베트남,열연코일,261100,USD,DAP,L/C Usance 60,2026-05-22,완료,0
+TRD-25599,2025-02-15,삼국간,화학에너지,Nagoya Parts Co,일본,납사,265100,USD,CIF,L/C Usance 60,2025-04-30,완료,0
